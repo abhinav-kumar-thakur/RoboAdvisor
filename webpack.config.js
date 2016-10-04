@@ -7,7 +7,7 @@ const webpack = require('webpack'),
 
 module.exports = {
   entry: {
-    'vendor': ['react', 'react-dom', 'recharts'],
+    'vendor': ['react', 'react-dom', 'recharts', 'lodash'],
     'app': paths.app.js
   },
 
@@ -15,7 +15,7 @@ module.exports = {
 
   output: {
     path: 'dist',
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
 
   module: {
@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ["jsx-loader"]
+        loaders: ['jsx-loader']
       }
     ]
   }

@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
+    "flux": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-wait": "0.0.2",
     "jsx-loader": "^0.13.2",
+    "lodash": "^4.16.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "recharts": "^0.15.1",
