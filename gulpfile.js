@@ -1,5 +1,7 @@
 const gulp = require('gulp'),
   connect = require('gulp-connect'),
+  watch = require('gulp-watch'),
+  wait = require('gulp-wait'),
   exec = require('child_process').exec;
 
 const paths = {
@@ -13,22 +15,21 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('webpack', function (cb) {
-  exec('webpack', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-gulp.task('html', function () {
-  gulp.src(paths.html)
+gulp.task('webpack', function () {
+  return watch(paths.js, function () {
+    exec('webpack', function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+    });
+  })
+    .pipe(wait(1000))
     .pipe(connect.reload());
 });
 
-gulp.task('watch', function () {
-  gulp.watch(paths.html, ['html']);
-  gulp.watch(paths.js, ['webpack']);
+gulp.task('html', function () {
+  return watch(paths.html)
+    .pipe(connect.reload());
 });
 
-gulp.task('default', ['connect', 'webpack', 'watch']);
+gulp.task('watch', ['html', 'webpack']);
+gulp.task('default', ['connect', 'watch']);

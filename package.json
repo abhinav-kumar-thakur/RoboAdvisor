@@ -18,12 +18,14 @@
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-wait": "0.0.2",
     "jsx-loader": "^0.13.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
-    "gulp-connect": "^5.0.0"
+    "gulp-connect": "^5.0.0",
+    "gulp-watch": "^4.3.10"
   }
 }
