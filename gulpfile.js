@@ -31,4 +31,4 @@ gulp.task('watch', function () {
   gulp.watch(paths.js, ['webpack']);
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['connect', 'webpack', 'watch']);
