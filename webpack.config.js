@@ -1,5 +1,4 @@
 const webpack = require('webpack'),
-  glob = require('glob'),
   paths = {
     app: {
       js: './app/static/javascripts/app.js'
