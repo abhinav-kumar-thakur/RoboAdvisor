@@ -1,8 +1,9 @@
 # RoboAdvisor
 
-1. run npm install
+1. run >> npm install
 
-2. run gulp to serve the index.html
+2.  install gulp using >>  npm install gulp-cli -g
+    to serve the index.html run >> gulp 
 
 3. run >> bash setup.sh 
    for environment setup
