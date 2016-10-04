@@ -22,7 +22,7 @@ gulp.task('webpack', function () {
       console.log(stderr);
     });
   })
-    .pipe(wait(1000))
+    .pipe(wait(3000))
     .pipe(connect.reload());
 });
 

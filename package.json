@@ -22,6 +22,7 @@
     "jsx-loader": "^0.13.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "recharts": "^0.15.1",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
