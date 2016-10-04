@@ -1,11 +1,19 @@
-const paths = {
-  app: {
-    js: './app/static/javascripts/app.js'
-  }
-};
+const webpack = require('webpack'),
+  glob = require('glob'),
+  paths = {
+    app: {
+      js: './app/static/javascripts/app.js'
+    }
+  };
 
 module.exports = {
-  entry: paths.app.js,
+  entry: {
+    'vendor': ['react', 'react-dom'],
+    'app': paths.app.js
+  },
+
+  plugins: [new webpack.optimize.CommonsChunkPlugin(['app', 'vendor'], 'bundle-[name].js')],
+
   output: {
     path: 'dist',
     filename: "bundle.js"
