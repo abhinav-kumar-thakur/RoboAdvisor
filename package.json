@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-exec": "^2.1.2",
+    "webpack": "^1.13.2"
   },
   "devDependencies": {
     "gulp-connect": "^5.0.0"

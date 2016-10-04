@@ -1,5 +1,11 @@
-var gulp = require('gulp'),
-  connect = require('gulp-connect');
+const gulp = require('gulp'),
+  connect = require('gulp-connect'),
+  exec = require('child_process').exec;
+
+const paths = {
+  html: 'index.html',
+  js: './app/static/javascripts/app.js'
+};
 
 gulp.task('connect', function () {
   connect.server({
@@ -7,13 +13,22 @@ gulp.task('connect', function () {
   });
 });
 
+gulp.task('webpack', function (cb) {
+  exec('webpack', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
 gulp.task('html', function () {
-  gulp.src('index.html')
+  gulp.src(paths.html)
     .pipe(connect.reload());
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['index.html'], ['html']);
+  gulp.watch(paths.html, ['html']);
+  gulp.watch(paths.js, ['webpack']);
 });
 
 gulp.task('default', ['connect', 'watch']);
