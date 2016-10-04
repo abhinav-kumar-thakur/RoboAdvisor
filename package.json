@@ -1,0 +1,19 @@
+{
+  "name": "robo_advisor",
+  "version": "1.0.0",
+  "description": "stock market prediction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhivision/RoboAdvisor.git"
+  },
+  "author": "TW",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhivision/RoboAdvisor/issues"
+  },
+  "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
+}
