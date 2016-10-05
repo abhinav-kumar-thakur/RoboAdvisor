@@ -15,8 +15,10 @@
     
 6. Setting up the database
     a. Install the postgres 9.5 server :-
-        https://drive.google.com/a/thoughtworks.com/file/d/0B7dkiOQBtpZQNHNscmJ0T2ltRms/view?usp=sharing
-    
+        - https://drive.google.com/a/thoughtworks.com/file/d/0B7dkiOQBtpZQNHNscmJ0T2ltRms/view?usp=sharing
+        - Update path in bash : vim ~/.bash_profile
+        - Add this line to end (with the correct version): export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin
+        
     b. On postgres command prompt run :- 
            - CREATE DATABASE roboadvisordb;
            - CREATE USER myprojectuser WITH PASSWORD 'password';
