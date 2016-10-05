@@ -18,11 +18,11 @@
         https://drive.google.com/a/thoughtworks.com/file/d/0B7dkiOQBtpZQNHNscmJ0T2ltRms/view?usp=sharing
     
     b. On postgres command prompt run :- 
-           - CREATE DATABASE roboadivisordb;
+           - CREATE DATABASE roboadvisordb;
            - CREATE USER myprojectuser WITH PASSWORD 'password';
            - ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
            - ALTER ROLE myprojectuser SET timezone TO 'UTC';
            - ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
-           - GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+           - GRANT ALL PRIVILEGES ON DATABASE roboadvisordb TO myprojectuser;
     
     c. Run >> python manage.py migrate
