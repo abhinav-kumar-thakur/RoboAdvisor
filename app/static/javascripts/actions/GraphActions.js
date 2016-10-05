@@ -8,6 +8,13 @@ var GraphActions = {
       actionType: GraphConstants.RECEIVE_DATA,
       data: data
     })
+  },
+
+  filterGraph: function(data) {
+    AppDispatcher.handleAction({
+      actionType: GraphConstants.FILTER_DATA,
+      data: data
+    })
   }
 
 };

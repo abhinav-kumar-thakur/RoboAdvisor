@@ -9,6 +9,12 @@ var loadGraphData = function (data) {
   graphData = data;
 };
 
+var filterGraphData = function (data) {
+  graphData = graphData.filter(function (d) {
+    return d.uv < data;
+  });
+};
+
 var GraphStore = _.extend({}, EventEmitter.prototype, {
 
   getGraphData: function () {
@@ -36,6 +42,10 @@ AppDispatcher.register(function (payload) {
 
     case GraphConstants.RECEIVE_DATA:
       loadGraphData(action.data);
+      break;
+
+    case GraphConstants.FILTER_DATA:
+      filterGraphData(action.data);
       break;
   }
 
