@@ -3,7 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 var GraphConstants = require('../constants/GraphConstants');
 var _ = require('lodash');
 
-var graphData = {};
+var graphData = [];
 
 var loadGraphData = function (data) {
   graphData = data;

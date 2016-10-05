@@ -1,19 +1,27 @@
-var GraphActions = require('../actions/GraphActions');
+var GraphActions = require('../actions/GraphActions'),
+  $ = require('jquery');
+
+
+function $http(url, method, successCallback, errorCallback) {
+  $.ajax({
+      url: url,
+      method: method
+    })
+    .done(function (data) {
+      successCallback(data);
+    })
+    .fail(function (err) {
+      errorCallback(err);
+    })
+}
 
 module.exports = {
 
   getGraphData: function () {
-    var data = [
-      {name: 'Page A', uv: 4000},
-      {name: 'Page B', uv: 3000},
-      {name: 'Page C', uv: 2000},
-      {name: 'Page D', uv: 2780},
-      {name: 'Page E', uv: 1890},
-      {name: 'Page F', uv: 2390},
-      {name: 'Page G', uv: 3490}
-    ];
+    function getGraph(data) {
+      GraphActions.getGraph(data);
+    }
 
-    GraphActions.getGraph(data);
+    $http('../../../../graphData.json', 'GET', getGraph);
   }
-
 };

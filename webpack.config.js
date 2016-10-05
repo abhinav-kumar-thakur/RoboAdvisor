@@ -7,7 +7,7 @@ const webpack = require('webpack'),
 
 module.exports = {
   entry: {
-    'vendor': ['react', 'react-dom', 'recharts', 'lodash'],
+    'vendor': ['react', 'react-dom', 'recharts', 'lodash', 'jquery'],
     'app': paths.app.js
   },
 
