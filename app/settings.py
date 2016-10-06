@@ -75,7 +75,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'roboadvisordb',
-        'USER': 'myprojectuser',
+        'USER': 'robouser',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',

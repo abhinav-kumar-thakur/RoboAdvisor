@@ -13,13 +13,10 @@
         - Run >> source  ~/.bash_profile
 
     b. On postgres command prompt run :- 
-           - CREATE DATABASE roboadvisordb;
-           - CREATE USER myprojectuser WITH PASSWORD 'password';
-           - ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
-           - ALTER ROLE myprojectuser SET timezone TO 'UTC';
-           - ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+           - run >> bash setup/db.sh 
+           To drop and create the database
     
-4. run >> bash setup.sh 
+4. run >> bash setup/app.sh 
    for environment setup
    
 5. run >> source venv/bin/activate to work with virtualenv
