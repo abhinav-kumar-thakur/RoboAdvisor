@@ -2,10 +2,17 @@ const gulp = require('gulp'),
   connect = require('gulp-connect'),
   watch = require('gulp-watch'),
   wait = require('gulp-wait'),
+  sass = require('gulp-sass'),
   exec = require('child_process').exec;
 
 const paths = {
-  js: './app/assets/javascripts/**/*.js'
+  src: {
+    js: './app/assets/javascripts/**/*.js',
+    scss: './app/assets/stylesheets/**/*.scss'
+  },
+  dest: {
+    css: './app/static'
+  }
 };
 
 gulp.task('bundleJS', function () {
@@ -15,8 +22,17 @@ gulp.task('bundleJS', function () {
   });
 });
 
-gulp.task('watch', function () {
-  gulp.watch(paths.js, ['bundleJS'])
+gulp.task('css', function () {
+  gulp.src(paths.src.scss)
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
+    .pipe(gulp.dest(paths.dest.css));
 });
 
-gulp.task('default', ['bundleJS', 'watch']);
+gulp.task('watch', function () {
+  gulp.watch(paths.src.js, ['bundleJS']);
+  gulp.watch(paths.src.scss, ['css']);
+});
+
+gulp.task('default', ['bundleJS', 'css', 'watch']);
