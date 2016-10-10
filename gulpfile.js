@@ -5,31 +5,18 @@ const gulp = require('gulp'),
   exec = require('child_process').exec;
 
 const paths = {
-  html: 'index.html',
   js: './app/assets/javascripts/**/*.js'
 };
 
-gulp.task('connect', function () {
-  connect.server({
-    livereload: true
+gulp.task('bundleJS', function () {
+  exec('webpack', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
   });
 });
 
-gulp.task('webpack', function () {
-  return watch(paths.js, function () {
-    exec('webpack', function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-    });
-  })
-    .pipe(wait(3000))
-    .pipe(connect.reload());
+gulp.task('watch', function () {
+  gulp.watch(paths.js, ['bundleJS'])
 });
 
-gulp.task('html', function () {
-  return watch(paths.html)
-    .pipe(connect.reload());
-});
-
-gulp.task('watch', ['html', 'webpack']);
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['bundleJS', 'watch']);

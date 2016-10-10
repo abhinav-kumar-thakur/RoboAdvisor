@@ -22,6 +22,6 @@ module.exports = {
       GraphActions.getGraph(data);
     }
 
-    $http('../../../../graphData.json', 'GET', getGraph);
+    $http('static/data/graphData.json', 'GET', getGraph);
   }
 };
