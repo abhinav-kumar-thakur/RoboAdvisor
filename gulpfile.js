@@ -6,7 +6,7 @@ const gulp = require('gulp'),
 
 const paths = {
   html: 'index.html',
-  js: './app/static/javascripts/**/*.js'
+  js: './app/assets/javascripts/**/*.js'
 };
 
 gulp.task('connect', function () {

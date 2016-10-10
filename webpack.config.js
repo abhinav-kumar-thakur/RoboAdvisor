@@ -1,7 +1,7 @@
 const webpack = require('webpack'),
   paths = {
     app: {
-      js: './app/static/javascripts/app.js'
+      js: './app/assets/javascripts/app.js'
     }
   };
 
@@ -14,7 +14,7 @@ module.exports = {
   plugins: [new webpack.optimize.CommonsChunkPlugin(['app', 'vendor'], 'bundle-[name].js')],
 
   output: {
-    path: './app/public',
+    path: './app/static',
     filename: 'bundle.js'
   },
 
