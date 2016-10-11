@@ -8,10 +8,12 @@ const gulp = require('gulp'),
 const paths = {
   src: {
     js: './app/assets/javascripts/**/*.js',
-    scss: './app/assets/stylesheets/**/*.scss'
+    scss: './app/assets/stylesheets/**/*.scss',
+    images: './app/assets/images/*.*'
   },
   dest: {
-    css: './app/static'
+    css: './app/static/css',
+    images: './app/static/images'
   }
 };
 
@@ -30,9 +32,15 @@ gulp.task('css', function () {
     .pipe(gulp.dest(paths.dest.css));
 });
 
+gulp.task('copy', function () {
+  gulp.src(paths.src.images)
+    .pipe(gulp.dest(paths.dest.images));
+});
+
 gulp.task('watch', function () {
   gulp.watch(paths.src.js, ['bundleJS']);
   gulp.watch(paths.src.scss, ['css']);
+  gulp.watch(paths.src.images, ['copy']);
 });
 
-gulp.task('default', ['bundleJS', 'css', 'watch']);
+gulp.task('default', ['bundleJS', 'css', 'copy', 'watch']);

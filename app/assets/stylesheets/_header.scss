@@ -1,0 +1,44 @@
+.header {
+  border-bottom: 1px solid $light-gray;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+}
+
+.header__menu-icon {
+  flex-basis: 25%;
+
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.header__list-container {
+  flex-basis: 75%;
+}
+
+.header__list {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+
+  .list__item {
+    text-align: center;
+    flex-basis: 20%;
+  }
+
+  .list__link {
+    padding-bottom: 10px;
+    font-weight: bold;
+    color: $light-gray;
+
+    &.active {
+      border-bottom: 3px solid $dark-gray;
+      color: $dark-gray;
+    }
+  }
+}
+
+
+

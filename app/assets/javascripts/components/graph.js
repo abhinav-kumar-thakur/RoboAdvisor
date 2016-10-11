@@ -10,7 +10,7 @@ var Graph = React.createClass({
     GraphActions.filterGraph(3000);
   },
 
-  render () {
+  render: function () {
     return (
       <div>
         <AreaChart width={600} height={400} data={this.props.graphData}
