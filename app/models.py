@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
+
 class Portfolio(models.Model):
     id = models.AutoField(primary_key=True)
     userId = models.IntegerField()
@@ -15,10 +16,21 @@ class Asset(models.Model):
     symbol = models.CharField(max_length=50)
     type = models.CharField(max_length=50)
     sector = models.CharField(max_length=50)
-    sub_sector = models.CharField(max_length=50)
+    subSector = models.CharField(max_length=50)
 
     class Meta:
         db_table = "asset"
+
+
+class AssetData(models.Model):
+    asset = models.ForeignKey(Asset)
+    timestamp = models.DateTimeField()
+    price = models.FloatField()
+    prediction = models.FloatField(null=True)
+    errorMargin = models.FloatField()
+
+    class Meta:
+        db_table = "assetdata"
 
 
 class PortfolioAssetMapping(models.Model):
@@ -81,17 +93,6 @@ class News(models.Model):
 
     class Meta:
         db_table = "news"
-
-
-class AssetData(models.Model):
-    assetId = models.ForeignKey(Asset)
-    timestamp = models.DateTimeField()
-    price = models.FloatField()
-    prediction = models.FloatField()
-    errorMargin = models.FloatField()
-
-    class Meta:
-        db_table = "assetData"
 
 
 class Recommendation(models.Model):

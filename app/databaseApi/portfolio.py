@@ -1,8 +1,11 @@
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE","app.settings")
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 import sys
+
 sys.path.append("/Users/nayana/PycharmProjects/RoboAdvisor")
 import django
+
 django.setup()
 from app.models import Portfolio
 
