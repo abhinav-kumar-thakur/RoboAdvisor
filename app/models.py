@@ -1,7 +1,6 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-
 class Portfolio(models.Model):
     id = models.AutoField(primary_key=True)
     userId = models.IntegerField()
