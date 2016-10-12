@@ -35,12 +35,12 @@ class AssetData(models.Model):
 
 class PortfolioAssetMapping(models.Model):
     id = models.AutoField(primary_key=True)
-    portfolioId = models.ForeignKey(Portfolio)
-    assetId = models.ForeignKey(Asset)
+    portfolio = models.ForeignKey(Portfolio)
+    asset = models.ForeignKey(Asset)
     currentCount = models.IntegerField()
 
     class Meta:
-        db_table = "portfolioAssetMapping"
+        db_table = "portfolio_asset_mapping"
 
 
 class Transaction(models.Model):

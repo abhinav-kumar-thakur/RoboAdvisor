@@ -13,10 +13,10 @@
         - Run >> source  ~/.bash_profile
 
     b. On postgres command prompt run :- 
-           - run >> bash setup/db.sh 
-           To drop and create the database
+           - run >> bash app/db.sh
+           To drop and create the database, along with makemigrations and migrate script, it also adds data to the data base
     
-4. run >> bash setup/app.sh 
+4. run >> bash app/app.sh
    for environment setup
    
 5. run >> source venv/bin/activate to work with virtualenv

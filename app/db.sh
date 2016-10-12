@@ -15,3 +15,7 @@ ALTER ROLE $user SET timezone TO 'UTC';
 ALTER ROLE $user SET default_transaction_isolation TO 'read committed';
 
 EOF
+export PATH=$PATH://Users/athakur/Documents/Vision/Python/RoboAdvisor
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 app/databaseApi/database.py
