@@ -86,7 +86,7 @@ class NewsGroup(models.Model):
 class News(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField()
-    groupId = models.ForeignKey(NewsGroup)
+    group = models.ForeignKey(NewsGroup)
     headline = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     sentiment = models.FloatField()
@@ -98,8 +98,8 @@ class News(models.Model):
 class Recommendation(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField()
-    mappingId = models.ForeignKey(PortfolioAssetMapping)
-    assetId = models.ForeignKey(Asset)
+    mapping = models.ForeignKey(PortfolioAssetMapping)
+    asset = models.ForeignKey(Asset)
     trade = models.CharField(max_length=50)
 
     class Meta:
