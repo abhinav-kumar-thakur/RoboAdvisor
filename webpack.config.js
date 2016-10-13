@@ -1,13 +1,13 @@
 const webpack = require('webpack'),
   paths = {
     app: {
-      js: './app/assets/javascripts/app.js'
+      js: './app/assets/redux_javascripts/app.js'
     }
   };
 
 module.exports = {
   entry: {
-    'vendor': ['react', 'react-dom', 'recharts', 'lodash', 'jquery'],
+    'vendor': ['react', 'react-dom', 'redux', 'react-redux', 'recharts', 'lodash', 'jquery'],
     'app': paths.app.js
   },
 
@@ -21,9 +21,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ['jsx-loader']
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loader: 'babel',
+        query: {
+          presets: ['react', 'es2015']
+        }
       }
     ]
   }

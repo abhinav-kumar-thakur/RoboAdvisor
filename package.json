@@ -26,11 +26,17 @@
     "lodash": "^4.16.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
     "recharts": "^0.15.1",
+    "redux": "^3.6.0",
     "reset-css": "^2.2.0",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
     "gulp-connect": "^5.0.0",
     "gulp-watch": "^4.3.10"
   }

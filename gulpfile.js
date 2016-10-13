@@ -1,5 +1,4 @@
 const gulp = require('gulp'),
-  connect = require('gulp-connect'),
   watch = require('gulp-watch'),
   wait = require('gulp-wait'),
   sass = require('gulp-sass'),
@@ -7,7 +6,7 @@ const gulp = require('gulp'),
 
 const paths = {
   src: {
-    js: './app/assets/javascripts/**/*.js',
+    js: './app/assets/redux_javascripts/**/*.js',
     scss: './app/assets/stylesheets/**/*.scss',
     images: './app/assets/images/*.*'
   },
