@@ -17,6 +17,7 @@ class AssetDataApi():
                     historicalData = assetInfo.get_historical(startDate, endDate)
                     break
                 except:
+                    print(symbol)
                     pass
             historicalData.reverse()
             for dailyData in historicalData:

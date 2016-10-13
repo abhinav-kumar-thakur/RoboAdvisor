@@ -1,11 +1,11 @@
-from app.models import MinimumSpanningTreeModel
+from app.models import MinimumSpanningTreeModel, Asset
 
 
 class MinimumSpanningTreeApi:
-    def effect(self):
-        minimumSpanningTree = MinimumSpanningTreeModel()
+    def effect(self, slope, intercept):
+        for assetOne in Asset.objects.all():
+            for assetTwo in Asset.objects.all():
+                if (assetOne != assetTwo):
+                    minimumSpanningTree = MinimumSpanningTreeModel(assetOne=assetOne, assetTwo=assetTwo, slope=slope,
+                                                                   intercept=intercept)
         minimumSpanningTree.save()
-
-
-if __name__ == '__main__':
-    MinimumSpanningTreeApi.effect();

@@ -1,11 +1,8 @@
-from app.models import TimeSeriesModel
+from app.models import TimeSeriesModel, Asset
 
 
 class TimeSeriesModelApi():
-    def addCoefficient(self):
-        timeSeriesModel = TimeSeriesModel()
+    def addCoefficient(self, coefficients):
+        for asset in Asset.objects.all():
+            timeSeriesModel = TimeSeriesModel(asset=asset, coefficients=coefficients)
         timeSeriesModel.save()
-
-
-if __name__ == '__main__':
-    TimeSeriesModelApi.addCoefficient();

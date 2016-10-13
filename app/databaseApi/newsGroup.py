@@ -1,10 +1,8 @@
-from app.models import NewsGroup
+from app.models import NewsGroup, Asset
+
 
 class NewsGroupApi():
-    def mapNews(self):
-        newsGroup = NewsGroup()
+    def mapNews(self, effect):
+        for asset in Asset.objects.all():
+            newsGroup = NewsGroup(asset=asset, effect=effect)
         newsGroup.save()
-
-
-if __name__ == '__main__':
-    NewsGroupApi.mapNews();

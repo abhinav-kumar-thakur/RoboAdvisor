@@ -44,7 +44,7 @@ class PortfolioAssetMapping(models.Model):
 
 
 class Transaction(models.Model):
-    mappingId = models.ForeignKey(PortfolioAssetMapping)
+    mapping = models.ForeignKey(PortfolioAssetMapping)
     timeStamp = models.DateTimeField()
     trade = models.CharField(max_length=50)
     initialCount = models.IntegerField()
@@ -57,11 +57,11 @@ class Transaction(models.Model):
 
 
 class TimeSeriesModel(models.Model):
-    AssetId = models.ForeignKey(Asset)
-    Coefficients = JSONField()
+    asset = models.ForeignKey(Asset)
+    coefficients = JSONField()
 
     class Meta:
-        db_table = "timeSeriesModel"
+        db_table = "timeSeries_model"
 
 
 class MinimumSpanningTreeModel(models.Model):
@@ -71,7 +71,7 @@ class MinimumSpanningTreeModel(models.Model):
     intercept = models.FloatField()
 
     class Meta:
-        db_table = "minimumSpanningTreeModel"
+        db_table = "minimum_spanning_tree_model"
 
 
 class NewsGroup(models.Model):
@@ -80,7 +80,7 @@ class NewsGroup(models.Model):
     effect = models.FloatField()
 
     class Meta:
-        db_table = "newsGroup"
+        db_table = "news_group"
 
 
 class News(models.Model):
