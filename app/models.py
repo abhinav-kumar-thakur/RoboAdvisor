@@ -99,7 +99,7 @@ class Recommendation(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField()
     mapping = models.ForeignKey(PortfolioAssetMapping)
-    asset = models.ForeignKey(Asset)
+    recommendedAsset = models.ForeignKey(Asset)
     trade = models.CharField(max_length=50)
 
     class Meta:

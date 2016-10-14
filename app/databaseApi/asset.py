@@ -14,4 +14,4 @@ class AssetApi:
             tree = parse(urlopen('http://www.google.com/finance?&q=' + assetSymbol))
             return tree.xpath("//a[@id='sector']")[0].text, tree.xpath("//a[@id='sector']")[0].getnext().text
         except Exception as e:
-            return ["",""]
+            return ["Large Blend", ""]
