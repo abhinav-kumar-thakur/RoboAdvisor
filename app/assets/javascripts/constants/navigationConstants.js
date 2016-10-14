@@ -1,0 +1,5 @@
+export const navigationConstants = {
+  RECEIVE: 'NAVIGATION_RECEIVE',
+  REQUEST: 'NAVIGATION_REQUEST',
+  FAILURE: 'NAVIGATION_FAILURE'
+};

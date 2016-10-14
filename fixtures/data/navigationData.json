@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Category A",
+    "stocks": [
+      "google",
+      "yahoo"
+    ]
+  },
+  {
+    "name": "Category B",
+    "stocks": [
+      "yahoo"
+    ]
+  }
+]

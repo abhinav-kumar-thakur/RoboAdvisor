@@ -1,30 +1,32 @@
-import { predictionGraphConstants } from '../constants/predictionGraphConstants';
+import { navigationConstants } from '../constants/navigationConstants';
 
-const predictionGraph = (state = {}, action) => {
+const navigation = (state = {}, action) => {
   switch (action.type) {
 
-    case predictionGraphConstants.REQUEST:
+    case navigationConstants.REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isFailed: false
       });
 
-    case predictionGraphConstants.RECEIVE:
+    case navigationConstants.RECEIVE:
       return Object.assign({}, state, {
         data: action.data,
         isFetching: false,
         isFailed: false
       });
 
-    case predictionGraphConstants.FAILURE:
+    case navigationConstants.FAILURE:
       return Object.assign({}, state, {
         isFailed: true,
         isFetching: false
       });
 
+
     default:
       return state
   }
+
 };
 
-export default predictionGraph;
+export default navigation;

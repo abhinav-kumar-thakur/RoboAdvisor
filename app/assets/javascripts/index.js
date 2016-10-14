@@ -4,18 +4,20 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import predictionGraphReducer from './reducers/predictionGraphReducer';
+import roboAdvisorAppReducer from './reducers/roboAdvisorAppReducer';
 import createPredictionGraph from './actions/predictionGraphActions';
+import createNavigation from './actions/navigationAction';
 import RoboAdvisorApp from './components/roboAdvisorApp';
 
 const store = createStore(
-  predictionGraphReducer,
+  roboAdvisorAppReducer,
   applyMiddleware(
     thunkMiddleware // lets us dispatch() functions
   )
 );
 
 store.dispatch(createPredictionGraph());
+store.dispatch(createNavigation());
 
 render(
   <Provider store={store}>
