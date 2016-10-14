@@ -1,7 +1,7 @@
 const webpack = require('webpack'),
   paths = {
     app: {
-      js: './app/assets/redux_javascripts/app.js'
+      js: './app/assets/javascripts/app.js'
     }
   };
 

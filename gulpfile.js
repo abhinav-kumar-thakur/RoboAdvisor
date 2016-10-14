@@ -6,7 +6,7 @@ const gulp = require('gulp'),
 
 const paths = {
   src: {
-    js: './app/assets/redux_javascripts/**/*.js',
+    js: './app/assets/javascripts/**/*.js',
     scss: './app/assets/stylesheets/**/*.scss',
     images: './app/assets/images/*.*'
   },
