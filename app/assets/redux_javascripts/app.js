@@ -1,12 +1,19 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import predictionGraphReducer from './reducers/predictionGraphReducer'
-import createPredictionGraph from './actions/predictionGraphActions'
-import PredictionGraphContainer from './containers/predictionGraphContainer'
+import React from 'react';
+import { render } from 'react-dom';
+import thunkMiddleware from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-let store = createStore(predictionGraphReducer);
+import predictionGraphReducer from './reducers/predictionGraphReducer';
+import createPredictionGraph from './actions/predictionGraphActions';
+import PredictionGraphContainer from './containers/predictionGraphContainer';
+
+const store = createStore(
+  predictionGraphReducer,
+  applyMiddleware(
+    thunkMiddleware // lets us dispatch() functions
+  )
+);
 
 store.dispatch(createPredictionGraph());
 

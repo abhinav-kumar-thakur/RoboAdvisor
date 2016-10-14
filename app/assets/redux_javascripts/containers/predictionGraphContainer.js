@@ -3,7 +3,9 @@ import PredictionGraph from '../components/predictionGraphComponent';
 
 const mapStateToProps = function (state) {
   return {
-    predictionGraphData: state.predictionGraphData
+    data: state.predictionGraph.data,
+    isFailed: state.predictionGraph.isFailed,
+    isFetching: state.predictionGraph.isFetching
   }
 };
 

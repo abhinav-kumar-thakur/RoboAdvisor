@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
+    "es6-promise": "^4.0.5",
     "flux": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-wait": "0.0.2",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "jsx-loader": "^0.13.2",
     "lodash": "^4.16.3",
@@ -29,6 +31,7 @@
     "react-redux": "^4.4.5",
     "recharts": "^0.15.1",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
     "reset-css": "^2.2.0",
     "webpack": "^1.13.2"
   },
