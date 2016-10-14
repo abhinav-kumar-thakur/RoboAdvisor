@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import predictionGraphReducer from './reducers/predictionGraphReducer';
 import createPredictionGraph from './actions/predictionGraphActions';
-import PredictionGraphContainer from './containers/predictionGraphContainer';
+import RoboAdvisorApp from './components/roboAdvisorApp';
 
 const store = createStore(
   predictionGraphReducer,
@@ -19,7 +19,7 @@ store.dispatch(createPredictionGraph());
 
 render(
   <Provider store={store}>
-    <PredictionGraphContainer />
+    <RoboAdvisorApp />
   </Provider>,
   document.getElementById('main_container')
 );
