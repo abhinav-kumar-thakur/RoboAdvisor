@@ -1,6 +1,6 @@
-import fetch from 'isomorphic-fetch';
 import { predictionGraphConstants } from './PredictionGraphConstants';
 import { urlConstants } from '../common/UrlConstants';
+import httpGet from '../common/Utils';
 
 let requestPredictionGraph = () => {
     return {
@@ -8,7 +8,7 @@ let requestPredictionGraph = () => {
     }
   },
 
-  receivePredictionGraph = (data) => {
+  successPredictionGraph = (data) => {
     return {
       type: predictionGraphConstants.RECEIVE,
       data: data
@@ -21,21 +21,14 @@ let requestPredictionGraph = () => {
     }
   },
 
-  fetchPredictionGraph = () => {
+  getPredictionGraph = () => {
     return function (dispatch) {
       dispatch(requestPredictionGraph());
 
-      return fetch(urlConstants.PREDICTION_GRAPH)
-        .then(response => {
-          if (response.status >= 400) {
-            dispatch(failurePredictionGraph());
-          }
-          return response.json();
-        })
-        .then(data =>
-          dispatch(receivePredictionGraph(data))
-        );
-    }
+      httpGet(urlConstants.PREDICTION_GRAPH)
+        .then(data => dispatch(successPredictionGraph(data)))
+        .catch(error => dispatch(failurePredictionGraph()))
+    };
   };
 
-export default fetchPredictionGraph;
+export default getPredictionGraph;

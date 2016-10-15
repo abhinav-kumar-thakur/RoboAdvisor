@@ -1,7 +1,6 @@
 import { navigationConstants } from './NavigationConstants';
 
-  const navigation = (state = {}, action) => {
-  debugger;
+const navigation = (state = {}, action) => {
 
   switch (action.type) {
 

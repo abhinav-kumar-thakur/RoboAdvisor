@@ -1,6 +1,6 @@
-import fetch from 'isomorphic-fetch';
 import { navigationConstants } from './NavigationConstants';
 import { urlConstants } from '../common/UrlConstants';
+import httpGet from '../common/Utils';
 
 let requestNavigation = () => {
     return {
@@ -8,7 +8,7 @@ let requestNavigation = () => {
     }
   },
 
-  receiveNavigation = (data) => {
+  successNavigation = (data) => {
     return {
       type: navigationConstants.RECEIVE,
       data: data
@@ -21,22 +21,14 @@ let requestNavigation = () => {
     }
   },
 
-  fetchNavigation = () => {
-
+  getNavigation = () => {
     return function (dispatch) {
       dispatch(requestNavigation());
 
-      return fetch(urlConstants.NAVIGATION)
-        .then(response => {
-          if (response.status >= 400) {
-            dispatch(failureNavigation());
-          }
-          return response.json();
-        })
-        .then(data =>
-          dispatch(receiveNavigation(data))
-        );
-    }
+      httpGet(urlConstants.NAVIGATION)
+        .then(data => dispatch(successNavigation(data)))
+        .catch(error => dispatch(failureNavigation()))
+    };
   };
 
-export default fetchNavigation;
+export default getNavigation;

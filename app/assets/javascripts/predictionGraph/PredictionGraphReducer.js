@@ -1,7 +1,6 @@
 import { predictionGraphConstants } from './PredictionGraphConstants';
 
 const predictionGraph = (state = {}, action) => {
-  debugger;
 
   switch (action.type) {
 

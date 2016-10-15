@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import roboAdvisorAppReducer from './RoboAdvisorAppReducer';
-import fetchPredictionGraph from './predictionGraph/predictionGraphActions';
-import fetchNavigation from './navigation/navigationActions';
+import getPredictionGraph from './predictionGraph/predictionGraphActions';
+import getNavigation from './navigation/navigationActions';
 import RoboAdvisorApp from './RoboAdvisorApp';
 
 const store = createStore(
@@ -16,8 +16,8 @@ const store = createStore(
   )
 );
 
-store.dispatch(fetchPredictionGraph());
-store.dispatch(fetchNavigation());
+store.dispatch(getPredictionGraph());
+store.dispatch(getNavigation());
 
 render(
   <Provider store={store}>
