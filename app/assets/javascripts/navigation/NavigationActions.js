@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { navigationConstants } from '../constants/navigationConstants';
-import { urlConstants } from '../constants/urlConstants';
+import { navigationConstants } from './NavigationConstants';
+import { urlConstants } from '../common/UrlConstants';
 
 let requestNavigation = () => {
     return {
@@ -21,7 +21,7 @@ let requestNavigation = () => {
     }
   },
 
-  createNavigation = () => {
+  fetchNavigation = () => {
 
     return function (dispatch) {
       dispatch(requestNavigation());
@@ -39,4 +39,4 @@ let requestNavigation = () => {
     }
   };
 
-export default createNavigation;
+export default fetchNavigation;

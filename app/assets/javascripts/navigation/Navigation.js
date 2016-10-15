@@ -11,10 +11,10 @@ const Navigation = ({ data, isFetching, isFailed }) => {
   }
   else {
     return <h1>{data.map(d => {
-      return <p>{d.name}</p>
-    }
+        return <p>{d.name}</p>
+      }
     )}</h1>
   }
 };
 
-export default Navigation
+export default Navigation;

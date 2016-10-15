@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { predictionGraphConstants } from '../constants/predictionGraphConstants';
-import { urlConstants } from '../constants/urlConstants';
+import { predictionGraphConstants } from './PredictionGraphConstants';
+import { urlConstants } from '../common/UrlConstants';
 
 let requestPredictionGraph = () => {
     return {
@@ -21,7 +21,7 @@ let requestPredictionGraph = () => {
     }
   },
 
-  createPredictionGraph = () => {
+  fetchPredictionGraph = () => {
     return function (dispatch) {
       dispatch(requestPredictionGraph());
 
@@ -38,4 +38,4 @@ let requestPredictionGraph = () => {
     }
   };
 
-export default createPredictionGraph;
+export default fetchPredictionGraph;

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Navigation from '../components/navigationComponent';
+import Navigation from './Navigation';
 
 const mapStateToProps = function (state) {
   return {
@@ -9,8 +9,8 @@ const mapStateToProps = function (state) {
   }
 };
 
-const navigationContainer = connect(
+const NavigationContainer = connect(
   mapStateToProps
 )(Navigation);
 
-export default navigationContainer;
+export default NavigationContainer;

@@ -1,6 +1,8 @@
-import { navigationConstants } from '../constants/navigationConstants';
+import { navigationConstants } from './NavigationConstants';
 
-const navigation = (state = {}, action) => {
+  const navigation = (state = {}, action) => {
+  debugger;
+
   switch (action.type) {
 
     case navigationConstants.REQUEST:
