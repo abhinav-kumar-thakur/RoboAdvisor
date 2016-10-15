@@ -1,4 +1,5 @@
 import React from 'react';
+import ListItem from '../common/components/ListItem';
 
 const Navigation = ({ data, isFetching, isFailed }) => {
 
@@ -9,11 +10,27 @@ const Navigation = ({ data, isFetching, isFailed }) => {
   else if (isFailed) {
     return <h1>data loading failed</h1>
   }
+
   else {
-    return <h1>{data.map(d => {
-        return <p>{d.name}</p>
-      }
-    )}</h1>
+    return (
+      <ul>
+        { data.map((list, index) =>
+          <li key={index}>
+            <span>{list.name}</span>
+
+            <ul> {list.stocks.map((item, index) =>
+
+              <ListItem
+                key={index}
+                {...{item}}
+                onClick={() => console.log(item)}
+              />
+            )}
+            </ul>
+          </li>
+        )}
+      </ul>
+    )
   }
 };
 

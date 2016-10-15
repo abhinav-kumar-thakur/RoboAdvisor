@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './common/Header';
+import Header from './common/components/Header';
 import PredictionGraphContainer from './predictionGraph/PredictionGraphContainer';
 import NavigationContainer from './navigation/NavigationContainer';
 
