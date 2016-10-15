@@ -19,7 +19,7 @@ def hamburgerApi(request):
 
 
 def recommendationApi(request, assetSymbol):
-    print(assetSymbol)
+    print(assetSymbol + "in views")
     recommendationData = {}
     today = datetime.now().date()
     mappingId = PortfolioAssetMapping.objects.get(asset=Asset.objects.get(symbol=assetSymbol))

@@ -104,3 +104,9 @@ class Recommendation(models.Model):
 
     class Meta:
         db_table = "recommendation"
+
+
+class Status(models.Model):
+    lastUpdateDate = models.DateTimeField()
+    class Meta:
+        db_table = "status"
