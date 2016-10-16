@@ -3,7 +3,14 @@ body {
 }
 
 .main-container {
-  padding: 80px 0 0 320px;
+  padding: 80px 20px 20px 320px;
+}
+
+.api-container--centered {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pull-right {
@@ -25,4 +32,12 @@ body {
   transition-property: height, visibility;
   transition-duration: .35s;
   transition-timing-function: ease;
+}
+
+.loader {
+  .fa {
+    color: $dark-gray;
+    font-size: 24px;
+    animation: rotating 2s linear infinite;
+  }
 }
