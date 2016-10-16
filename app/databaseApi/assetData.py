@@ -23,5 +23,5 @@ class AssetDataApi():
             for dailyData in historicalData:
                 data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
                                  price=dailyData['Close'],
-                                 timestamp=datetime.strptime(dailyData['Date'], date_format))
+                                 timeStamp=datetime.strptime(dailyData['Date'], date_format))
                 data.save()

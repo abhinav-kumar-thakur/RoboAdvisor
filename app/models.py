@@ -24,7 +24,7 @@ class Asset(models.Model):
 
 class AssetData(models.Model):
     asset = models.ForeignKey(Asset)
-    timestamp = models.DateTimeField()
+    timeStamp = models.DateTimeField()
     price = models.FloatField()
     prediction = models.FloatField(null=True)
     errorMargin = models.FloatField()
@@ -85,7 +85,7 @@ class NewsGroup(models.Model):
 
 class News(models.Model):
     id = models.AutoField(primary_key=True)
-    timestamp = models.DateTimeField()
+    timeStamp = models.DateTimeField()
     group = models.ForeignKey(NewsGroup)
     headline = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
@@ -97,7 +97,7 @@ class News(models.Model):
 
 class Recommendation(models.Model):
     id = models.AutoField(primary_key=True)
-    timestamp = models.DateTimeField()
+    timeStamp = models.DateTimeField()
     mapping = models.ForeignKey(PortfolioAssetMapping)
     recommendedAsset = models.ForeignKey(Asset)
     trade = models.CharField(max_length=50)

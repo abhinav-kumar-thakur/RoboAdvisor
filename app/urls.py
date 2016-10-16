@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from app.views import home, hamburgerApi, recommendationApi
+from app.views import home, hamburgerApi, recommendationApi, personalHoldingInformationApi
 from django.conf.urls import url
 from django.contrib import admin
 
@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^hamburger/', hamburgerApi, name="hamburger"),
     url(r'^recommendation/([A-Z]+)/', recommendationApi, name="recommendation"),
+    url(r'^personalHoldingInformation/([A-Z]+)/', personalHoldingInformationApi, name="personalHoldingInformation"),
 ]
