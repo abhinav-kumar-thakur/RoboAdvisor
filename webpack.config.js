@@ -8,7 +8,7 @@ const webpack = require('webpack'),
 module.exports = {
   entry: {
     'vendor': ['react', 'react-dom', 'redux', 'react-redux',
-      'redux-thunk', 'recharts', 'lodash', 'jquery', 'react-bootstrap'],
+      'redux-thunk', 'recharts', 'react-bootstrap/lib/Panel', 'react-bootstrap/lib/Accordion'],
     'app': paths.app.js
   },
 
@@ -26,6 +26,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: {
+          plugins: ['recharts'],
           presets: ['react', 'es2015']
         }
       }

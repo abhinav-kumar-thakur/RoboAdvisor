@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
+    "babel-plugin-recharts": "^1.0.2",
     "es6-promise": "^4.0.5",
     "flux": "^3.0.0",
     "font-awesome": "^4.6.3",

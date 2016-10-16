@@ -1,6 +1,5 @@
 import React from 'react';
-let Recharts = require('recharts'),
-  {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} = Recharts;
+import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 
 const PredictionGraph = ({ data, isFetching, isFailed }) => {
 

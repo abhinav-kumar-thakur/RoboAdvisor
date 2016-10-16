@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from '../common/components/ListItem';
-import {Accordion, Panel} from 'react-bootstrap/lib';
+import Panel from 'react-bootstrap/lib/Panel';
+import Accordion from 'react-bootstrap/lib/Accordion';
 
 const Navigation = ({ data, isFetching, isFailed }) => {
 
