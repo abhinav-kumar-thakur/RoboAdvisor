@@ -5,19 +5,27 @@
   height: 100%;
   border-right: 1px solid $light-gray;
   color: $medium-gray;
-}
 
-.nav__list {
-
-  > .list__item {
+  .panel {
     border-bottom: 1px solid $light-gray;
+  }
+
+  a {
+    display: block;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 20px 20px 20px 30px;
+    color: $medium-gray;
     font-weight: bold;
+
+    &[aria-selected=true] {
+      color: $dark-gray;
+    }
   }
 
   .list__link {
-    color: $medium-gray;
-    font-size: 14px;
-    padding: 15px 15px 15px 30px;
+    padding: 15px 20px 15px 30px;
+    font-weight: normal;
   }
 }
 
