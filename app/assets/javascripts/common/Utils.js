@@ -4,7 +4,6 @@ let httpGet = (url) => {
   return fetch(url)
     .then(response => {
 
-      debugger;
       if (response.status >= 200 && response.status < 300) {
         return response;
       }
