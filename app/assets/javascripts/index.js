@@ -23,5 +23,5 @@ render(
   <Provider store={store}>
     <RoboAdvisorApp />
   </Provider>,
-  document.getElementById('main_container')
+  document.getElementById('app_container')
 );

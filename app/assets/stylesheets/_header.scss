@@ -1,12 +1,14 @@
 .header {
-  border-bottom: 1px solid $light-gray;
-  padding: 0 30px;
+  position: fixed;
+  width: 100%;
   display: flex;
   align-items: center;
+  padding: 0 30px;
+  border-bottom: 2px solid $light-gray;
 }
 
-.header__menu-icon {
-  flex-basis: 25%;
+.header__nav-icon {
+  flex-basis: 270px;
 
   img {
     height: 20px;
@@ -14,18 +16,18 @@
   }
 }
 
-.header__list-container {
-  flex-basis: 75%;
+.header__nav {
+  flex-grow: 1;
 }
 
 .header__list {
   display: flex;
   justify-content: space-around;
-  padding-top: 30px;
+  padding-top: 32px;
 
   .list__item {
     text-align: center;
-    flex-basis: 20%;
+    flex-basis: 25%;
   }
 
   .list__link {

@@ -13,23 +13,25 @@ const Navigation = ({ data, isFetching, isFailed }) => {
 
   else {
     return (
-      <ul>
-        { data.map((list, index) =>
-          <li key={index}>
-            <span>{list.name}</span>
+      <nav className="nav">
+        <ul>
+          { data.map((list, index) =>
+            <li key={index}>
+              <span>{list.name}</span>
 
-            <ul> {list.stocks.map((item, index) =>
+              <ul> {list.stocks.map((item, index) =>
 
-              <ListItem
-                key={index}
-                {...{item}}
-                onClick={() => console.log(item)}
-              />
-            )}
-            </ul>
-          </li>
-        )}
-      </ul>
+                <ListItem
+                  key={index}
+                  {...{item}}
+                  onClick={() => console.log(item)}
+                />
+              )}
+              </ul>
+            </li>
+          )}
+        </ul>
+      </nav>
     )
   }
 };

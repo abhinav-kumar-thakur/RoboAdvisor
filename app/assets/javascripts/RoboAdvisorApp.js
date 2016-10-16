@@ -6,8 +6,11 @@ import NavigationContainer from './navigation/NavigationContainer';
 const RoboAdvisorApp = () => (
   <div>
     <Header />
-    <PredictionGraphContainer />
     <NavigationContainer />
+
+    <section className="main-container">
+      <PredictionGraphContainer />
+    </section>
   </div>
 );
 

@@ -4,10 +4,10 @@ import ListItem from './ListItem';
 const Header = () => (
 
   <header className="header">
-    <div className="header__menu-icon">
+    <div className="header__nav-icon">
       <img src="static/images/menu-icon.png"/>
     </div>
-    <div className="header__list-container">
+    <nav className="header__nav">
       <ul className="header__list">
 
         {['Performance', 'Predictions'].map((item, index) =>
@@ -20,7 +20,7 @@ const Header = () => (
         )}
 
       </ul>
-    </div>
+    </nav>
   </header>
 
 );
