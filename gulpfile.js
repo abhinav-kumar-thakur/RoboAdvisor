@@ -8,11 +8,13 @@ const paths = {
   src: {
     js: './app/assets/javascripts/**/*.js',
     scss: './app/assets/stylesheets/**/*.scss',
-    images: './app/assets/images/*.*'
+    images: './app/assets/images/*.*',
+    fonts: 'node_modules/font-awesome/fonts/*'
   },
   dest: {
     css: './app/static/css',
-    images: './app/static/images'
+    images: './app/static/images',
+    fonts: './app/static/fonts'
   }
 };
 
@@ -31,7 +33,7 @@ gulp.task('css', function () {
     .pipe(gulp.dest(paths.dest.css));
 });
 
-gulp.task('copy', function () {
+gulp.task('images', function () {
   gulp.src(paths.src.images)
     .pipe(gulp.dest(paths.dest.images));
 });
@@ -42,4 +44,9 @@ gulp.task('watch', function () {
   gulp.watch(paths.src.images, ['copy']);
 });
 
-gulp.task('default', ['bundleJS', 'css', 'copy', 'watch']);
+gulp.task('fonts', function () {
+  return gulp.src(paths.src.fonts)
+    .pipe(gulp.dest(paths.dest.fonts))
+});
+
+gulp.task('default', ['bundleJS', 'css', 'images', 'fonts', 'watch']);

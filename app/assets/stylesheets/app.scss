@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:Normal,Semi-Bold,Bold');
 @import "../../../node_modules/reset-css/reset.scss";
+@import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "variables";
-@import "list";
+@import "common";
+@import "icons";
 @import "header";
 @import "nav";
-@import "layout";
+@import "list";

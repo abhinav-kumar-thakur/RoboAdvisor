@@ -19,6 +19,7 @@
   "dependencies": {
     "es6-promise": "^4.0.5",
     "flux": "^3.0.0",
+    "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-wait": "0.0.2",

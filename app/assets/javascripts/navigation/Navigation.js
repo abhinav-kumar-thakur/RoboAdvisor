@@ -14,12 +14,15 @@ const Navigation = ({ data, isFetching, isFailed }) => {
   else {
     return (
       <nav className="nav">
-        <ul>
+        <ul className="nav__list">
           { data.map((list, index) =>
-            <li key={index}>
-              <span>{list.name}</span>
+            <li className="list__item" key={index}>
+              <a className="list__link" href="#">
+                <span>{list.name}</span>
+                <i className="fa fa-angle-down pull-right"></i>
+              </a>
 
-              <ul> {list.stocks.map((item, index) =>
+              <ul className="nav__sub-list"> {list.stocks.map((item, index) =>
 
                 <ListItem
                   key={index}

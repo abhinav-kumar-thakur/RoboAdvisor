@@ -5,7 +5,7 @@ const Header = () => (
 
   <header className="header">
     <div className="header__nav-icon">
-      <img src="static/images/menu-icon.png"/>
+      <i className="fa fa-bars"></i>
     </div>
     <nav className="header__nav">
       <ul className="header__list">
