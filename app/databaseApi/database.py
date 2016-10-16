@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime
 
 path = os.path.split(os.path.split(os.path.dirname(os.path.abspath(__file__)))[0])[0]
 sys.path.append(path)
@@ -14,7 +15,7 @@ from app.databaseApi.asset import AssetApi
 from app.databaseApi.assetData import AssetDataApi
 from app.databaseApi.portfolioAssetMapping import PortfolioAssetMappingApi
 from app.databaseApi.transaction import TransactionApi
-from app.models import Portfolio, Asset
+from app.models import Portfolio, Asset, Status
 
 PortfolioApi().mapUser(1)
 
@@ -29,7 +30,9 @@ AssetApi().addAsset(assetName="Berkshire Hathaway", assetSymbol="BRK-A", assetTy
 AssetApi().addAsset(assetName="Facebook", assetSymbol="FB", assetType="stock")
 AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="stock")
 
-AssetDataApi().addDetails(None, 0.1, "2012-01-01", "2016-10-08")
+date = "2016-10-10"
+date_format = "%Y-%m-%d"
+AssetDataApi().addDetails(None, 0.1, "2012-01-01", date)
 
 for asset in Asset.objects.all():
     PortfolioAssetMappingApi().mapAsset(portfolio=Portfolio.objects.all()[0], asset=asset, currentCount=0)
@@ -44,3 +47,5 @@ TransactionApi().addTransaction(trade="buy", tradeCount=71, assetSymbol="VLO")
 TransactionApi().addTransaction(trade="buy", tradeCount=22, assetSymbol="BRK-A")
 TransactionApi().addTransaction(trade="buy", tradeCount=46, assetSymbol="FB")
 TransactionApi().addTransaction(trade="buy", tradeCount=540, assetSymbol="GOOG")
+
+Status(lastUpdateDate=datetime.strptime(date, date_format)).save()

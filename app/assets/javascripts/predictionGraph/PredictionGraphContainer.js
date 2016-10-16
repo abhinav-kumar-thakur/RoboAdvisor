@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PredictionGraph from '../components/predictionGraphComponent';
+import PredictionGraph from './PredictionGraph';
 
 const mapStateToProps = function (state) {
   return {

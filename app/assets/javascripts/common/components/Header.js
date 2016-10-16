@@ -1,4 +1,5 @@
 import React from 'react';
+import ListItem from './ListItem';
 
 const Header = () => (
 
@@ -8,12 +9,16 @@ const Header = () => (
     </div>
     <div className="header__list-container">
       <ul className="header__list">
-        <li className="list__item">
-          <a href="#" className="list__link">Performance</a>
-        </li>
-        <li className="list__item">
-          <a href="#" className="list__link active">Predictions</a>
-        </li>
+
+        {['Performance', 'Predictions'].map((item, index) =>
+
+          <ListItem
+            key={index}
+            {...{item}}
+            onClick={() => console.log(item)}
+          />
+        )}
+
       </ul>
     </div>
   </header>
