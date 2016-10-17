@@ -9,15 +9,29 @@ def home(request):
     return render(request, "index.html")
 
 
+def portfolioPersonalHoldingApi(request):
+    portfolioPersonalHolding = {}
+
+    portfolioShare = 0.0
+    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+        asset = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
+        portfolioShare += asset.price
+    portfolioPersonalHolding["value"] = portfolioShare
+    portfolioPersonalHolding["assets"] = PortfolioAssetMapping.objects.filter(portfolio=1).count()
+
+    return HttpResponse(json.dumps(portfolioPersonalHolding), content_type="application/json")
+
+
 def navigationApi(request):
-    hamburgerData = []
+    navigationData = []
 
     assets = Asset.objects.all()
     categories = set([asset.sector for asset in assets])
 
     for category in categories:
-        hamburgerData.append({"name": category, "stocks": [asset.name for asset in assets if asset.sector == category]})
-    return HttpResponse(json.dumps(hamburgerData), content_type="application/json")
+        navigationData.append(
+            {"name": category, "stocks": [asset.name for asset in assets if asset.sector == category]})
+    return HttpResponse(json.dumps(navigationData), content_type="application/json")
 
 
 def recommendationApi(request, assetName):
@@ -35,8 +49,8 @@ def recommendationApi(request, assetName):
     return HttpResponse(json.dumps(recommendationData), content_type="application/json")
 
 
-def personalHoldingInformationApi(request, assetName):
-    holdingInformationData = {}
+def assetPersonalHoldingApi(request, assetName):
+    assetPersonalHolding = {}
     try:
         asset = Asset.objects.get(name=assetName)
     except:
@@ -47,9 +61,9 @@ def personalHoldingInformationApi(request, assetName):
 
     assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
     shareValue = unitsHeld * assetData.price
-    holdingInformationData["asset"] = [assetName]
-    holdingInformationData["assetSymbol"] = [asset.symbol]
-    holdingInformationData["unitsHeld"] = [unitsHeld]
-    holdingInformationData["shareValue"] = [shareValue]
+    assetPersonalHolding["asset"] = [assetName]
+    assetPersonalHolding["assetSymbol"] = [asset.symbol]
+    assetPersonalHolding["unitsHeld"] = [unitsHeld]
+    assetPersonalHolding["shareValue"] = [shareValue]
 
-    return HttpResponse(json.dumps(holdingInformationData), content_type="application/json")
+    return HttpResponse(json.dumps(assetPersonalHolding), content_type="application/json")
