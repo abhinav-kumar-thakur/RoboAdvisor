@@ -23,7 +23,6 @@ const navigation = (state = {}, action) => {
         isFetching: false
       });
 
-
     default:
       return state
   }
