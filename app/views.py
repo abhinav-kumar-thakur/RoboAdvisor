@@ -2,16 +2,14 @@ from app.models import *
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
-from datetime import datetime
-
-today = datetime.now().date()
+from django.http import Http404
 
 
 def home(request):
     return render(request, "index.html")
 
 
-def hamburgerApi(request):
+def navigationApi(request):
     hamburgerData = []
 
     assets = Asset.objects.all()
@@ -22,34 +20,35 @@ def hamburgerApi(request):
     return HttpResponse(json.dumps(hamburgerData), content_type="application/json")
 
 
-def recommendationApi(request, assetSymbol):
+def recommendationApi(request, assetName):
     recommendationData = {}
 
-    mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
+    try:
+        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetName))
+    except:
+        raise Http404
 
-    for recommendation in Recommendation.objects.filter(mapping=mapping):
-        if recommendation.timeStamp.date == today:
-            recommendationData['asset'] = [recommendation.recommendedAsset]
-            recommendationData['trade'] = [recommendation.trade]
-        else:
-            pass
+    recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
+    recommendationData['asset'] = [recommendation.recommendedAsset]
+    recommendationData['trade'] = [recommendation.trade]
+
     return HttpResponse(json.dumps(recommendationData), content_type="application/json")
 
 
-def personalHoldingInformationApi(request, assetSymbol):
+def personalHoldingInformationApi(request, assetName):
     holdingInformationData = {}
+    try:
+        asset = Asset.objects.get(name=assetName)
+    except:
+        raise Http404
 
-    asset = Asset.objects.get(symbol=assetSymbol)
     mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=asset)
     unitsHeld = mapping.currentCount
 
-    shareValue = 0.0
-    for assetData in AssetData.objects.filter(asset=asset):
-        if assetData.timeStamp.date == today:
-            shareValue = unitsHeld * assetData.price
-
-    holdingInformationData["asset"] = [asset.name]
-    holdingInformationData["assetSymbol"] = [assetSymbol]
+    assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
+    shareValue = unitsHeld * assetData.price
+    holdingInformationData["asset"] = [assetName]
+    holdingInformationData["assetSymbol"] = [asset.symbol]
     holdingInformationData["unitsHeld"] = [unitsHeld]
     holdingInformationData["shareValue"] = [shareValue]
 
