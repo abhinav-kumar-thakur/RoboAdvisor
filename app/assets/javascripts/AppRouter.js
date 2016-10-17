@@ -9,7 +9,7 @@ const RoboAdvisorAppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={MainLayout}>
       <IndexRoute component={PredictionContainer}/>
-      <Route name="prediction" path="prediction" component={PredictionContainer}/>
+      <Route name="predictions" path="predictions" component={PredictionContainer}/>
     </Route>
   </Router>
 

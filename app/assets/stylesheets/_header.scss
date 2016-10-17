@@ -25,7 +25,7 @@
 .header__list {
   display: flex;
   justify-content: center;
-  padding-top: 32px;
+  padding-top: 30px;
 
   .list__item {
     text-align: center;
@@ -37,6 +37,7 @@
     padding-bottom: 10px;
     font-weight: bold;
     color: $medium-gray;
+    margin-bottom: -1px;
 
     &.active {
       border-bottom: 3px solid $dark-gray;

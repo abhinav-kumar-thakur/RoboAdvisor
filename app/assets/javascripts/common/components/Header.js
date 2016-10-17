@@ -1,28 +1,28 @@
 import React from 'react';
 import ListItem from './ListItem';
 
-const Header = () => (
+const Header = () => {
 
-  <header className="header">
-    <div className="header__nav-icon">
-      <i className="fa fa-bars"></i>
-    </div>
-    <nav className="header__nav">
-      <ul className="header__list">
+  let links = [
+    {name: 'Performance', routeTo: 'performance'},
+    {name: 'Predictions', routeTo: 'predictions'}
+  ];
 
-        {['Performance', 'Predictions'].map((item, index) =>
+  return ( <header className="header">
+      <div className="header__nav-icon">
+        <i className="fa fa-bars"></i>
+      </div>
+      <nav className="header__nav">
+        <ul className="header__list">
 
-          <ListItem
-            key={index}
-            {...{item}}
-            onClick={() => console.log(item)}
-          />
-        )}
+          {links.map((link, index) =>
+            <ListItem key={index} {...{link}}/>
+          )}
 
-      </ul>
-    </nav>
-  </header>
-
-);
+        </ul>
+      </nav>
+    </header>
+  )
+};
 
 export default Header;

@@ -26,6 +26,10 @@
   .list__link {
     padding: 15px 20px 15px 30px;
     font-weight: normal;
+
+    &.active {
+      color: $dark-gray;
+    }
   }
 }
 

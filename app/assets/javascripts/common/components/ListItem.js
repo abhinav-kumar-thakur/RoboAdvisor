@@ -1,15 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-const ListItem = ({item, onClick}) => (
+const ListItem = ({link = {}}) => (
 
   <li className="list__item">
-    <a href="#" className="list__link" onClick={e => {
-      e.preventDefault();
-      onClick();
-    }}
-    >
-      {item}
-    </a>
+    <Link to={'/' + link.routeTo} className="list__link" activeClassName="active">
+      {link.name}
+    </Link>
   </li>
 
 );

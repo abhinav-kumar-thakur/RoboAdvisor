@@ -30,5 +30,5 @@ urlpatterns = [
     url(r'^getRecommendation/([A-Za-z]+)/', recommendationApi, name="getRecommendations"),
     url(r'^asset/([A-Za-z]+)/getPersonalHolding/', assetPersonalHoldingApi,
         name="getPersonalHolding"),
-    url(r'^(%s)?$' % '|'.join(['prediction', 'performance']), TemplateView.as_view(template_name='index.html'))
+    url(r'^(%s)?$' % '|'.join(['predictions', 'performance']), TemplateView.as_view(template_name='index.html'))
 ]
