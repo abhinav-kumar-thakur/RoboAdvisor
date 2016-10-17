@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './common/components/Header';
-import PredictionGraphContainer from './predictionGraph/PredictionGraphContainer';
+import PredictionContainer from './prediction/predictionContainer';
 import NavigationContainer from './navigation/NavigationContainer';
 
 const RoboAdvisorApp = () => (
@@ -9,7 +9,7 @@ const RoboAdvisorApp = () => (
     <NavigationContainer />
 
     <section className="main-container">
-      <PredictionGraphContainer />
+      <PredictionContainer />
     </section>
   </div>
 );

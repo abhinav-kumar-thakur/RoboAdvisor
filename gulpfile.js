@@ -41,7 +41,7 @@ gulp.task('images', function () {
 gulp.task('watch', function () {
   gulp.watch(paths.src.js, ['bundleJS']);
   gulp.watch(paths.src.scss, ['css']);
-  gulp.watch(paths.src.images, ['copy']);
+  gulp.watch(paths.src.images, ['images']);
 });
 
 gulp.task('fonts', function () {

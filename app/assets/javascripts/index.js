@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import roboAdvisorAppReducer from './RoboAdvisorAppReducer';
-import getPredictionGraph from './predictionGraph/predictionGraphActions';
 import getNavigation from './navigation/navigationActions';
+import getPersonalHolding from './prediction/personalHolding/PersonalHoldingActions';
+import getPredictionGraph from './prediction/predictionGraph/PredictionGraphActions';
 import RoboAdvisorApp from './RoboAdvisorApp';
 
 const store = createStore(
@@ -16,8 +17,9 @@ const store = createStore(
   )
 );
 
-store.dispatch(getPredictionGraph());
 store.dispatch(getNavigation());
+store.dispatch(getPersonalHolding());
+store.dispatch(getPredictionGraph());
 
 render(
   <Provider store={store}>

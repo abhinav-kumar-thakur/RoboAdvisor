@@ -4,13 +4,13 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Accordion from 'react-bootstrap/lib/Accordion';
 import ApiContainer from '../common/components/ApiContainer';
 
-const Navigation = ({ data, isFetching, isFailed }) => {
+const Navigation = ({ navigation }) => {
   let element;
 
-  if (data) {
+  if (navigation.data) {
     element = <ul className='nav__list'>
       <Accordion>
-        { data.map((list, index) =>
+        { navigation.data.map((list, index) =>
 
           <Panel key={index}
                  header={[React.createElement('span', {key: index}, list.name),
@@ -34,7 +34,11 @@ const Navigation = ({ data, isFetching, isFailed }) => {
   }
 
   return ( <nav className='nav'>
-      <ApiContainer {...{isFetching, isFailed, element}}></ApiContainer>
+      <ApiContainer {...{
+        isFetching: navigation.isFetching,
+        isFailed: navigation.isFailed,
+        element: element
+      }}></ApiContainer>
     </nav>
   )
 };
