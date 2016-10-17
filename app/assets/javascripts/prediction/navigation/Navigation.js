@@ -1,8 +1,8 @@
 import React from 'react';
-import ListItem from '../common/components/ListItem';
-import Panel from 'react-bootstrap/lib/Panel';
-import Accordion from 'react-bootstrap/lib/Accordion';
-import ApiContainer from '../common/components/ApiContainer';
+import ListItem from '../../common/components/ListItem';
+import Panel from '../../../../../node_modules/react-bootstrap/lib/Panel';
+import Accordion from '../../../../../node_modules/react-bootstrap/lib/Accordion';
+import ApiContainer from '../../common/components/ApiContainer';
 
 const Navigation = ({ navigation }) => {
   let element;

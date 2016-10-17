@@ -16,6 +16,7 @@ Including another URLconf
 from app.views import *
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,5 +30,5 @@ urlpatterns = [
     url(r'^getRecommendation/([A-Za-z]+)/', recommendationApi, name="getRecommendations"),
     url(r'^asset/([A-Za-z]+)/getPersonalHolding/', assetPersonalHoldingApi,
         name="getPersonalHolding"),
-
+    url(r'^(%s)?$' % '|'.join(['prediction', 'performance']), TemplateView.as_view(template_name='index.html'))
 ]

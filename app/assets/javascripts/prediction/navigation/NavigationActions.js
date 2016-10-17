@@ -1,6 +1,6 @@
 import { navigationConstants } from './NavigationConstants';
-import { urlConstants } from '../common/UrlConstants';
-import httpGet from '../common/Utils';
+import { urlConstants } from '../../common/UrlConstants';
+import httpGet from '../../common/Utils';
 
 let requestNavigation = () => {
     return {
