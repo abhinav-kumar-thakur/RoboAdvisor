@@ -26,10 +26,13 @@ urlpatterns = [
     # Portfolio
     url(r'^portfolio/getPersonalHolding/', portfolioPersonalHoldingApi, name="getPortfolioPersonalHolding"),
     url(r'^portfolio/getPrediction/', portfolioPredictionApi, name="getPortfolioPersonalHolding"),
+    url(r'^portfolio/getRecommendations/', portfolioRecommendationsApi, name="getPortfolioPredictions"),
 
     # Asset
-    url(r'^asset/([A-Z]+)/getRecommendation/', assetRecommendationApi, name="getRecommendations"),
     url(r'^asset/([A-Z]+)/getPersonalHolding/', assetPersonalHoldingApi,
         name="getPersonalHolding"),
+    url(r'^asset/([A-Z]+)/getRecommendation/', assetRecommendationApi, name="getRecommendations"),
+
+
     url(r'^(%s)?$' % '|'.join(['predictions', 'performance']), TemplateView.as_view(template_name='index.html'))
 ]

@@ -8,6 +8,21 @@ def home(request):
     return render(request, "index.html")
 
 
+def navigationApi(request):
+    navigationData = []
+
+    assets = Asset.objects.all()
+    categories = set([asset.sector for asset in assets])
+
+    for category in categories:
+        navigationData.append(
+            {"category": category,
+             "stocks": [{"name": asset.name, "symbol": asset.symbol} for asset in assets if asset.sector == category]})
+    return HttpResponse(json.dumps(navigationData), content_type="application/json")
+
+
+# Portfolio
+
 def portfolioPersonalHoldingApi(request):
     portfolioPersonalHolding = {}
 
@@ -34,32 +49,21 @@ def portfolioPredictionApi(request):
     return HttpResponse(json.dumps(portfolioPrediction), content_type="application/json")
 
 
-def navigationApi(request):
-    navigationData = []
-
-    assets = Asset.objects.all()
-    categories = set([asset.sector for asset in assets])
-
-    for category in categories:
-        navigationData.append(
-            {"category": category, "stocks": [{"name":asset.name,"symbol":asset.symbol} for asset in assets if asset.sector == category]})
-    return HttpResponse(json.dumps(navigationData), content_type="application/json")
-
-
-def assetRecommendationApi(request, assetSymbol):
-    recommendationData = {}
+def portfolioRecommendationsApi(request):
+    portfolioRecommendations = []
 
     try:
-        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
-
-        recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
-        recommendationData["asset"] = recommendation.recommendedAsset
-        recommendationData["trade"] = recommendation.trade
+        for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+            for recommendation in Recommendation.objects.filter(mapping=mapping).latest('timeStamp'):
+                portfolioRecommendations.append(
+                    {"asset": recommendation.recommendedAsset, "trade": recommendation.trade})
     except:
         pass
 
-    return HttpResponse(json.dumps(recommendationData), content_type="application/json")
+    return HttpResponse(json.dumps(portfolioRecommendations), content_type="application/json")
 
+
+# Asset
 
 def assetPersonalHoldingApi(request, assetSymbol):
     assetPersonalHolding = {}
@@ -79,3 +83,18 @@ def assetPersonalHoldingApi(request, assetSymbol):
         pass
 
     return HttpResponse(json.dumps(assetPersonalHolding), content_type="application/json")
+
+
+def assetRecommendationApi(request, assetSymbol):
+    recommendationData = {}
+
+    try:
+        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
+
+        recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
+        recommendationData["asset"] = recommendation.recommendedAsset
+        recommendationData["trade"] = recommendation.trade
+    except:
+        pass
+
+    return HttpResponse(json.dumps(recommendationData), content_type="application/json")
