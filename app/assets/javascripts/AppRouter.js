@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MainLayout from './common/components/MainLayout';
 import PredictionContainer from './prediction/PredictionContainer';
 import PortfolioContainer from './prediction/portfolio/PortfolioContainer';
+import AssetContainer from './prediction/asset/AssetContainer';
 
 const RoboAdvisorAppRouter = () => (
 
@@ -12,6 +13,8 @@ const RoboAdvisorAppRouter = () => (
       <Route path="/" component={PredictionContainer}>
         <IndexRoute component={PortfolioContainer}/>
         <Route path="predictions" component={PortfolioContainer}/>
+        <Route path="predictions/portfolio" component={PortfolioContainer}/>
+        <Route path="predictions/asset/:symbol" component={AssetContainer}/>
       </Route>
     </Route>
   </Router>

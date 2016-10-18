@@ -22,7 +22,7 @@ const Navigation = ({ navigation }) => {
 
                 <ListItem
                   key={index}
-                  {...{link: {name: item.name, routeTo: 'predictions/' + item.symbol}}}
+                  {...{link: {name: item.name, routeTo: 'predictions/asset/' + item.symbol}}}
                   onClick={() => console.log(item)}
                 />
               )}
