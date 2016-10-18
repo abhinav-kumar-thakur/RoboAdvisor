@@ -77,10 +77,14 @@ def assetPersonalHoldingApi(request, assetSymbol):
 
         assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
         shareValue = unitsHeld * assetData.price
+
+        transaction = Transaction.objects.filter(mapping=mapping).latest('timeStamp')
+        purchaseDate = transaction.timeStamp
+
         assetPersonalHolding["asset"] = asset.name
-        assetPersonalHolding["assetSymbol"] = assetSymbol
         assetPersonalHolding["unitsHeld"] = unitsHeld
         assetPersonalHolding["shareValue"] = shareValue
+        assetPersonalHolding["purchaseDate"] = str(purchaseDate.date())
     except:
         pass
 
