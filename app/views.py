@@ -15,7 +15,7 @@ def portfolioPersonalHoldingApi(request):
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         asset = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
         portfolioShare += asset.price
-    portfolioPersonalHolding["value"] = portfolioShare
+    portfolioPersonalHolding["value"] = "$ " + str(portfolioShare)
     portfolioPersonalHolding["assets"] = PortfolioAssetMapping.objects.filter(portfolio=1).count()
 
     return HttpResponse(json.dumps(portfolioPersonalHolding), content_type="application/json")
@@ -28,9 +28,9 @@ def portfolioPredictionApi(request):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
         asset = Asset.objects.get(id=assetData.asset.id)
         if assetData.prediction is None:
-            assetData.prediction = 0.0
-        prediction = assetData.price - assetData.prediction
-        portfolioPrediction.append({"asset": asset.name, "prediction": prediction})
+            assetData.prediction = 0.1
+        prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
+        portfolioPrediction.append({"asset": asset.name, "prediction": str(prediction) + " %"})
     return HttpResponse(json.dumps(portfolioPrediction), content_type="application/json")
 
 
@@ -42,7 +42,8 @@ def navigationApi(request):
 
     for category in categories:
         navigationData.append(
-            {"category": category, "stocks": [{"name":asset.name,"symbol":asset.symbol} for asset in assets if asset.sector == category]})
+            {"category": category,
+             "stocks": [{"name": asset.name, "symbol": asset.symbol} for asset in assets if asset.sector == category]})
     return HttpResponse(json.dumps(navigationData), content_type="application/json")
 
 
@@ -53,8 +54,8 @@ def assetRecommendationApi(request, assetSymbol):
         mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
 
         recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
-        recommendationData["asset"] = [recommendation.recommendedAsset]
-        recommendationData["trade"] = [recommendation.trade]
+        recommendationData["asset"] = recommendation.recommendedAsset
+        recommendationData["trade"] = recommendation.trade
     except:
         pass
 
@@ -71,10 +72,10 @@ def assetPersonalHoldingApi(request, assetSymbol):
 
         assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
         shareValue = unitsHeld * assetData.price
-        assetPersonalHolding["asset"] = [asset.name]
-        assetPersonalHolding["assetSymbol"] = [assetSymbol]
-        assetPersonalHolding["unitsHeld"] = [unitsHeld]
-        assetPersonalHolding["shareValue"] = [shareValue]
+        assetPersonalHolding["asset"] = asset.name
+        assetPersonalHolding["assetSymbol"] = assetSymbol
+        assetPersonalHolding["unitsHeld"] = unitsHeld
+        assetPersonalHolding["shareValue"] = "$ " + str(shareValue)
     except:
         pass
 
