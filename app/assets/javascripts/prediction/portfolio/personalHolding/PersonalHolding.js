@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ApiContainer from '../../common/components/ApiContainer';
-import KeyValue from '../../common/components/KeyValue';
+import ApiContainer from '../../../common/components/ApiContainer';
+import KeyValue from '../../../common/components/KeyValue';
 
 const PersonalHolding = ({ personalHolding }) => {
 

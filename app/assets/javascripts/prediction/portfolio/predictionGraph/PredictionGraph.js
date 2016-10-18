@@ -1,6 +1,6 @@
 import React from 'react';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
-import ApiContainer from '../../common/components/ApiContainer';
+import ApiContainer from '../../../common/components/ApiContainer';
 
 const PredictionGraph = ({ predictionGraph }) => {
 

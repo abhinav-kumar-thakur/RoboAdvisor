@@ -1,6 +1,6 @@
 import { predictionGraphConstants } from './PredictionGraphConstants';
-import { urlConstants } from '../../common/UrlConstants';
-import httpGet from '../../common/Utils';
+import { urlConstants } from '../../../common/UrlConstants';
+import httpGet from '../../../common/Utils';
 
 let requestPredictionGraph = () => {
     return {

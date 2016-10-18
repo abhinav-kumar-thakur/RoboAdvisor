@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux'
 
 import navigation from './navigation/NavigationReducer';
-import personalHolding from './personalHolding/PersonalHoldingReducer';
-import predictionGraph from './predictionGraph/PredictionGraphReducer';
+import portfolio from './portfolio/PortfolioReducer';
 
 const prediction = combineReducers({
   navigation,
-  personalHolding,
-  predictionGraph
+  portfolio
 });
 
 export default prediction;

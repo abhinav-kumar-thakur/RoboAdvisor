@@ -1,6 +1,6 @@
 import { personalHoldingConstants } from './PersonalHoldingConstants';
-import { urlConstants } from '../../common/UrlConstants';
-import httpGet from '../../common/Utils';
+import { urlConstants } from '../../../common/UrlConstants';
+import httpGet from '../../../common/Utils';
 
 let requestPersonalHolding = () => {
     return {
