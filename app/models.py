@@ -76,7 +76,7 @@ class MinimumSpanningTreeModel(models.Model):
 
 class NewsGroup(models.Model):
     id = models.AutoField(primary_key=True)
-    assetId = models.ForeignKey(Asset)
+    asset = models.ForeignKey(Asset)
     effect = models.FloatField()
 
     class Meta:
@@ -87,9 +87,9 @@ class News(models.Model):
     id = models.AutoField(primary_key=True)
     timeStamp = models.DateTimeField()
     group = models.ForeignKey(NewsGroup)
-    headline = models.CharField(max_length=100)
-    url = models.CharField(max_length=100)
-    sentiment = models.FloatField()
+    headline = models.CharField(max_length=200)
+    url = models.URLField(max_length=200)
+    sentiment = models.DecimalField(default=0.0, max_digits=5, decimal_places=2)
 
     class Meta:
         db_table = "news"
