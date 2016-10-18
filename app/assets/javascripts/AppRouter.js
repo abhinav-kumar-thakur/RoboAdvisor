@@ -13,8 +13,11 @@ const RoboAdvisorAppRouter = () => (
       <Route path="/" component={PredictionContainer}>
         <IndexRoute component={PortfolioContainer}/>
         <Route path="predictions" component={PortfolioContainer}/>
-        <Route path="predictions/portfolio" component={PortfolioContainer}/>
-        <Route path="predictions/asset/:symbol" component={AssetContainer}/>
+
+        <Route path="predictions">
+          <Route path="portfolio" component={PortfolioContainer}/>
+          <Route path="asset/:symbol" component={AssetContainer}/>
+        </Route>
       </Route>
     </Route>
   </Router>
