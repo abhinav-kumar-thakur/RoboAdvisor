@@ -12,10 +12,15 @@ export default class Prediction extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    props.dispatch(getNavigation());
-    props.dispatch(getPersonalHolding());
-    props.dispatch(getPredictionGraph());
-  }
+  };
+
+  componentDidMount() {
+    let dispatch = this.props.dispatch;
+
+    dispatch(getNavigation());
+    dispatch(getPersonalHolding());
+    dispatch(getPredictionGraph());
+  };
 
   render() {
     return <div>
