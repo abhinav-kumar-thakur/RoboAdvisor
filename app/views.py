@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+
 from app.models import *
 import json
 from django.http import HttpResponse
@@ -83,6 +85,38 @@ def assetPersonalHoldingApi(request, assetSymbol):
         pass
 
     return HttpResponse(json.dumps(assetPersonalHolding), content_type="application/json")
+
+
+def assetPredictionGraphDataApi(request, assetSymbol):
+    assetPredictionGraphData = []
+
+    asset = Asset.objects.get(symbol=assetSymbol)
+
+    latestDay = (AssetData.objects.filter(asset=asset).latest('timeStamp')).timeStamp
+    print(latestDay)
+    day = latestDay
+
+    while (True):
+        day = (day - timedelta(1))
+        if AssetData.objects.filter(asset=asset, timeStamp=day).exists():
+            oneDayBefore = day
+            break
+
+    if latestDay.day == 5:
+        predictionDate = latestDay + timedelta(3)
+    else:
+        predictionDate = latestDay + timedelta(1)
+
+    assetPredictionGraphData.append({"date": str(oneDayBefore.date()),
+                                     "closingPrice": (
+                                         AssetData.objects.get(asset=asset, timeStamp=oneDayBefore)).price})
+    assetPredictionGraphData.append({"date": str(latestDay.date()),
+                                     "closingPrice": (AssetData.objects.get(asset=asset, timeStamp=latestDay)).price})
+    assetPredictionGraphData.append({"date": str(predictionDate.date()),
+                                     "closingPrice": (
+                                         AssetData.objects.get(asset=asset, timeStamp=latestDay)).prediction})
+
+    return HttpResponse(json.dumps(assetPredictionGraphData), content_type="application/json")
 
 
 def assetRecommendationApi(request, assetSymbol):
