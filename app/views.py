@@ -2,7 +2,6 @@ from app.models import *
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.http import Http404
 
 
 def home(request):
@@ -22,6 +21,19 @@ def portfolioPersonalHoldingApi(request):
     return HttpResponse(json.dumps(portfolioPersonalHolding), content_type="application/json")
 
 
+def portfolioPredictionApi(request):
+    portfolioPrediction = []
+
+    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+        assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
+        asset = Asset.objects.get(id=assetData.asset.id)
+        if assetData.prediction is None:
+            assetData.prediction = 0.0
+        prediction = assetData.price - assetData.prediction
+        portfolioPrediction.append({"asset": asset.name, "prediction": prediction})
+    return HttpResponse(json.dumps(portfolioPrediction), content_type="application/json")
+
+
 def navigationApi(request):
     navigationData = []
 
@@ -30,40 +42,40 @@ def navigationApi(request):
 
     for category in categories:
         navigationData.append(
-            {"name": category, "stocks": [asset.name for asset in assets if asset.sector == category]})
+            {"category": category, "stocks": [{"name":asset.name,"symbol":asset.symbol} for asset in assets if asset.sector == category]})
     return HttpResponse(json.dumps(navigationData), content_type="application/json")
 
 
-def recommendationApi(request, assetName):
+def assetRecommendationApi(request, assetSymbol):
     recommendationData = {}
 
     try:
-        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetName))
-    except:
-        raise Http404
+        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
 
-    recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
-    recommendationData['asset'] = [recommendation.recommendedAsset]
-    recommendationData['trade'] = [recommendation.trade]
+        recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
+        recommendationData["asset"] = [recommendation.recommendedAsset]
+        recommendationData["trade"] = [recommendation.trade]
+    except:
+        pass
 
     return HttpResponse(json.dumps(recommendationData), content_type="application/json")
 
 
-def assetPersonalHoldingApi(request, assetName):
+def assetPersonalHoldingApi(request, assetSymbol):
     assetPersonalHolding = {}
     try:
-        asset = Asset.objects.get(name=assetName)
+        asset = Asset.objects.get(symbol=assetSymbol)
+
+        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=asset)
+        unitsHeld = mapping.currentCount
+
+        assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
+        shareValue = unitsHeld * assetData.price
+        assetPersonalHolding["asset"] = [asset.name]
+        assetPersonalHolding["assetSymbol"] = [assetSymbol]
+        assetPersonalHolding["unitsHeld"] = [unitsHeld]
+        assetPersonalHolding["shareValue"] = [shareValue]
     except:
-        raise Http404
-
-    mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=asset)
-    unitsHeld = mapping.currentCount
-
-    assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
-    shareValue = unitsHeld * assetData.price
-    assetPersonalHolding["asset"] = [assetName]
-    assetPersonalHolding["assetSymbol"] = [asset.symbol]
-    assetPersonalHolding["unitsHeld"] = [unitsHeld]
-    assetPersonalHolding["shareValue"] = [shareValue]
+        pass
 
     return HttpResponse(json.dumps(assetPersonalHolding), content_type="application/json")

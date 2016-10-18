@@ -21,14 +21,15 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
+    url(r'^getNavigation/', navigationApi, name="getNavigation"),
 
     # Portfolio
     url(r'^portfolio/getPersonalHolding/', portfolioPersonalHoldingApi, name="getPortfolioPersonalHolding"),
+    url(r'^portfolio/getPrediction/', portfolioPredictionApi, name="getPortfolioPersonalHolding"),
 
     # Asset
-    url(r'^getNavigation/', navigationApi, name="getNavigation"),
-    url(r'^getRecommendation/([A-Za-z]+)/', recommendationApi, name="getRecommendations"),
-    url(r'^asset/([A-Za-z]+)/getPersonalHolding/', assetPersonalHoldingApi,
+    url(r'^asset/([A-Z]+)/getRecommendation/', assetRecommendationApi, name="getRecommendations"),
+    url(r'^asset/([A-Z]+)/getPersonalHolding/', assetPersonalHoldingApi,
         name="getPersonalHolding"),
     url(r'^(%s)?$' % '|'.join(['predictions', 'performance']), TemplateView.as_view(template_name='index.html'))
 ]
