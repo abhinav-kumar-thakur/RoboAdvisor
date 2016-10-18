@@ -1,0 +1,60 @@
+.pull-right {
+  float: right;
+}
+
+.collapse {
+  display: none;
+
+  &.in {
+    display: block;
+  }
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-duration: .35s;
+  transition-timing-function: ease;
+}
+
+.loader {
+  .fa {
+    color: $dark-gray;
+    font-size: 24px;
+    animation: rotating 2s linear infinite;
+  }
+}
+
+.key-value-container {
+  display: flex;
+
+  .key-value:first-child {
+    text-align: left;
+    border-right: 2px dotted $medium-gray;
+    flex-basis: 16%;
+
+    .key {
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.key-value {
+  text-align: center;
+  flex-basis: 20%;
+}
+
+.key {
+  font-size: 12px;
+  padding-bottom: 5px;
+  color: $gray;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: bold;
+  color: $dark-gray;
+}

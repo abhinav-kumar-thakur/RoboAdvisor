@@ -1,16 +1,21 @@
 import React from 'react';
+
 import ApiContainer from '../../common/components/ApiContainer';
+import KeyValue from '../../common/components/KeyValue';
 
 const PersonalHolding = ({ personalHolding }) => {
 
-  let element;
+  let element,
+    data = personalHolding.data;
 
   if (personalHolding.data) {
-    element = <div>
-      <h1>{personalHolding.data.name}</h1>
-      <h1>{personalHolding.data.value}</h1>
-      <h1>{personalHolding.data.assetCount}</h1>
-    </div>
+
+    element =
+      <div className="key-value-container">
+        <KeyValue {...{name: '', value: 'Portfolio ABCDE'}}/>
+        <KeyValue {...{name: 'VALUE', value: '$ ' + data.value}}/>
+        <KeyValue {...{name: 'INDIVIDUAL ASSETS', value: data.assets}}/>
+      </div>
   }
 
   return <ApiContainer {...{

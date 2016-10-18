@@ -13,7 +13,7 @@ const Navigation = ({ navigation }) => {
         { navigation.data.map((list, index) =>
 
           <Panel key={index}
-                 header={[React.createElement('span', {key: index}, list.name),
+                 header={[React.createElement('span', {key: index}, list.category),
                               React.createElement('i', {key: index + '.' + index, className: 'fa fa-angle-down pull-right'}, null)]}
                  eventKey={index}>
 
@@ -22,7 +22,7 @@ const Navigation = ({ navigation }) => {
 
                 <ListItem
                   key={index}
-                  {...{link: {name: item, routeTo: 'predictions/' + item}}}
+                  {...{link: {name: item.name, routeTo: 'predictions/' + item.symbol}}}
                   onClick={() => console.log(item)}
                 />
               )}

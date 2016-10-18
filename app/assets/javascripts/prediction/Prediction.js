@@ -28,7 +28,6 @@ export default class Prediction extends React.Component {
 
       <section className="main-container">
         <PersonalHolding {...{personalHolding: this.props.prediction.personalHolding}}/>
-        <PredictionGraph {...{predictionGraph: this.props.prediction.predictionGraph}}/>
       </section>
     </div>
   }

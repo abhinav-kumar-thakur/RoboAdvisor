@@ -3,7 +3,7 @@ body {
 }
 
 .main-container {
-  padding: 80px 20px 20px 320px;
+  padding: 90px 210px 30px 510px;
 }
 
 .api-container--centered {
@@ -11,33 +11,4 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.pull-right {
-  float: right;
-}
-
-.collapse {
-  display: none;
-
-  &.in {
-    display: block;
-  }
-}
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  transition-property: height, visibility;
-  transition-duration: .35s;
-  transition-timing-function: ease;
-}
-
-.loader {
-  .fa {
-    color: $dark-gray;
-    font-size: 24px;
-    animation: rotating 2s linear infinite;
-  }
 }
