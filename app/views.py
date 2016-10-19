@@ -1,5 +1,4 @@
-from datetime import timedelta, datetime
-
+from datetime import timedelta
 from app.models import *
 import json
 from django.http import HttpResponse
@@ -38,6 +37,12 @@ def portfolioPersonalHoldingApi(request):
     return HttpResponse(json.dumps(portfolioPersonalHolding), content_type="application/json")
 
 
+def portfolioPredictionGraphDataApi(request):
+    portfolioPredictionGraphData = []
+
+    return HttpResponse(json.dumps(portfolioPredictionGraphData), content_type="application/json")
+
+
 def sorting(predictedPrices):
     return sorted(predictedPrices, key=abs)
 
@@ -46,6 +51,7 @@ def portfolioPredictionApi(request):
     predictedPrices = []
     portfolioPredictions = []
     topFivePortfolioPredictions = []
+
 
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
@@ -59,10 +65,13 @@ def portfolioPredictionApi(request):
         portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
 
     predictedPrices = sorting(predictedPrices)
+
+
     for price in predictedPrices[:5]:
         for prediction in portfolioPredictions:
             if prediction["prediction"] == price:
                 topFivePortfolioPredictions.append(prediction)
+                break
 
     return HttpResponse(json.dumps(topFivePortfolioPredictions), content_type="application/json")
 
