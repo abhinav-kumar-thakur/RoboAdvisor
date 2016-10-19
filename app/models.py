@@ -61,7 +61,7 @@ class TimeSeriesModel(models.Model):
     coefficients = JSONField()
 
     class Meta:
-        db_table = "timeSeries_model"
+        db_table = "time_series_model"
 
 
 class MinimumSpanningTreeModel(models.Model):
