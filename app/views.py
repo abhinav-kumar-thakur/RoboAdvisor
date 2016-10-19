@@ -38,17 +38,33 @@ def portfolioPersonalHoldingApi(request):
     return HttpResponse(json.dumps(portfolioPersonalHolding), content_type="application/json")
 
 
+def sorting(predictedPrices):
+    return sorted(predictedPrices, key=abs)
+
+
 def portfolioPredictionApi(request):
-    portfolioPrediction = []
+    predictedPrices = []
+    portfolioPredictions = []
+    topFivePortfolioPredictions = []
 
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
         asset = Asset.objects.get(id=assetData.asset.id)
+
         if assetData.prediction is None:
             assetData.prediction = 0.1
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
-        portfolioPrediction.append({"asset": asset.name, "prediction": prediction})
-    return HttpResponse(json.dumps(portfolioPrediction), content_type="application/json")
+
+        predictedPrices.append(prediction)
+        portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
+
+    predictedPrices = sorting(predictedPrices)
+    for price in predictedPrices[:4]:
+        for prediction in portfolioPredictions:
+            if prediction["prediction"] == price:
+                topFivePortfolioPredictions.append(prediction)
+
+    return HttpResponse(json.dumps(topFivePortfolioPredictions), content_type="application/json")
 
 
 def portfolioRecommendationsApi(request):
