@@ -1,17 +1,18 @@
 body {
   font-family: 'Open Sans', 'sans-serif';
+  color: $medium-gray;
+}
+
+strong {
+  font-weight: 600;
 }
 
 .main-container {
   padding: 90px 210px 30px 510px;
 }
 
-.api-container {
-  margin: 30px 0;
-
-  &:first-child {
-    margin-top: 0;
-  }
+.container {
+  padding-bottom: 40px;
 }
 
 .api-container--centered {
@@ -19,4 +20,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container__heading {
+  font-size: 18px;
+  padding-bottom: 15px;
+
+  strong {
+    color: $dark-gray;
+    margin-right: 5px;
+    border-bottom: 2px dotted $gray;
+  }
 }

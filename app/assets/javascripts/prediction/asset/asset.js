@@ -33,7 +33,9 @@ export default class Asset extends React.Component {
           <span>Back to Portfolio Predictions</span>
         </Link>
 
-        <PersonalHolding {...{personalHolding: this.props.asset.personalHolding}}/>
+        <div className="container">
+          <PersonalHolding {...{personalHolding: this.props.asset.personalHolding}}/>
+        </div>
       </section>
     </div>
   }

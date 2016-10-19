@@ -2,9 +2,11 @@ import React from 'react'
 
 import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from './predictionGraph/PredictionGraph';
+import ImpactingAssets from './impactingAssets/ImpactingAssets';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
+import getImpactingAssets from './impactingAssets/ImpactingAssetsActions';
 
 export default class Prediction extends React.Component {
 
@@ -17,13 +19,41 @@ export default class Prediction extends React.Component {
 
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
+      props.dispatch(getImpactingAssets());
     }
   };
 
   render() {
     return <div>
       <section className="main-container">
-        <PersonalHolding {...{personalHolding: this.props.portfolio.personalHolding}}/>
+
+        <div className="container">
+          <PersonalHolding {...{personalHolding: this.props.portfolio.personalHolding}}/>
+        </div>
+
+        <div className="container">
+          <div className="flex-row">
+            <div className="flex-row__item">
+
+              <h3 className="container__heading">
+                <strong>Stocks</strong>
+                <span>Impacting Portfolio Prediction</span>
+              </h3>
+              <ImpactingAssets {...{impactingAssets: this.props.portfolio.impactingAssets}} />
+
+            </div>
+
+            <div className="flex-row__item">
+
+              <h3 className="container__heading">
+                <strong>Stories</strong>
+                <span>Impacting Portfolio Prediction</span>
+              </h3>
+              <h1>News will go here</h1>
+
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   }

@@ -60,10 +60,39 @@
 }
 
 .link-back {
+  display: inline-block;
+  padding-bottom: 40px;
   color: $dark-gray;
   text-decoration: none;
 
   .fa {
     padding-right: 8px;
   }
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-row__item {
+  flex: 1;
+}
+
+.pi {
+  .fa {
+    font-size: 20px;
+  }
+
+  .fa-arrow-up {
+    color: $green;
+  }
+
+  .fa-arrow-down {
+    color: $red;
+  }
+}
+
+.pi__value {
+  display: inline-block;
+  width: 60px;
 }

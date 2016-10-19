@@ -2,3 +2,11 @@
   text-decoration: none;
   display: block;
 }
+
+.list-table {
+  color: $dark-gray;
+
+  .list__item {
+    padding: 10px 0;
+  }
+}
