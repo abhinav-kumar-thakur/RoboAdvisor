@@ -3,10 +3,12 @@ import React from 'react'
 import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from './predictionGraph/PredictionGraph';
 import ImpactingAssets from './impactingAssets/ImpactingAssets';
+import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
 import getImpactingAssets from './impactingAssets/ImpactingAssetsActions';
+import getRecommendations from './recommendations/RecommendationsActions';
 
 export default class Prediction extends React.Component {
 
@@ -20,6 +22,7 @@ export default class Prediction extends React.Component {
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
       props.dispatch(getImpactingAssets());
+      props.dispatch(getRecommendations());
     }
   };
 
@@ -53,6 +56,15 @@ export default class Prediction extends React.Component {
 
             </div>
           </div>
+        </div>
+
+        <div className="container">
+          <h3 className="container__heading">
+            <strong>Recommended Actions</strong>
+            <span>for maximising profits</span>
+          </h3>
+
+          <Recommendations {...{recommendations: this.props.portfolio.recommendations}} />
         </div>
       </section>
     </div>

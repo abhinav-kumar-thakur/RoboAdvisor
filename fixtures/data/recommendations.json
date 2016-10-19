@@ -1,0 +1,10 @@
+[
+  {
+    "action": "buy",
+    "asset": "Facebook"
+  },
+  {
+    "action": "sell",
+    "asset": "Google"
+  }
+]

@@ -96,3 +96,20 @@
   display: inline-block;
   width: 60px;
 }
+
+.btn-label {
+  padding: 5px 0;
+  width: 100px;
+  text-align: center;
+  margin: 10px 10px 10px 0;
+  display: inline-block;
+  color: $white;
+}
+
+.btn-label--sell {
+  background-color: $red;
+}
+
+.btn-label--buy {
+  background-color: $green;
+}
