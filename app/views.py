@@ -45,8 +45,8 @@ def portfolioPredictionApi(request):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
         asset = Asset.objects.get(id=assetData.asset.id)
         if assetData.prediction is None:
-            assetData.prediction = 0.0
-        prediction = assetData.price - assetData.prediction
+            assetData.prediction = 0.1
+        prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
         portfolioPrediction.append({"asset": asset.name, "prediction": prediction})
     return HttpResponse(json.dumps(portfolioPrediction), content_type="application/json")
 
@@ -96,8 +96,8 @@ def assetPredictionGraphDataApi(request, assetSymbol):
 
     asset = Asset.objects.get(symbol=assetSymbol)
 
-    latestDay = (AssetData.objects.filter(asset=asset).latest('timeStamp')).timeStamp
-    print(latestDay)
+    assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
+    latestDay = assetData.timeStamp
     day = latestDay
 
     while (True):
