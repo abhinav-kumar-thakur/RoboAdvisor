@@ -13,9 +13,11 @@ export default class Prediction extends React.Component {
   };
 
   componentDidMount() {
-    let dispatch = this.props.dispatch;
+    let props = this.props;
 
-    dispatch(getPersonalHolding());
+    if (!props.portfolio.personalHolding.data) {
+      props.dispatch(getPersonalHolding());
+    }
   };
 
   render() {

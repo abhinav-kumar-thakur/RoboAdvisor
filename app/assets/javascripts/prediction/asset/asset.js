@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 import PersonalHolding from './personalHolding/PersonalHolding';
-
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 
 export default class Asset extends React.Component {
@@ -28,6 +28,11 @@ export default class Asset extends React.Component {
   render() {
     return <div>
       <section className="main-container">
+        <Link to={'/predictions'} className="list__link">
+          <i className="fa fa-angle-left"></i>
+          <span>Back to Portfolio Predictions</span>
+        </Link>
+
         <PersonalHolding {...{personalHolding: this.props.asset.personalHolding}}/>
       </section>
     </div>
