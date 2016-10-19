@@ -28,7 +28,7 @@ export default class Asset extends React.Component {
   render() {
     return <div>
       <section className="main-container">
-        <Link to={'/predictions'} className="list__link">
+        <Link to={'/predictions'} className="link-back">
           <i className="fa fa-angle-left"></i>
           <span>Back to Portfolio Predictions</span>
         </Link>

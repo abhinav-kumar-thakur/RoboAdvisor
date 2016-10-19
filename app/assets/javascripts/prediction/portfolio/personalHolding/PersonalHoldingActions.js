@@ -25,7 +25,7 @@ let requestPersonalHolding = () => {
     return function (dispatch) {
       dispatch(requestPersonalHolding());
 
-      httpGet(urlConstants.PERSONAL_HOLDING)
+      httpGet(urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.PERSONAL_HOLDING)
         .then(data => dispatch(successPersonalHolding(data)))
         .catch(error => dispatch(failurePersonalHolding()))
     };

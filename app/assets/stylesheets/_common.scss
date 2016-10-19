@@ -6,6 +6,14 @@ body {
   padding: 90px 210px 30px 510px;
 }
 
+.api-container {
+  margin: 30px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
 .api-container--centered {
   min-height: 50px;
   display: flex;
