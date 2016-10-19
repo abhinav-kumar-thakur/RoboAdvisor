@@ -59,7 +59,7 @@ def portfolioPredictionApi(request):
         portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
 
     predictedPrices = sorting(predictedPrices)
-    for price in predictedPrices[:4]:
+    for price in predictedPrices[:5]:
         for prediction in portfolioPredictions:
             if prediction["prediction"] == price:
                 topFivePortfolioPredictions.append(prediction)
