@@ -47,7 +47,7 @@ def portfolioPredictionGraphDataApi(request):
     startDate = latestDay - timedelta(180)
 
     date = startDate
-    while (date != endDate):
+    while (date <= endDate):
         price = 0.0
         for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
             try:
@@ -104,20 +104,6 @@ def portfolioPredictionApi(request):
                 topFivePortfolioPredictions.append(prediction)
                 break
     return HttpResponse(json.dumps(topFivePortfolioPredictions), content_type="application/json")
-
-
-def portfolioRecommendationsApi(request):
-    portfolioRecommendations = []
-
-    try:
-        for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-            for recommendation in Recommendation.objects.filter(mapping=mapping).latest('timeStamp'):
-                portfolioRecommendations.append(
-                    {"asset": recommendation.recommendedAsset, "trade": recommendation.trade})
-    except:
-        pass
-
-    return HttpResponse(json.dumps(portfolioRecommendations), content_type="application/json")
 
 
 # Asset
