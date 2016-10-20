@@ -10,7 +10,7 @@
 }
 
 .header__nav-icon {
-  flex-basis: 290px;
+  flex-basis: 250px;
 
   .fa {
     font-size: 24px;
@@ -26,6 +26,8 @@
   display: flex;
   justify-content: center;
   padding-top: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .list__item {
     text-align: center;
