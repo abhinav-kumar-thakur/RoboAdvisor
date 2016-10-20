@@ -94,18 +94,6 @@ class News(models.Model):
     class Meta:
         db_table = "news"
 
-
-class Recommendation(models.Model):
-    id = models.AutoField(primary_key=True)
-    timeStamp = models.DateTimeField()
-    mapping = models.ForeignKey(PortfolioAssetMapping)
-    recommendedAsset = models.ForeignKey(Asset)
-    trade = models.CharField(max_length=50)
-
-    class Meta:
-        db_table = "recommendation"
-
-
 class Status(models.Model):
     lastUpdateDate = models.DateTimeField()
 
