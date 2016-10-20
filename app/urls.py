@@ -25,6 +25,7 @@ urlpatterns = [
 
     # Portfolio
     url(r'^portfolio/getPersonalHolding/', portfolioPersonalHoldingApi, name="getPortfolioPersonalHolding"),
+    url(r'^portfolio/getPredictionGraphData/', portfolioPredictionGraphDataApi, name="getPredictionGraphData"),
     url(r'^portfolio/getPrediction/', portfolioPredictionApi, name="getPortfolioPersonalHolding"),
     url(r'^portfolio/getRecommendations/', portfolioRecommendationsApi, name="getPortfolioPredictions"),
 

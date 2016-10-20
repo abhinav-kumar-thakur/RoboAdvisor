@@ -26,7 +26,7 @@ class AssetData(models.Model):
     asset = models.ForeignKey(Asset)
     timeStamp = models.DateTimeField()
     price = models.FloatField()
-    prediction = models.FloatField(null=True)
+    prediction = models.FloatField(default=0.1, editable=True)
     errorMargin = models.FloatField()
 
     class Meta:
@@ -108,5 +108,6 @@ class Recommendation(models.Model):
 
 class Status(models.Model):
     lastUpdateDate = models.DateTimeField()
+
     class Meta:
         db_table = "status"

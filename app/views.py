@@ -40,6 +40,38 @@ def portfolioPersonalHoldingApi(request):
 def portfolioPredictionGraphDataApi(request):
     portfolioPredictionGraphData = []
 
+    mapping = PortfolioAssetMapping.objects.filter(portfolio=1).first()
+    assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
+    latestDay = assetData.timeStamp
+    day = latestDay
+
+    while (True):
+        day = (day - timedelta(1))
+        if AssetData.objects.filter(asset=mapping.asset, timeStamp=day).exists():
+            oneDayBefore = day
+            break
+
+    if latestDay.day == 5:
+        predictionDate = latestDay + timedelta(3)
+    else:
+        predictionDate = latestDay + timedelta(1)
+
+    predictionPrice = 0
+    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=oneDayBefore)
+        predictionPrice += assetData.price
+    portfolioPredictionGraphData.append({"date": str(oneDayBefore.date()), "closingPrice": predictionPrice})
+
+    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
+        predictionPrice += assetData.price
+    portfolioPredictionGraphData.append({"date": str(latestDay.date()), "closingPrice": predictionPrice})
+
+    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
+        predictionPrice += assetData.prediction
+    portfolioPredictionGraphData.append({"date": str(predictionDate.date()), "closingPrice": predictionPrice})
+
     return HttpResponse(json.dumps(portfolioPredictionGraphData), content_type="application/json")
 
 
@@ -52,20 +84,16 @@ def portfolioPredictionApi(request):
     portfolioPredictions = []
     topFivePortfolioPredictions = []
 
-
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
         asset = Asset.objects.get(id=assetData.asset.id)
 
-        if assetData.prediction is None:
-            assetData.prediction = 0.1
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
 
         predictedPrices.append(prediction)
         portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
 
     predictedPrices = sorting(predictedPrices)
-
 
     for price in predictedPrices[:5]:
         for prediction in portfolioPredictions:
