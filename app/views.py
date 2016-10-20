@@ -43,13 +43,20 @@ def portfolioPredictionGraphDataApi(request):
     mapping = PortfolioAssetMapping.objects.filter(portfolio=1).first()
     assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
     latestDay = assetData.timeStamp
-    day = latestDay
+    endDate = latestDay
+    startDate = latestDay - timedelta(180)
 
-    while (True):
-        day = (day - timedelta(1))
-        if AssetData.objects.filter(asset=mapping.asset, timeStamp=day).exists():
-            oneDayBefore = day
-            break
+    date = startDate
+    while (date != endDate):
+        price = 0.0
+        for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+            try:
+                data = AssetData.objects.get(asset=mapping.asset, timeStamp=date)
+                price += data.price
+            except:
+                pass
+        portfolioPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
+        date = date + timedelta(1)
 
     if latestDay.day == 5:
         predictionDate = latestDay + timedelta(3)
@@ -58,22 +65,10 @@ def portfolioPredictionGraphDataApi(request):
 
     predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=oneDayBefore)
-        predictionPrice += assetData.price
-    portfolioPredictionGraphData.append({"date": str(oneDayBefore.date()), "closingPrice": predictionPrice})
-
-    predictionPrice = 0.0
-    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
-        predictionPrice += assetData.price
-    portfolioPredictionGraphData.append({"date": str(latestDay.date()), "closingPrice": predictionPrice})
-
-    predictionPrice = 0.0
-    for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
         predictionPrice += assetData.prediction
     portfolioPredictionGraphData.append(
-        {"predictionDate": str(predictionDate.date()), "predictionPrice": predictionPrice})
+        {"date": str(predictionDate.date()), "closingPrice": predictionPrice})
 
     return HttpResponse(json.dumps(portfolioPredictionGraphData), content_type="application/json")
 
@@ -171,24 +166,10 @@ def assetPredictionGraphDataApi(request, assetSymbol):
                                      "closingPrice": (
                                          AssetData.objects.get(asset=asset, timeStamp=oneDayBefore)).price})
     assetPredictionGraphData.append({"date": str(latestDay.date()),
-                                     "closingPrice": (AssetData.objects.get(asset=asset, timeStamp=latestDay)).price})
+                                     "closingPrice": (
+                                         AssetData.objects.get(asset=asset, timeStamp=latestDay)).price})
     assetPredictionGraphData.append({"date": str(predictionDate.date()),
                                      "closingPrice": (
                                          AssetData.objects.get(asset=asset, timeStamp=latestDay)).prediction})
 
     return HttpResponse(json.dumps(assetPredictionGraphData), content_type="application/json")
-
-
-def assetRecommendationApi(request, assetSymbol):
-    recommendationData = {}
-
-    try:
-        mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=Asset.objects.get(symbol=assetSymbol))
-
-        recommendation = Recommendation.objects.filter(mapping=mapping).latest('timeStamp')
-        recommendationData["asset"] = recommendation.recommendedAsset
-        recommendationData["trade"] = recommendation.trade
-    except:
-        pass
-
-    return HttpResponse(json.dumps(recommendationData), content_type="application/json")
