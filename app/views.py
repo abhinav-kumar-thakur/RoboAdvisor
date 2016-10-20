@@ -94,7 +94,7 @@ def portfolioPredictionApi(request):
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
 
         predictedPrices.append(prediction)
-        portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
+        portfolioPredictions.append({"asset": asset.name, "symbol": asset.symbol, "prediction": prediction})
 
     predictedPrices = sorting(predictedPrices)
     print(predictedPrices)
