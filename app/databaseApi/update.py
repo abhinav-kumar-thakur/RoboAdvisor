@@ -18,6 +18,6 @@ status = Status.objects.all()[0]
 yesterday = (datetime.today() - timedelta(1)).date()
 lastUpdateDate = status.lastUpdateDate.date()
 if yesterday != lastUpdateDate:
-    AssetDataApi().addDetails(None, 0.1, str(lastUpdateDate), str(yesterday))
+    AssetDataApi().addDetails(0.0, 0.1, str(lastUpdateDate), str(yesterday))
     status.lastUpdateDate = yesterday
     status.save()

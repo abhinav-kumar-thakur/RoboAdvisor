@@ -56,21 +56,24 @@ def portfolioPredictionGraphDataApi(request):
     else:
         predictionDate = latestDay + timedelta(1)
 
-    predictionPrice = 0
+    predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=oneDayBefore)
         predictionPrice += assetData.price
     portfolioPredictionGraphData.append({"date": str(oneDayBefore.date()), "closingPrice": predictionPrice})
 
+    predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
         predictionPrice += assetData.price
     portfolioPredictionGraphData.append({"date": str(latestDay.date()), "closingPrice": predictionPrice})
 
+    predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
         predictionPrice += assetData.prediction
-    portfolioPredictionGraphData.append({"date": str(predictionDate.date()), "closingPrice": predictionPrice})
+    portfolioPredictionGraphData.append(
+        {"predictionDate": str(predictionDate.date()), "predictionPrice": predictionPrice})
 
     return HttpResponse(json.dumps(portfolioPredictionGraphData), content_type="application/json")
 
@@ -94,8 +97,8 @@ def portfolioPredictionApi(request):
         portfolioPredictions.append({"asset": asset.name, "prediction": prediction})
 
     predictedPrices = sorting(predictedPrices)
-
-    for price in predictedPrices[:5]:
+    print(predictedPrices)
+    for price in predictedPrices:
         for prediction in portfolioPredictions:
             if prediction["prediction"] == price:
                 topFivePortfolioPredictions.append(prediction)

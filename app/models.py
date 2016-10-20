@@ -26,7 +26,7 @@ class AssetData(models.Model):
     asset = models.ForeignKey(Asset)
     timeStamp = models.DateTimeField()
     price = models.FloatField()
-    prediction = models.FloatField(default=0.1, editable=True)
+    prediction = models.FloatField()
     errorMargin = models.FloatField()
 
     class Meta:
