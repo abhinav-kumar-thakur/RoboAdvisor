@@ -87,18 +87,22 @@ def portfolioPredictionApi(request):
         asset = Asset.objects.get(id=assetData.asset.id)
 
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
-
+        trade = "hold"
+        if prediction > 2.5:
+            trade = "buy"
+        if prediction < 2.5:
+            trade = "sell"
         predictedPrices.append(prediction)
-        portfolioPredictions.append({"asset": asset.name, "symbol": asset.symbol, "prediction": prediction})
+        portfolioPredictions.append(
+            {"asset": asset.name, "symbol": asset.symbol, "prediction": prediction, "trade": trade})
 
     predictedPrices = sorting(predictedPrices)
-    print(predictedPrices)
     for price in predictedPrices:
         for prediction in portfolioPredictions:
             if prediction["prediction"] == price:
+                portfolioPredictions.remove(prediction)
                 topFivePortfolioPredictions.append(prediction)
                 break
-
     return HttpResponse(json.dumps(topFivePortfolioPredictions), content_type="application/json")
 
 
