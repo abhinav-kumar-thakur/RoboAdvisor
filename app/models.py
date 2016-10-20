@@ -111,3 +111,11 @@ class Status(models.Model):
 
     class Meta:
         db_table = "status"
+
+
+class RippleEffect(models.Model):
+    asset = models.ForeignKey(Asset)
+    result = models.FloatField()
+
+    class Meta:
+        db_table = "ripple_effect"
