@@ -3,7 +3,8 @@ import Portfolio from './Asset';
 
 const mapStateToProps = function (state) {
   return {
-    asset: state.prediction.asset
+    asset: state.prediction.asset,
+    portfolioAssets: state.prediction.portfolioAssets
   }
 };
 
