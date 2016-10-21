@@ -11,17 +11,20 @@ const ImpactingAssets = ({ impactingAssets }) => {
   if (data) {
 
     element = <ul className="list-table">
-      { data.map((asset, index) =>
-        <li key={index} className="list__item flex-row">
-          <div className="flex-row__item">
-            <strong>
-              <Pi {...{value: asset.prediction}} />
-            </strong>
-          </div>
-          <div className="flex-row__item">
-            <strong>{asset.asset}</strong>
-          </div>
-        </li>
+      { data.map((asset, index) => {
+          if (index < 5) {
+            return <li key={index} className="list__item flex-row">
+              <div className="flex-row__item">
+                <strong>
+                  <Pi {...{value: asset.prediction}} />
+                </strong>
+              </div>
+              <div className="flex-row__item">
+                <strong>{asset.asset}</strong>
+              </div>
+            </li>
+          }
+        }
       )}
     </ul>
   }

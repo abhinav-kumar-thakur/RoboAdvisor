@@ -2,6 +2,7 @@ import React from 'react'
 
 import Navigation from './navigation/Navigation';
 import getNavigation from './navigation/NavigationActions';
+import getPortfolioAssets from './portfolioAssets/PortfolioAssetsActions';
 
 export default class Prediction extends React.Component {
 
@@ -13,6 +14,7 @@ export default class Prediction extends React.Component {
     let dispatch = this.props.dispatch;
 
     dispatch(getNavigation());
+    dispatch(getPortfolioAssets());
   }
 
   render() {

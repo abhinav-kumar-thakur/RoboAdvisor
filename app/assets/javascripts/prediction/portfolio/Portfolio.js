@@ -7,7 +7,6 @@ import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
-import getImpactingAssets from './impactingAssets/ImpactingAssetsActions';
 import getRecommendations from './recommendations/RecommendationsActions';
 
 export default class Prediction extends React.Component {
@@ -22,7 +21,6 @@ export default class Prediction extends React.Component {
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
       props.dispatch(getPredictionGraph());
-      props.dispatch(getImpactingAssets());
       props.dispatch(getRecommendations());
     }
   };
@@ -52,7 +50,7 @@ export default class Prediction extends React.Component {
                 <strong>Stocks</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
-              <ImpactingAssets {...{impactingAssets: this.props.portfolio.impactingAssets}} />
+              <ImpactingAssets {...{impactingAssets: this.props.portfolioAssets}} />
             </div>
 
             <div className="flex-row__item">

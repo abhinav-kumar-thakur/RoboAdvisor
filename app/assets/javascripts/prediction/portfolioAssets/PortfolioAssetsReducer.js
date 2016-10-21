@@ -1,23 +1,23 @@
-import { impactingAssetsConstants } from './ImpactingAssetsConstants';
+import { portfolioAssetsConstants } from './PortfolioAssetsConstants';
 
-const impactingAssets = (state = {}, action) => {
+const portfolioAssets = (state = {}, action) => {
 
   switch (action.type) {
 
-    case impactingAssetsConstants.REQUEST:
+    case portfolioAssetsConstants.REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isFailed: false
       });
 
-    case impactingAssetsConstants.RECEIVE:
+    case portfolioAssetsConstants.RECEIVE:
       return Object.assign({}, state, {
         data: action.data,
         isFetching: false,
         isFailed: false
       });
 
-    case impactingAssetsConstants.FAILURE:
+    case portfolioAssetsConstants.FAILURE:
       return Object.assign({}, state, {
         isFailed: true,
         isFetching: false
@@ -28,4 +28,4 @@ const impactingAssets = (state = {}, action) => {
   }
 };
 
-export default impactingAssets;
+export default portfolioAssets;
