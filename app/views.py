@@ -139,25 +139,26 @@ def assetPredictionGraphDataApi(request, assetSymbol):
 
     assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
     latestDay = assetData.timeStamp
-    day = latestDay
+    endDate = latestDay
+    startDate = latestDay - timedelta(180)
 
-    while (True):
-        day = (day - timedelta(1))
-        if AssetData.objects.filter(asset=asset, timeStamp=day).exists():
-            oneDayBefore = day
-            break
+    date = startDate
+    while (date <= endDate):
+        price = 0.0
+        try:
+            data = AssetData.objects.get(asset=asset, timeStamp=date)
+            price = data.price
+        except:
+            pass
+        assetPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
+        date = date + timedelta(1)
 
     if latestDay.day == 5:
         predictionDate = latestDay + timedelta(3)
+
     else:
         predictionDate = latestDay + timedelta(1)
 
-    assetPredictionGraphData.append({"date": str(oneDayBefore.date()),
-                                     "closingPrice": (
-                                         AssetData.objects.get(asset=asset, timeStamp=oneDayBefore)).price})
-    assetPredictionGraphData.append({"date": str(latestDay.date()),
-                                     "closingPrice": (
-                                         AssetData.objects.get(asset=asset, timeStamp=latestDay)).price})
     assetPredictionGraphData.append({"date": str(predictionDate.date()),
                                      "closingPrice": (
                                          AssetData.objects.get(asset=asset, timeStamp=latestDay)).prediction})
