@@ -3,10 +3,12 @@ import { Link } from 'react-router';
 
 import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from './predictionGraph/PredictionGraph';
+import News from './news/News';
 import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
+import getNews from './news/NewsActions';
 
 export default class Asset extends React.Component {
 
@@ -19,6 +21,7 @@ export default class Asset extends React.Component {
 
     props.dispatch(getPersonalHolding(props.params.symbol));
     props.dispatch(getPredictionGraph(props.params.symbol));
+    props.dispatch(getNews());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,6 +31,7 @@ export default class Asset extends React.Component {
     if (newParams.symbol !== props.params.symbol) {
       props.dispatch(getPersonalHolding(newParams.symbol));
       props.dispatch(getPredictionGraph(newParams.symbol));
+      props.dispatch(getNews());
     }
   };
 
@@ -69,7 +73,7 @@ export default class Asset extends React.Component {
                 <strong>Stories</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
-              <h1>News will go here</h1>
+              <News {...{news: this.props.asset.news}} />
 
             </div>
           </div>
