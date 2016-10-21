@@ -13,7 +13,7 @@ const PersonalHolding = ({ personalHolding }) => {
     element =
       <div className="key-value-container">
         <KeyValue {...{name: '', value: 'Portfolio ABCDE'}}/>
-        <KeyValue {...{name: 'VALUE', value: '$ ' + data.value}}/>
+        <KeyValue {...{name: 'CURRENT VALUE', value: '$ ' + data.value}}/>
         <KeyValue {...{name: 'INDIVIDUAL ASSETS', value: data.assets}}/>
       </div>
   }

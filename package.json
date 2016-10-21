@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/Abhivision/RoboAdvisor#readme",
   "dependencies": {
-    "babel-plugin-recharts": "^1.0.2",
     "es6-promise": "^4.0.5",
     "flux": "^3.0.0",
     "font-awesome": "^4.6.3",
@@ -31,9 +30,9 @@
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
+    "react-highcharts": "^10.0.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
-    "recharts": "^0.15.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^1.0.0",
     "redux-thunk": "^2.1.0",

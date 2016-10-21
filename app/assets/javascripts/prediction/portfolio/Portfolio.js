@@ -21,6 +21,7 @@ export default class Prediction extends React.Component {
 
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
+      props.dispatch(getPredictionGraph());
       props.dispatch(getImpactingAssets());
       props.dispatch(getRecommendations());
     }
@@ -35,6 +36,15 @@ export default class Prediction extends React.Component {
         </div>
 
         <div className="container">
+          <h3 className="container__heading">
+            <strong>Predicted</strong>
+            <span>Stock Value</span>
+          </h3>
+
+          <PredictionGraph {...{predictionGraph: this.props.portfolio.predictionGraph}}/>
+        </div>
+
+        <div className="container">
           <div className="flex-row">
             <div className="flex-row__item">
 
@@ -43,7 +53,6 @@ export default class Prediction extends React.Component {
                 <span>Impacting Portfolio Prediction</span>
               </h3>
               <ImpactingAssets {...{impactingAssets: this.props.portfolio.impactingAssets}} />
-
             </div>
 
             <div className="flex-row__item">
