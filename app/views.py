@@ -98,7 +98,7 @@ def portfolioPredictionApi(request):
             {"asset": asset.name, "symbol": asset.symbol, "prediction": prediction, "trade": trade})
 
     predictedPrices = sorting(predictedPrices)
-    for price in predictedPrices:
+    for price in predictedPrices[:5]:
         for prediction in portfolioPredictions:
             if prediction["prediction"] == price:
                 portfolioPredictions.remove(prediction)
