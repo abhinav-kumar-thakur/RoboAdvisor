@@ -91,7 +91,7 @@ def portfolioPredictionApi(request):
         trade = "hold"
         if prediction > 2.5:
             trade = "buy"
-        if prediction < 2.5:
+        if prediction < -2.5:
             trade = "sell"
         predictedPrices.append(prediction)
         portfolioPredictions.append(
