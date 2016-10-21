@@ -9,14 +9,20 @@ const Recommendations = ({ recommendations }) => {
 
   if (data) {
 
-    element = <ul>
-      { data.map((item, index) =>
+    let labelType = (trade) => {
+      return trade === 'sell' ? 'btn-label--sell' : 'btn-label--buy';
+    };
 
-        <li key={index}>
-          <label
-            className={"btn-label " + (item.action === 'sell' ? 'btn-label--sell' : 'btn-label--buy')}>{item.action.toUpperCase()}</label>
-          <span>{item.asset}</span>
-        </li>
+    element = <ul>
+      { data.map((item, index) => {
+          if (index < 3) {
+            return <li key={index}>
+              <label
+                className={"btn-label " + labelType(item.trade)}>{item.trade.toUpperCase()}</label>
+              <span>{item.asset}</span>
+            </li>
+          }
+        }
       )}
     </ul>
   }

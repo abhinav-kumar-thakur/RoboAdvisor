@@ -7,7 +7,6 @@ import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
-import getRecommendations from './recommendations/RecommendationsActions';
 
 export default class Prediction extends React.Component {
 
@@ -21,7 +20,6 @@ export default class Prediction extends React.Component {
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
       props.dispatch(getPredictionGraph());
-      props.dispatch(getRecommendations());
     }
   };
 
@@ -71,7 +69,7 @@ export default class Prediction extends React.Component {
             <span>for maximising profits</span>
           </h3>
 
-          <Recommendations {...{recommendations: this.props.portfolio.recommendations}} />
+          <Recommendations {...{recommendations: this.props.portfolioAssets}} />
         </div>
       </section>
     </div>
