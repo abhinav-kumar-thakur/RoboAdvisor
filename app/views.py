@@ -55,7 +55,8 @@ def portfolioPredictionGraphDataApi(request):
                 price += data.price
             except:
                 pass
-        portfolioPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
+        if price != 0.0:
+            portfolioPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
         date = date + timedelta(1)
 
     if latestDay.day == 5:
@@ -150,7 +151,8 @@ def assetPredictionGraphDataApi(request, assetSymbol):
             price = data.price
         except:
             pass
-        assetPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
+        if price != 0.0:
+            assetPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
         date = date + timedelta(1)
 
     if latestDay.day == 5:
