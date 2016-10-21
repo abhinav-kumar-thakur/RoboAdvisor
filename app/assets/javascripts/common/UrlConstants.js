@@ -10,6 +10,7 @@ export const urlConstants = {
 
   ASSET: {
     ROOT: '/asset',
-    PERSONAL_HOLDING: '/getPersonalHolding'
+    PERSONAL_HOLDING: '/getPersonalHolding',
+    PREDICTION_GRAPH: '/getPredictionGraphData'
   }
 };
