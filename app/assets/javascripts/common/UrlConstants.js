@@ -5,7 +5,8 @@ export const urlConstants = {
     ROOT: '/portfolio',
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
-    ASSETS: '/getPrediction'
+    ASSETS: '/getPrediction',
+    NEWS: '/static/data/news.json'
   },
 
   ASSET: {

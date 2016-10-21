@@ -21,7 +21,7 @@ const Recommendations = ({ recommendations, currentAsset }) => {
       <li>
         <label
           className={"btn-label " + labelType(assetRecommendation.trade)}>{assetRecommendation.trade.toUpperCase()}</label>
-        <span>{assetRecommendation.asset}</span>
+        <span className="text-small">{assetRecommendation.asset}</span>
       </li>
     </ul>
   }

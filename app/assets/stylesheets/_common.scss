@@ -1,6 +1,6 @@
 body {
   font-family: 'Open Sans', 'sans-serif';
-  color: $medium-gray;
+  color: $text-color;
 }
 
 strong {
@@ -14,11 +14,11 @@ strong {
 }
 
 .container {
-  padding-bottom: 40px;
+  padding-bottom: 50px;
 }
 
 .api-container--centered {
-  min-height: 50px;
+  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +29,12 @@ strong {
   padding-bottom: 15px;
 
   strong {
-    color: $dark-gray;
+    color: $black;
     margin-right: 5px;
     border-bottom: 2px dotted $medium-gray;
+  }
+
+  span {
+    font-size: 14px;
   }
 }

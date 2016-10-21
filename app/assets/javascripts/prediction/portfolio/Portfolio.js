@@ -3,10 +3,12 @@ import React from 'react'
 import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from './predictionGraph/PredictionGraph';
 import ImpactingAssets from './impactingAssets/ImpactingAssets';
+import News from './news/News';
 import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
+import getNews from './news/NewsActions';
 
 export default class Prediction extends React.Component {
 
@@ -20,6 +22,7 @@ export default class Prediction extends React.Component {
     if (!props.portfolio.personalHolding.data) {
       props.dispatch(getPersonalHolding());
       props.dispatch(getPredictionGraph());
+      props.dispatch(getNews());
     }
   };
 
@@ -57,8 +60,8 @@ export default class Prediction extends React.Component {
                 <strong>Stories</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
-              <h1>News will go here</h1>
 
+              <News {...{news: this.props.portfolio.news}} />
             </div>
           </div>
         </div>

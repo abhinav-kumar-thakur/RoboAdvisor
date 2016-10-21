@@ -61,7 +61,7 @@
 
 .link-back {
   display: inline-block;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
   color: $dark-gray;
   text-decoration: none;
 
@@ -76,6 +76,7 @@
 
 .flex-row__item {
   flex: 1;
+  padding-right: 30px;
 }
 
 .pi {
@@ -112,4 +113,33 @@
 
 .btn-label--buy {
   background-color: $green;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.news {
+  padding-top: 10px;
+  align-items: center;
+
+  .flex-row__item {
+    padding-right: 0;
+
+    &:first-child {
+      border-bottom: 1px solid $light-gray;
+      flex: 4;
+    }
+  }
+}
+
+.news__title {
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.news__description {
+  font-size: 12px;
+  line-height: 16px;
+  padding-bottom: 10px;
 }

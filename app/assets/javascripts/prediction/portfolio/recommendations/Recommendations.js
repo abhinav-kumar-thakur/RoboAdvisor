@@ -19,7 +19,7 @@ const Recommendations = ({ recommendations }) => {
             return <li key={index}>
               <label
                 className={"btn-label " + labelType(item.trade)}>{item.trade.toUpperCase()}</label>
-              <span>{item.asset}</span>
+              <span className="text-small">{item.asset}</span>
             </li>
           }
         }
