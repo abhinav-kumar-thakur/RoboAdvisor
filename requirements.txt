@@ -4,4 +4,5 @@ lxml==3.6.4
 psycopg2==2.6.2
 pytz==2016.7
 simplejson==3.8.2
+wheel==0.24.0
 yahoo-finance==1.2.1
