@@ -1,7 +1,7 @@
-Django==1.10.2 
-gunicorn==19.6.0 
+Django==1.10.2
+gunicorn==19.6.0
 lxml==3.6.4
- psycopg2==2.6.2
- pytz==2016.7
- simplejson==3.8.2
- yahoo-finance==1.2.1
+psycopg2==2.6.2
+pytz==2016.7
+simplejson==3.8.2
+yahoo-finance==1.2.1
