@@ -15,7 +15,7 @@ from app.databaseApi.asset import AssetApi
 from app.databaseApi.assetData import AssetDataApi
 from app.databaseApi.portfolioAssetMapping import PortfolioAssetMappingApi
 from app.databaseApi.transaction import TransactionApi
-from app.models import Portfolio, Asset, Status, NewsGroup
+from app.models import Portfolio, Asset, Status
 
 PortfolioApi().mapUser(1)
 
@@ -47,8 +47,5 @@ TransactionApi().addTransaction(trade="buy", tradeCount=71, assetSymbol="VLO")
 TransactionApi().addTransaction(trade="buy", tradeCount=22, assetSymbol="BRK-A")
 TransactionApi().addTransaction(trade="buy", tradeCount=46, assetSymbol="FB")
 TransactionApi().addTransaction(trade="buy", tradeCount=540, assetSymbol="GOOG")
-
-NewsGroup(asset=Asset.objects.get(symbol="GOOG"), effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="USO"), effect=0).save()
 
 Status(lastUpdateDate=datetime.strptime(date, date_format)).save()

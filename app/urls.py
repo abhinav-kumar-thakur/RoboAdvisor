@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^asset/([A-Z]+)/getPersonalHolding/', assetPersonalHoldingApi,
         name="getPersonalHolding"),
     url(r'^asset/([A-Z]+)/getPredictionGraphData/', assetPredictionGraphDataApi, name="getAssetPredictionGraphData"),
+    url(r'^asset/([A-Z]+)/getNews/', assetNewsApi, name="getNews"),
 
     url(r'^(%s)?$' % '|'.join(['predictions', 'performance', 'predictions/portfolio', 'predictions/asset/([A-Z]+)']),
         TemplateView.as_view(template_name='index.html'))

@@ -3,6 +3,7 @@ from app.models import *
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
+import operator
 
 
 def home(request):
@@ -74,14 +75,8 @@ def portfolioPredictionGraphDataApi(request):
     return HttpResponse(json.dumps(portfolioPredictionGraphData), content_type="application/json")
 
 
-def sorting(predictedPrices):
-    return sorted(predictedPrices, key=abs)
-
-
 def portfolioPredictionApi(request):
-    predictedPrices = []
     portfolioPredictions = []
-    topFivePortfolioPredictions = []
 
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
@@ -93,18 +88,12 @@ def portfolioPredictionApi(request):
             trade = "buy"
         if prediction < -2.5:
             trade = "sell"
-        predictedPrices.append(prediction)
         portfolioPredictions.append(
-            {"asset": asset.name, "symbol": asset.symbol, "prediction": prediction, "trade": trade})
+            {"asset": asset.name, "symbol": asset.symbol, "prediction": abs(prediction), "trade": trade})
 
-    predictedPrices = sorting(predictedPrices)
-    for price in predictedPrices:
-        for prediction in portfolioPredictions:
-            if prediction["prediction"] == price:
-                portfolioPredictions.remove(prediction)
-                topFivePortfolioPredictions.append(prediction)
-                break
-    return HttpResponse(json.dumps(topFivePortfolioPredictions), content_type="application/json")
+    portfolioPredictions.sort(key=operator.itemgetter('prediction'), reverse=True)
+
+    return HttpResponse(json.dumps(portfolioPredictions[:3]), content_type="application/json")
 
 
 # Asset
@@ -166,3 +155,20 @@ def assetPredictionGraphDataApi(request, assetSymbol):
                                          AssetData.objects.get(asset=asset, timeStamp=latestDay)).prediction})
 
     return HttpResponse(json.dumps(assetPredictionGraphData), content_type="application/json")
+
+
+def assetNewsApi(request, assetSymbol):
+    assetNewsData = []
+
+    asset = Asset.objects.get(symbol=assetSymbol)
+    try:
+        for news in News.objects.filter(asset=asset).latest('timeStamp'):
+            impact = True if news.sentiment > 0 else False
+            assetNewsData.append(
+                {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
+        assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
+
+    except:
+        pass
+
+    return HttpResponse(json.dumps(assetNewsData), content_type="application/json")
