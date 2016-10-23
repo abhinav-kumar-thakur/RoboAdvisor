@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'roboadvisordb',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'HOST': 'db',
         'PORT': '5432',
