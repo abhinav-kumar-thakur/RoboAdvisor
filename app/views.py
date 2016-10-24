@@ -163,7 +163,7 @@ def assetNewsApi(request, assetSymbol):
     asset = Asset.objects.get(symbol=assetSymbol)
     try:
         for news in News.objects.filter(asset=asset).latest('timeStamp'):
-            impact = True if news.sentiment > 0 else False
+            impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
         assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
@@ -171,4 +171,4 @@ def assetNewsApi(request, assetSymbol):
     except:
         pass
 
-    return HttpResponse(json.dumps(assetNewsData), content_type="application/json")
+    return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
