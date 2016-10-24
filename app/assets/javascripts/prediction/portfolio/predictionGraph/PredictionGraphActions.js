@@ -25,7 +25,7 @@ let requestPredictionGraph = () => {
     return function (dispatch) {
       dispatch(requestPredictionGraph());
 
-      httpGet(urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.PREDICTION_GRAPH)
+      httpGet(urlConstants.PORTFOLIO.PREDICTION_GRAPH)
         .then(data => dispatch(successPredictionGraph(data)))
         .catch(error => dispatch(failurePredictionGraph()))
     };

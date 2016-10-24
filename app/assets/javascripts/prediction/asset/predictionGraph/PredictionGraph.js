@@ -28,7 +28,7 @@ const PredictionGraph = ({ predictionGraph }) => {
         enabled: false
       },
       plotOptions: {
-        area: {
+        line: {
           marker: {
             enabled: false
           }

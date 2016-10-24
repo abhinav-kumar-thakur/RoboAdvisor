@@ -3,36 +3,51 @@ import React from 'react';
 import ApiContainer from '../../../common/components/ApiContainer';
 let ReactHighcharts = require('react-highcharts');
 
-const PredictionGraph = ({ predictionGraph }) => {
+const PredictionGraph = ({predictionGraph}) => {
   let element,
     data = predictionGraph.data;
 
   if (data) {
+    let closingPrices = data.map((item) => {
+        return item.closingPrice
+      }),
+      actualPastClosingPrices = closingPrices.slice(0, closingPrices.length - 1);
+
     let config = {
+      title: {
+        enabled: false
+      },
       xAxis: {
         categories: data.map((item) => {
           return item.date
         })
       },
+      colors: ['#96D9F4'],
       series: [{
-        data: data.map((item) => {
-          return item.closingPrice
-        }),
+        type: 'area',
+        fillOpacity: 0.4,
+        data: actualPastClosingPrices,
+        marker: {
+          enabled: false
+        }
+      }, {
+        type: 'line',
+        data: closingPrices,
+        dashStyle: 'dot',
         zoneAxis: 'x',
         zones: [{
-          value: 0,
+          value: data.length - 2
+        }, {
+          color: '#FD965A'
+        }, {
           dashStyle: 'dot'
         }]
       }],
       credits: {
         enabled: false
       },
-      plotOptions: {
-        area: {
-          marker: {
-            enabled: false
-          }
-        }
+      legend: {
+        enabled: false
       }
     };
     element = <ReactHighcharts config={config}></ReactHighcharts>
