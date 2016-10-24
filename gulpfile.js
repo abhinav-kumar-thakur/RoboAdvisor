@@ -49,4 +49,5 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest(paths.dest.fonts))
 });
 
-gulp.task('default', ['bundleJS', 'css', 'images', 'fonts', 'watch']);
+gulp.task('watch', ['default', 'watch']);
+gulp.task('default', ['bundleJS', 'css', 'images', 'fonts']);
