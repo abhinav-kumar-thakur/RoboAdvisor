@@ -32,7 +32,7 @@ AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="sto
 
 date = "2016-10-10"
 date_format = "%Y-%m-%d"
-AssetDataApi().addDetails(0.0, 0.1, "2012-01-01", date)
+AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, startDate="2012-01-01", endDate=date, netEffect=0.0)
 
 for asset in Asset.objects.all():
     PortfolioAssetMappingApi().mapAsset(portfolio=Portfolio.objects.all()[0], asset=asset, currentCount=0)
