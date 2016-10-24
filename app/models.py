@@ -28,6 +28,7 @@ class AssetData(models.Model):
     price = models.FloatField()
     prediction = models.FloatField()
     errorMargin = models.FloatField()
+    netEffect = models.FloatField()
 
     class Meta:
         db_table = "assetdata"
@@ -73,6 +74,11 @@ class MinimumSpanningTreeModel(models.Model):
     class Meta:
         db_table = "minimum_spanning_tree_model"
 
+
+class NewsGroup(models.Model):
+    id = models.AutoField(primary_key=True)
+    asset = models.ForeignKey(Asset)
+    effect = models.FloatField()
 
 class News(models.Model):
     id = models.AutoField(primary_key=True)
