@@ -8,31 +8,46 @@ const PredictionGraph = ({ predictionGraph }) => {
     data = predictionGraph.data;
 
   if (data) {
+    let closingPrices = data.map((item) => {
+        return item.closingPrice
+      }),
+      actualPastClosingPrices = closingPrices.slice(0, closingPrices.length - 1);
+
     let config = {
+      title: {
+        enabled: false
+      },
       xAxis: {
         categories: data.map((item) => {
           return item.date
         })
       },
+      colors: ['#96D9F4'],
       series: [{
-        data: data.map((item) => {
-          return item.closingPrice
-        }),
+        type: 'area',
+        fillOpacity: 0.4,
+        data: actualPastClosingPrices,
+        marker: {
+          enabled: false
+        }
+      }, {
+        type: 'line',
+        data: closingPrices,
+        dashStyle: 'dot',
         zoneAxis: 'x',
         zones: [{
-          value: 0,
+          value: data.length - 2
+        }, {
+          color: '#FD965A'
+        }, {
           dashStyle: 'dot'
         }]
       }],
       credits: {
         enabled: false
       },
-      plotOptions: {
-        line: {
-          marker: {
-            enabled: false
-          }
-        }
+      legend: {
+        enabled: false
       }
     };
     element = <ReactHighcharts config={config}></ReactHighcharts>

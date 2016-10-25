@@ -4,7 +4,7 @@ export const urlConstants = {
   PORTFOLIO: {
     ROOT: '/portfolio',
     PERSONAL_HOLDING: '/getPersonalHolding',
-    PREDICTION_GRAPH: '/static/data/graphData.json',
+    PREDICTION_GRAPH: '/getPredictionGraphData',
     ASSETS: '/getPrediction',
     NEWS: '/static/data/news.json'
   },
