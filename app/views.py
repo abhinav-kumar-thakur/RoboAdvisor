@@ -101,10 +101,10 @@ def portfolioNewsApi(request):
 
     try:
         for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-            for news in News.objects.filter(asset=mapping.asset).latest('timestamp')[0]:
-                impact = "Positive" if news.sentiment > 0 else "Negative"
-                portfolioNewsData.append(
-                    {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
+            news = News.objects.filter(asset=mapping.asset).latest('timestamp')[0]
+            impact = "Positive" if news.sentiment > 0 else "Negative"
+            portfolioNewsData.append(
+                {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
         portfolioNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
 
     except:
@@ -189,3 +189,20 @@ def assetNewsApi(request, assetSymbol):
         pass
 
     return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
+
+
+def assetImpactApi(request, assetSymbol):
+    assetImpactData = {}
+
+    asset = Asset.objects.get(symbol=assetSymbol)
+    try:
+        assetData = AssetData.objects.get(asset=asset)
+        effect = assetData.impact
+        impact = "Positive" if effect > 0 else "Negative"
+        assetImpactData["effect"] = abs(effect)
+        assetImpactData["impact"] = impact
+
+    except:
+        pass
+
+    return HttpResponse(json.dumps(assetImpactData), content_type="application/json")
