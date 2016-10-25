@@ -16,7 +16,8 @@ from app.models import Status
 status = Status.objects.all()[0]
 yesterday = (datetime.today() - timedelta(1)).date()
 lastUpdateDate = status.lastUpdateDate.date()
+startUpdateDate = lastUpdateDate + timedelta(1)
 if yesterday != lastUpdateDate:
-    AssetDataApi().addDetails(0.0, 0.1, 0.0, str(lastUpdateDate), str(yesterday))
+    AssetDataApi().addDetails(0.0, 0.1, 0.0, str(startUpdateDate), str(yesterday))
     status.lastUpdateDate = yesterday
     status.save()

@@ -15,7 +15,7 @@ from app.databaseApi.asset import AssetApi
 from app.databaseApi.assetData import AssetDataApi
 from app.databaseApi.portfolioAssetMapping import PortfolioAssetMappingApi
 from app.databaseApi.transaction import TransactionApi
-from app.models import Portfolio, Asset, Status
+from app.models import Portfolio, Asset, Status, AssetData
 
 PortfolioApi().mapUser(1)
 
@@ -30,9 +30,9 @@ AssetApi().addAsset(assetName="Berkshire Hathaway", assetSymbol="BRK-A", assetTy
 AssetApi().addAsset(assetName="Facebook", assetSymbol="FB", assetType="stock")
 AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="stock")
 
-date = str(datetime.today().date())
+endDate = str(datetime.today().date())
 date_format = "%Y-%m-%d"
-AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate=date)
+AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate=endDate)
 
 for asset in Asset.objects.all():
     PortfolioAssetMappingApi().mapAsset(portfolio=Portfolio.objects.all()[0], asset=asset, currentCount=0)
@@ -48,4 +48,5 @@ TransactionApi().addTransaction(trade="buy", tradeCount=22, assetSymbol="BRK-A")
 TransactionApi().addTransaction(trade="buy", tradeCount=46, assetSymbol="FB")
 TransactionApi().addTransaction(trade="buy", tradeCount=540, assetSymbol="GOOG")
 
-Status(lastUpdateDate=datetime.strptime(date, date_format)).save()
+assetData = AssetData.objects.latest('timestamp')
+Status(lastUpdateDate=assetData.timestamp).save()
