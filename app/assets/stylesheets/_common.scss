@@ -38,3 +38,13 @@ strong {
     font-size: 14px;
   }
 }
+
+.predicted-value {
+  color: $black;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.prediction-graph-container {
+  margin-top: 15px;
+}

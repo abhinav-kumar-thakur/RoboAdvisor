@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
 import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from './predictionGraph/PredictionGraph';
@@ -53,7 +53,9 @@ export default class Asset extends React.Component {
             <span>Stock Value</span>
           </h3>
 
-          <PredictionGraph {...{predictionGraph: this.props.asset.predictionGraph}}/>
+          <div className="prediction-graph-container">
+            <PredictionGraph {...{predictionGraph: this.props.asset.predictionGraph}}/>
+          </div>
         </div>
 
         <div className="container">

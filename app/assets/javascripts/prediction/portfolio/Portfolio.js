@@ -37,10 +37,12 @@ export default class Prediction extends React.Component {
         <div className="container">
           <h3 className="container__heading">
             <strong>Predicted</strong>
-            <span>Stock Value</span>
+            <span>Portfolio Value</span>
           </h3>
 
-          <PredictionGraph {...{predictionGraph: this.props.portfolio.predictionGraph}}/>
+          <div className="prediction-graph-container">
+            <PredictionGraph {...{predictionGraph: this.props.portfolio.predictionGraph}}/>
+          </div>
         </div>
 
         <div className="container">
