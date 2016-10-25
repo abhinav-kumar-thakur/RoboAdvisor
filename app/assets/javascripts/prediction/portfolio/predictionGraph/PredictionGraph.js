@@ -50,7 +50,13 @@ const PredictionGraph = ({predictionGraph}) => {
         enabled: false
       }
     };
-    element = <ReactHighcharts config={config}></ReactHighcharts>
+    element = <div>
+      <ReactHighcharts config={config}></ReactHighcharts>
+
+      <h1>
+        <span className="pull-right">Tomorrow's Predicted Value is: {closingPrices[closingPrices.length - 1]}</span>
+      </h1>
+    </div>
   }
 
   return <ApiContainer {...{
