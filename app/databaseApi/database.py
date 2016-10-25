@@ -15,11 +15,7 @@ from app.databaseApi.asset import AssetApi
 from app.databaseApi.assetData import AssetDataApi
 from app.databaseApi.portfolioAssetMapping import PortfolioAssetMappingApi
 from app.databaseApi.transaction import TransactionApi
-<<<<<<< 184d4215f395c77d482dbd8775e906906992a6df
-from app.models import Portfolio, Asset, Status, AssetData
-=======
-from app.models import Portfolio, Asset, Status, NewsGroup
->>>>>>> abhinav #0 added newsgroup to database
+from app.models import Portfolio, Asset, Status, NewsGroup, AssetData
 
 PortfolioApi().mapUser(1)
 
