@@ -16,7 +16,7 @@ const PersonalHolding = ({personalHolding}) => {
         <KeyValue {...{name: '', value: data.asset}}/>
         <KeyValue {...{name: 'UNITS HELD', value: data.unitsHeld}}/>
         <KeyValue {...{name: 'TOTAL SHARE VALUE', value: '$' + Utils.formatPrice(data.shareValue)}}/>
-        <KeyValue {...{name: 'PURCHASE DATE', value: data.purchaseDate}}/>
+        <KeyValue {...{name: 'PURCHASE DATE', value: Utils.formatDate(data.purchaseDate)}}/>
       </div>
   }
 

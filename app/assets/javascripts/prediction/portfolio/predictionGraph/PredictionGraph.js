@@ -20,7 +20,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       xAxis: {
         categories: data.map((item) => {
-          return item.date
+          return Utils.formatDate(item.date);
         })
       },
       yAxis: {
@@ -30,7 +30,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       tooltip: {
         formatter: function () {
-          return 'Date: ' + this.x + '<br /> Closing Price: $' + Utils.formatPrice(this.y);
+          return 'Date: ' + Utils.formatDate(this.x) + '<br /> Closing Price: $' + Utils.formatPrice(this.y);
         },
         crosshairs: [true]
       },
@@ -66,7 +66,8 @@ const PredictionGraph = ({predictionGraph}) => {
       <ReactHighcharts config={config}></ReactHighcharts>
 
       <h1 className="predicted-value">
-        <span className="pull-right">Tomorrow's Predicted Value is: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}</span>
+        <span
+          className="pull-right">Tomorrow's Predicted Value is: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}</span>
       </h1>
     </div>
   }

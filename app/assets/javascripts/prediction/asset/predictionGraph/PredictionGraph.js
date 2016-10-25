@@ -19,7 +19,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       xAxis: {
         categories: data.map((item) => {
-          return item.date
+          return Utils.formatDate(item.date);
         })
       },
       yAxis: {
@@ -29,7 +29,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       tooltip: {
         formatter: function () {
-          return 'Date: ' + this.x + '<br /> Closing Price: $' + Utils.formatPrice(this.y);
+          return 'Date: ' + Utils.formatDate(this.x) + '<br /> Closing Price: $' + Utils.formatPrice(this.y);
         },
         crosshairs: [true]
       },

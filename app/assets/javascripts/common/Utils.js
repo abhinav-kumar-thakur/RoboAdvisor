@@ -20,9 +20,16 @@ let Utils = {
 
   formatPrice: (price) => {
     price = parseFloat(price).toFixed(2).split('.');
-    price[0] = price[0].toLocaleString();
+    price[0] = parseFloat(price[0]).toLocaleString();
 
     return price.join('.');
+  },
+
+  formatDate: (dt) => {
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      date = new Date(dt);
+
+    return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
   }
 };
 
