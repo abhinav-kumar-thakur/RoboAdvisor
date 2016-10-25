@@ -45,7 +45,7 @@ def portfolioPredictionGraphDataApi(request):
     assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
     latestDay = assetData.timeStamp
     endDate = latestDay
-    startDate = latestDay - timedelta(180)
+    startDate = latestDay - timedelta(30)
 
     date = startDate
     while (date <= endDate):
@@ -130,7 +130,7 @@ def assetPredictionGraphDataApi(request, assetSymbol):
     assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
     latestDay = assetData.timeStamp
     endDate = latestDay
-    startDate = latestDay - timedelta(180)
+    startDate = latestDay - timedelta(30)
 
     date = startDate
     while (date <= endDate):
