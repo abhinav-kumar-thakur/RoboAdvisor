@@ -5,10 +5,12 @@ import PersonalHolding from './personalHolding/PersonalHolding';
 import PredictionGraph from '../predictionGraph/PredictionGraph';
 import News from '../news/News';
 import Recommendations from './recommendations/Recommendations';
+import ImpactingAssets from './impactingAssets/ImpactingAssets';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
 import getPredictionGraph from './predictionGraph/PredictionGraphActions';
 import getNews from './news/NewsActions';
+import getImpactingAssets from './impactingAssets/ImpactingAssetsActions';
 
 export default class Asset extends React.Component {
 
@@ -22,6 +24,7 @@ export default class Asset extends React.Component {
     props.dispatch(getPersonalHolding(props.params.symbol));
     props.dispatch(getPredictionGraph(props.params.symbol));
     props.dispatch(getNews());
+    props.dispatch(getImpactingAssets());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,7 +69,8 @@ export default class Asset extends React.Component {
                 <strong>Stocks</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
-              <h1>Ripple effect will be shown here</h1>
+
+              <ImpactingAssets {...{impactingAssets: this.props.asset.impactingAssets}} />
             </div>
 
             <div className="flex-row__item">
