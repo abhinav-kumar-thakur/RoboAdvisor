@@ -1,6 +1,6 @@
 import { portfolioAssetsConstants } from './PortfolioAssetsConstants';
 import { urlConstants } from '../../common/UrlConstants';
-import httpGet from '../../common/Utils';
+import Utils from '../../common/Utils';
 
 let requestPortfolioAssets = () => {
     return {
@@ -25,7 +25,7 @@ let requestPortfolioAssets = () => {
     return function (dispatch) {
       dispatch(requestPortfolioAssets());
 
-      httpGet(urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.ASSETS)
+      Utils.httpGet(urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.ASSETS)
         .then(data => dispatch(successPortfolioAssets(data)))
         .catch(error => dispatch(failurePortfolioAssets()))
     };

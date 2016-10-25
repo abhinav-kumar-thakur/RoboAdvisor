@@ -1,6 +1,6 @@
 import { personalHoldingConstants } from './PersonalHoldingConstants';
 import { urlConstants } from '../../../common/UrlConstants';
-import httpGet from '../../../common/Utils';
+import Utils from '../../../common/Utils';
 
 let requestPersonalHolding = () => {
     return {
@@ -25,7 +25,7 @@ let requestPersonalHolding = () => {
     return function (dispatch) {
       dispatch(requestPersonalHolding());
 
-      httpGet(urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.PERSONAL_HOLDING)
+      Utils.httpGet(urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.PERSONAL_HOLDING)
         .then(data => dispatch(successPersonalHolding(data)))
         .catch(error => dispatch(failurePersonalHolding()))
     };

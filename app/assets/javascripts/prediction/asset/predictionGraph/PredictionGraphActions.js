@@ -1,6 +1,6 @@
 import { predictionGraphConstants } from './PredictionGraphConstants';
 import { urlConstants } from '../../../common/UrlConstants';
-import httpGet from '../../../common/Utils';
+import Utils from '../../../common/Utils';
 
 let requestPredictionGraph = () => {
     return {
@@ -25,7 +25,7 @@ let requestPredictionGraph = () => {
     return function (dispatch) {
       dispatch(requestPredictionGraph());
 
-      httpGet(urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.PREDICTION_GRAPH)
+      Utils.httpGet(urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.PREDICTION_GRAPH)
         .then(data => dispatch(successPredictionGraph(data)))
         .catch(error => dispatch(failurePredictionGraph()))
     };

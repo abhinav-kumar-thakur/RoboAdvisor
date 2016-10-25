@@ -1,6 +1,6 @@
 import { newsConstants } from './NewsConstants';
 import { urlConstants } from '../../../common/UrlConstants';
-import httpGet from '../../../common/Utils';
+import Utils from '../../../common/Utils';
 
 let requestNews = () => {
     return {
@@ -25,7 +25,7 @@ let requestNews = () => {
     return function (dispatch) {
       dispatch(requestNews());
 
-      httpGet(urlConstants.PORTFOLIO.NEWS)
+      Utils.httpGet(urlConstants.PORTFOLIO.NEWS)
         .then(data => dispatch(successNews(data)))
         .catch(error => dispatch(failureNews()))
     };

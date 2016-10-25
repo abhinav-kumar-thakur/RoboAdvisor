@@ -1,6 +1,6 @@
 import { navigationConstants } from './NavigationConstants';
 import { urlConstants } from '../../common/UrlConstants';
-import httpGet from '../../common/Utils';
+import Utils from '../../common/Utils';
 
 let requestNavigation = () => {
     return {
@@ -25,7 +25,7 @@ let requestNavigation = () => {
     return function (dispatch) {
       dispatch(requestNavigation());
 
-      httpGet(urlConstants.NAVIGATION)
+      Utils.httpGet(urlConstants.NAVIGATION)
         .then(data => dispatch(successNavigation(data)))
         .catch(error => dispatch(failureNavigation()))
     };

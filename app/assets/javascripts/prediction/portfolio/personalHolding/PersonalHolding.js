@@ -2,8 +2,9 @@ import React from 'react';
 
 import ApiContainer from '../../../common/components/ApiContainer';
 import KeyValue from '../../../common/components/KeyValue';
+import Utils from '../../../common/Utils';
 
-const PersonalHolding = ({ personalHolding }) => {
+const PersonalHolding = ({personalHolding}) => {
 
   let element,
     data = personalHolding.data;
@@ -13,7 +14,7 @@ const PersonalHolding = ({ personalHolding }) => {
     element =
       <div className="key-value-container">
         <KeyValue {...{name: '', value: 'Portfolio ABCDE'}}/>
-        <KeyValue {...{name: 'CURRENT VALUE', value: '$ ' + data.value}}/>
+        <KeyValue {...{name: 'CURRENT VALUE', value: '$' + Utils.formatPrice(data.value)}}/>
         <KeyValue {...{name: 'INDIVIDUAL ASSETS', value: data.assets}}/>
       </div>
   }

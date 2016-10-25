@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Utils from '../../../common/Utils';
 import ApiContainer from '../../../common/components/ApiContainer';
 let ReactHighcharts = require('react-highcharts');
 
@@ -29,7 +29,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       tooltip: {
         formatter: function () {
-          return 'Date: ' + this.x + '<br /> Closing Price: ' + this.y;
+          return 'Date: ' + this.x + '<br /> Closing Price: $' + Utils.formatPrice(this.y);
         },
         crosshairs: [true]
       },
@@ -65,7 +65,8 @@ const PredictionGraph = ({predictionGraph}) => {
       <ReactHighcharts config={config}></ReactHighcharts>
 
       <h1 className="predicted-value">
-        <span className="pull-right">Tomorrow's Predicted Value is: {closingPrices[closingPrices.length - 1]}</span>
+        <span
+          className="pull-right">Tomorrow's Predicted Value is: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}</span>
       </h1>
     </div>
   }
