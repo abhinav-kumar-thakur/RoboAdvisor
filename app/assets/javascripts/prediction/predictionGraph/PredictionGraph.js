@@ -1,6 +1,6 @@
 import React from 'react';
-import Utils from '../../../common/Utils';
-import ApiContainer from '../../../common/components/ApiContainer';
+import Utils from '../../common/Utils';
+import ApiContainer from '../../common/components/ApiContainer';
 let ReactHighcharts = require('react-highcharts');
 
 const PredictionGraph = ({predictionGraph}) => {

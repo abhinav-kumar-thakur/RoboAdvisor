@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ApiContainer from '../../../common/components/ApiContainer';
-import Pi from '../../../common/components/Pi';
+import ApiContainer from '../../common/components/ApiContainer';
+import Pi from '../../common/components/Pi';
 
 const News = ({news}) => {
 

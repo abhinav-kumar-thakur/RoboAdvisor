@@ -2,8 +2,8 @@ import React from 'react'
 import {Link} from 'react-router';
 
 import PersonalHolding from './personalHolding/PersonalHolding';
-import PredictionGraph from './predictionGraph/PredictionGraph';
-import News from './news/News';
+import PredictionGraph from '../predictionGraph/PredictionGraph';
+import News from '../news/News';
 import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';

@@ -1,9 +1,9 @@
 import React from 'react'
 
 import PersonalHolding from './personalHolding/PersonalHolding';
-import PredictionGraph from './predictionGraph/PredictionGraph';
+import PredictionGraph from '../predictionGraph/PredictionGraph';
 import ImpactingAssets from './impactingAssets/ImpactingAssets';
-import News from './news/News';
+import News from '../news/News';
 import Recommendations from './recommendations/Recommendations';
 
 import getPersonalHolding from './personalHolding/PersonalHoldingActions';
