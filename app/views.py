@@ -93,7 +93,7 @@ def portfolioPredictionApi(request):
 
     portfolioPredictions.sort(key=operator.itemgetter('prediction'), reverse=True)
 
-    return HttpResponse(json.dumps(portfolioPredictions[:3]), content_type="application/json")
+    return HttpResponse(json.dumps(portfolioPredictions), content_type="application/json")
 
 
 # Asset
