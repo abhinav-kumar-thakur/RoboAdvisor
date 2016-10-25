@@ -28,7 +28,7 @@ class AssetData(models.Model):
     price = models.FloatField()
     prediction = models.FloatField()
     errorMargin = models.FloatField()
-    netEffect = models.FloatField()
+    neteffect = models.FloatField()
 
     class Meta:
         db_table = "assetdata"
