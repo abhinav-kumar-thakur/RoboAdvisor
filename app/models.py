@@ -80,6 +80,9 @@ class NewsGroup(models.Model):
     asset = models.ForeignKey(Asset)
     effect = models.FloatField()
 
+    class Meta:
+        db_table = "news_group"
+
 class News(models.Model):
     id = models.AutoField(primary_key=True)
     asset = models.ForeignKey(Asset)
