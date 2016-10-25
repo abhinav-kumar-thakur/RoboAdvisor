@@ -3,12 +3,16 @@ import React from 'react';
 import ApiContainer from '../../../common/components/ApiContainer';
 import Pi from '../../../common/components/Pi';
 
-const News = ({ news }) => {
+const News = ({news}) => {
 
   let element,
     data = news.data;
 
   if (data) {
+    let piType = (value) => {
+      return Number.parseInt(value) > 0 ? 'up' : 'down';
+    };
+
     element = <ul>
       {
         data.map((news, index) => {
@@ -18,7 +22,8 @@ const News = ({ news }) => {
               <p className="news__description">{news.desc}</p>
             </div>
             <div className="flex-row__item">
-              <Pi {...{value: news.impact}} />
+              <span className="asset-value">{news.impact}%</span>
+              <Pi {...{piType: piType(news.impact)}} />
             </div>
           </li>
         })

@@ -1,14 +1,13 @@
 import React from 'react';
 
-const Pi = ({value}) => {
+const Pi = ({piType}) => {
 
   let arrowType = () => {
-    return Number.parseInt(value) > 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+    return piType === 'down' ? 'fa-arrow-down' : 'fa-arrow-up';
   };
 
   return (
     <span className="pi">
-      <span className="pi__value">{Math.abs(value)}%</span>
       <i className={"fa " + arrowType() }></i>
     </span>
   )

@@ -3,12 +3,16 @@ import React from 'react';
 import ApiContainer from '../../../common/components/ApiContainer';
 import Pi from '../../../common/components/Pi';
 
-const ImpactingAssets = ({ impactingAssets }) => {
+const ImpactingAssets = ({impactingAssets}) => {
 
   let element,
     data = impactingAssets.data;
 
   if (data) {
+
+    let piType = (tradeType) => {
+      return tradeType === 'sell' ? 'down' : 'up';
+    };
 
     element = <ul className="list-table">
       { data.map((asset, index) => {
@@ -16,7 +20,8 @@ const ImpactingAssets = ({ impactingAssets }) => {
             return <li key={index} className="list__item flex-row">
               <div className="flex-row__item">
                 <strong>
-                  <Pi {...{value: asset.prediction}} />
+                  <span className="asset-value">{asset.prediction}%</span>
+                  <Pi {...{piType: piType(asset.trade)}} />
                 </strong>
               </div>
               <div className="flex-row__item">
