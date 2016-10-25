@@ -30,7 +30,7 @@ AssetApi().addAsset(assetName="Berkshire Hathaway", assetSymbol="BRK-A", assetTy
 AssetApi().addAsset(assetName="Facebook", assetSymbol="FB", assetType="stock")
 AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="stock")
 
-date = "2016-10-10"
+date = str(datetime.today().date())
 date_format = "%Y-%m-%d"
 AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, startDate="2012-01-01", endDate=date, neteffect=0.0)
 
