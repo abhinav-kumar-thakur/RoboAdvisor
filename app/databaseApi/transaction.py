@@ -7,7 +7,7 @@ class TransactionApi():
     def addTransaction(self, trade, tradeCount, assetSymbol):
         asset = Asset.objects.get(symbol=assetSymbol)
         portfolioAssetMapping = PortfolioAssetMapping.objects.get(asset=asset)
-        timeStamp = datetime.now()
+        timestamp = datetime.now()
 
         initialCount = portfolioAssetMapping.currentCount
         finalCount = initialCount
@@ -20,7 +20,7 @@ class TransactionApi():
 
         assetInfo = Share(assetSymbol)
         price = finalCount * float(assetInfo.get_price())
-        transaction = Transaction(mapping=portfolioAssetMapping, trade=trade, timeStamp=timeStamp,
+        transaction = Transaction(mapping=portfolioAssetMapping, trade=trade, timestamp=timestamp,
                                   initialCount=initialCount,
                                   finalCount=finalCount, tradeCount=tradeCount, price=price)
         transaction.save()

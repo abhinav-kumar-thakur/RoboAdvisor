@@ -24,7 +24,7 @@ class Asset(models.Model):
 
 class AssetData(models.Model):
     asset = models.ForeignKey(Asset)
-    timeStamp = models.DateTimeField()
+    timestamp = models.DateTimeField()
     price = models.FloatField()
     prediction = models.FloatField()
     errorMargin = models.FloatField()
@@ -46,7 +46,7 @@ class PortfolioAssetMapping(models.Model):
 
 class Transaction(models.Model):
     mapping = models.ForeignKey(PortfolioAssetMapping)
-    timeStamp = models.DateTimeField()
+    timestamp = models.DateTimeField()
     trade = models.CharField(max_length=50)
     initialCount = models.IntegerField()
     finalCount = models.IntegerField()
@@ -83,7 +83,7 @@ class NewsGroup(models.Model):
 class News(models.Model):
     id = models.AutoField(primary_key=True)
     asset = models.ForeignKey(Asset)
-    timeStamp = models.DateTimeField()
+    timestamp = models.DateTimeField()
     headline = models.CharField(max_length=200)
     url = models.URLField(max_length=200)
     sentiment = models.DecimalField(default=0.0, max_digits=5, decimal_places=2)

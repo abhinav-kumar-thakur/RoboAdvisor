@@ -30,7 +30,7 @@ def portfolioPersonalHoldingApi(request):
 
     portfolioShare = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-        asset = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
+        asset = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
         portfolioShare += asset.price
     portfolioPersonalHolding["value"] = portfolioShare
     portfolioPersonalHolding["assets"] = PortfolioAssetMapping.objects.filter(portfolio=1).count()
@@ -42,8 +42,8 @@ def portfolioPredictionGraphDataApi(request):
     portfolioPredictionGraphData = []
 
     mapping = PortfolioAssetMapping.objects.filter(portfolio=1).first()
-    assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
-    latestDay = assetData.timeStamp
+    assetData = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
+    latestDay = assetData.timestamp
     endDate = latestDay
     startDate = latestDay - timedelta(30)
 
@@ -52,7 +52,7 @@ def portfolioPredictionGraphDataApi(request):
         price = 0.0
         for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
             try:
-                data = AssetData.objects.get(asset=mapping.asset, timeStamp=date)
+                data = AssetData.objects.get(asset=mapping.asset, timestamp=date)
                 price += data.price
             except:
                 pass
@@ -67,7 +67,7 @@ def portfolioPredictionGraphDataApi(request):
 
     predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-        assetData = AssetData.objects.get(asset=mapping.asset, timeStamp=latestDay)
+        assetData = AssetData.objects.get(asset=mapping.asset, timestamp=latestDay)
         predictionPrice += assetData.prediction
     portfolioPredictionGraphData.append(
         {"date": str(predictionDate.date()), "closingPrice": predictionPrice})
@@ -79,7 +79,7 @@ def portfolioPredictionApi(request):
     portfolioPredictions = []
 
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-        assetData = AssetData.objects.filter(asset=mapping.asset).latest('timeStamp')
+        assetData = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
         asset = Asset.objects.get(id=assetData.asset.id)
 
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
@@ -96,6 +96,23 @@ def portfolioPredictionApi(request):
     return HttpResponse(json.dumps(portfolioPredictions), content_type="application/json")
 
 
+def portfolioNewsApi(request):
+    portfolioNewsData = []
+
+    try:
+        for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
+            for news in News.objects.filter(asset=mapping.asset).latest('timestamp')[0]:
+                impact = "Positive" if news.sentiment > 0 else "Negative"
+                portfolioNewsData.append(
+                    {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
+        portfolioNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
+
+    except:
+        pass
+
+    return HttpResponse(json.dumps(portfolioNewsData), content_type="application/json")
+
+
 # Asset
 
 def assetPersonalHoldingApi(request, assetSymbol):
@@ -106,11 +123,11 @@ def assetPersonalHoldingApi(request, assetSymbol):
         mapping = PortfolioAssetMapping.objects.get(portfolio=1, asset=asset)
         unitsHeld = mapping.currentCount
 
-        assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
+        assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
         shareValue = unitsHeld * assetData.price
 
-        transaction = Transaction.objects.filter(mapping=mapping).latest('timeStamp')
-        purchaseDate = transaction.timeStamp
+        transaction = Transaction.objects.filter(mapping=mapping).latest('timestamp')
+        purchaseDate = transaction.timestamp
 
         assetPersonalHolding["asset"] = asset.name
         assetPersonalHolding["unitsHeld"] = unitsHeld
@@ -127,8 +144,8 @@ def assetPredictionGraphDataApi(request, assetSymbol):
 
     asset = Asset.objects.get(symbol=assetSymbol)
 
-    assetData = AssetData.objects.filter(asset=asset).latest('timeStamp')
-    latestDay = assetData.timeStamp
+    assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
+    latestDay = assetData.timestamp
     endDate = latestDay
     startDate = latestDay - timedelta(30)
 
@@ -136,7 +153,7 @@ def assetPredictionGraphDataApi(request, assetSymbol):
     while (date <= endDate):
         price = 0.0
         try:
-            data = AssetData.objects.get(asset=asset, timeStamp=date)
+            data = AssetData.objects.get(asset=asset, timestamp=date)
             price = data.price
         except:
             pass
@@ -152,7 +169,7 @@ def assetPredictionGraphDataApi(request, assetSymbol):
 
     assetPredictionGraphData.append({"date": str(predictionDate.date()),
                                      "closingPrice": (
-                                         AssetData.objects.get(asset=asset, timeStamp=latestDay)).prediction})
+                                         AssetData.objects.get(asset=asset, timestamp=latestDay)).prediction})
 
     return HttpResponse(json.dumps(assetPredictionGraphData), content_type="application/json")
 
@@ -162,7 +179,7 @@ def assetNewsApi(request, assetSymbol):
 
     asset = Asset.objects.get(symbol=assetSymbol)
     try:
-        for news in News.objects.filter(asset=asset).latest('timeStamp'):
+        for news in News.objects.filter(asset=asset).latest('timestamp'):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
