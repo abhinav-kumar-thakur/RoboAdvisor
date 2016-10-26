@@ -8,7 +8,7 @@ const webpack = require('webpack'),
 module.exports = {
   entry: {
     'vendor': ['react', 'react-dom', 'react-router', 'redux', 'react-redux',
-      'redux-thunk', 'react-highcharts', 'react-bootstrap/lib/Panel', 'react-bootstrap/lib/Accordion'],
+      'redux-thunk', 'highcharts/highcharts-more', 'react-highcharts', 'react-bootstrap/lib/Panel', 'react-bootstrap/lib/Accordion'],
     'app': paths.app.js
   },
 

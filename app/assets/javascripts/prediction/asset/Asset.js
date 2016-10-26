@@ -56,7 +56,7 @@ export default class Asset extends React.Component {
             <span>Stock Value</span>
           </h3>
 
-          <div className="prediction-graph-container">
+          <div className="graph-container">
             <PredictionGraph {...{predictionGraph: this.props.asset.predictionGraph}}/>
           </div>
         </div>
@@ -70,7 +70,9 @@ export default class Asset extends React.Component {
                 <span>Impacting Portfolio Prediction</span>
               </h3>
 
-              <ImpactingAssets {...{impactingAssets: this.props.asset.impactingAssets}} />
+              <div className="graph-container">
+                <ImpactingAssets {...{impactingAssets: this.props.asset.impactingAssets}} />
+              </div>
             </div>
 
             <div className="flex-row__item">
