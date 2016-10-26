@@ -6,19 +6,18 @@ import PredictionContainer from './prediction/PredictionContainer';
 import PortfolioContainer from './prediction/portfolio/PortfolioContainer';
 import AssetContainer from './prediction/asset/AssetContainer';
 
+import Performance from './performance/Performance.js';
+
 const RoboAdvisorAppRouter = () => (
-
   <Router history={browserHistory}>
-    <Route component={MainLayout}>
-      <Route path="/" component={PredictionContainer}>
-        <IndexRoute component={PortfolioContainer}/>
-        <Route path="predictions" component={PortfolioContainer}/>
-
-        <Route path="predictions">
-          <Route path="portfolio" component={PortfolioContainer}/>
-          <Route path="asset/:symbol" component={AssetContainer}/>
+    <Route path="/" component={MainLayout}>
+        <Route path="predictions" component={PredictionContainer}>
+            <IndexRoute component={PortfolioContainer}/>
+            <Route path="portfolio" component={PortfolioContainer}/>
+            <Route path="asset/:symbol" component={AssetContainer}/>
         </Route>
-      </Route>
+
+        <Route path="performance" component={Performance} />
     </Route>
   </Router>
 
