@@ -98,22 +98,20 @@ def portfolioPredictionApi(request):
 
 def portfolioNewsApi(request):
     portfolioNewsData = []
+    timestamp = News.objects.latest('timestamp').timestamp
 
-    try:
-        for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
-            news = News.objects.filter(asset=mapping.asset).latest('timestamp')[0]
+    for asset in Asset.objects.all():
+        try:
+            news = News.objects.filter(asset=asset,timestamp=timestamp)[0]
             impact = "Positive" if news.sentiment > 0 else "Negative"
             portfolioNewsData.append(
-                {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
-        portfolioNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
+                {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
 
-    except:
-        pass
+        except:
+            pass
 
-    return HttpResponse(json.dumps(portfolioNewsData), content_type="application/json")
+    return HttpResponse(json.dumps(portfolioNewsData), content_type="application/json")  # Asset
 
-
-# Asset
 
 def assetPersonalHoldingApi(request, assetSymbol):
     assetPersonalHolding = {}
@@ -178,13 +176,13 @@ def assetNewsApi(request, assetSymbol):
     assetNewsData = []
 
     asset = Asset.objects.get(symbol=assetSymbol)
+    timestamp = News.objects.latest('timestamp').timestamp
+
     try:
-        for news in News.objects.filter(asset=asset).latest('timestamp'):
+        for news in News.objects.filter(asset=asset,timestamp=timestamp):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
-                {"headline": news.headline, "url": news.url, "sentiment": abs(news.sentiment), "impact": impact})
-        assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
-
+                {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
     except:
         pass
 
