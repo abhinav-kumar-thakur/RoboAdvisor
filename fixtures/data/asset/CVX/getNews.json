@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Story Headline 1",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante.",
+    "impact": 1.7
+  },
+  {
+    "title": "Story Headline 2",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante.",
+    "impact": -1.7
+  },
+  {
+    "title": "Story Headline 3",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante.",
+    "impact": -1.7
+  }
+]

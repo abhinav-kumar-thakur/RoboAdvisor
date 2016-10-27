@@ -1,0 +1,62 @@
+[
+  {
+    "stocks": [
+      {
+        "symbol": "AAPL",
+        "name": "Apple Inc"
+      },
+      {
+        "symbol": "FB",
+        "name": "Facebook"
+      },
+      {
+        "symbol": "GOOG",
+        "name": "Alphabet Inc"
+      }
+    ],
+    "category": "Technology"
+  },
+  {
+    "stocks": [
+      {
+        "symbol": "AGG",
+        "name": "US aggregate bond"
+      },
+      {
+        "symbol": "GLD",
+        "name": "SPDR Gold Shares"
+      },
+      {
+        "symbol": "USO",
+        "name": "United States oil"
+      },
+      {
+        "symbol": "BRK-A",
+        "name": "Berkshire Hathaway"
+      }
+    ],
+    "category": "Financials"
+  },
+  {
+    "stocks": [
+      {
+        "symbol": "VLCAX",
+        "name": "Vanguard large cap index adm"
+      }
+    ],
+    "category": "Large Blend"
+  },
+  {
+    "stocks": [
+      {
+        "symbol": "CVX",
+        "name": "Chevron Corporation"
+      },
+      {
+        "symbol": "VLO",
+        "name": "Valero energy corporation"
+      }
+    ],
+    "category": "Energy"
+  }
+]

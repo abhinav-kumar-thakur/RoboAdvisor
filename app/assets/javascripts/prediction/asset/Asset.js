@@ -18,13 +18,18 @@ export default class Asset extends React.Component {
     super(props, context);
   };
 
-  componentDidMount() {
-    let props = this.props;
+  dispatchActions(props, symbolParam) {
+    props.dispatch(getPersonalHolding(symbolParam));
+    props.dispatch(getPredictionGraph(symbolParam));
+    props.dispatch(getNews(symbolParam));
+    props.dispatch(getImpactingAssets(symbolParam));
+  }
 
-    props.dispatch(getPersonalHolding(props.params.symbol));
-    props.dispatch(getPredictionGraph(props.params.symbol));
-    props.dispatch(getNews());
-    props.dispatch(getImpactingAssets());
+  componentDidMount() {
+    let props = this.props,
+      symbolParam = props.params.symbol;
+
+    this.dispatchActions(props, symbolParam);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,9 +37,7 @@ export default class Asset extends React.Component {
       newParams = nextProps.params;
 
     if (newParams.symbol !== props.params.symbol) {
-      props.dispatch(getPersonalHolding(newParams.symbol));
-      props.dispatch(getPredictionGraph(newParams.symbol));
-      props.dispatch(getNews());
+      this.dispatchActions(props, newParams.symbol);
     }
   };
 

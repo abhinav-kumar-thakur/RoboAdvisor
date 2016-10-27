@@ -6,13 +6,14 @@ export const urlConstants = {
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
     ASSETS: '/getPrediction',
-    NEWS: '/static/data/news.json'
+    NEWS: '/getNews.json'
   },
 
   ASSET: {
     ROOT: '/asset',
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
-    IMPACTING_ASSETS: '/static/data/impactingAssets.json'
+    IMPACTING_ASSETS: '/getImpactingAssets.json',
+    NEWS: '/getNews.json'
   }
 };

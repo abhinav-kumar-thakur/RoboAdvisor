@@ -1,0 +1,62 @@
+[
+  {
+    "prediction": 100,
+    "asset": "Vanguard large cap index adm",
+    "symbol": "VLCAX",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "US aggregate bond",
+    "symbol": "AGG",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "SPDR Gold Shares",
+    "symbol": "GLD",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "United States oil",
+    "symbol": "USO",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Chevron Corporation",
+    "symbol": "CVX",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Apple Inc",
+    "symbol": "AAPL",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Valero energy corporation",
+    "symbol": "VLO",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Berkshire Hathaway",
+    "symbol": "BRK-A",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Facebook",
+    "symbol": "FB",
+    "trade": "sell"
+  },
+  {
+    "prediction": 100,
+    "asset": "Alphabet Inc",
+    "symbol": "GOOG",
+    "trade": "sell"
+  }
+]

@@ -21,11 +21,11 @@ let requestNews = () => {
     }
   },
 
-  getNews = () => {
+  getNews = (asset) => {
     return function (dispatch) {
       dispatch(requestNews());
 
-      Utils.httpGet(urlConstants.PORTFOLIO.NEWS)
+      Utils.httpGet('/static/data' + urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.NEWS)
         .then(data => dispatch(successNews(data)))
         .catch(error => dispatch(failureNews()))
     };
