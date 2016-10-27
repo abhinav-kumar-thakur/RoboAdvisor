@@ -23,6 +23,7 @@
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-wait": "0.0.2",
+    "highcharts": "^5.0.2",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "jsx-loader": "^0.13.2",
