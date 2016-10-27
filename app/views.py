@@ -98,11 +98,10 @@ def portfolioPredictionApi(request):
 
 def portfolioNewsApi(request):
     portfolioNewsData = []
-    timestamp = News.objects.latest('timestamp').timestamp
 
     for asset in Asset.objects.all():
         try:
-            news = News.objects.filter(asset=asset,timestamp=timestamp)[0]
+            news = News.objects.filter(asset=asset).order_by('timestamp')[0]
             impact = "Positive" if news.sentiment > 0 else "Negative"
             portfolioNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
@@ -176,10 +175,9 @@ def assetNewsApi(request, assetSymbol):
     assetNewsData = []
 
     asset = Asset.objects.get(symbol=assetSymbol)
-    timestamp = News.objects.latest('timestamp').timestamp
 
     try:
-        for news in News.objects.filter(asset=asset,timestamp=timestamp):
+        for news in News.objects.filter(asset=asset).order_by('timestamp'):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
@@ -187,20 +185,3 @@ def assetNewsApi(request, assetSymbol):
         pass
 
     return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
-
-
-def assetImpactApi(request, assetSymbol):
-    assetImpactData = {}
-
-    asset = Asset.objects.get(symbol=assetSymbol)
-    try:
-        assetData = AssetData.objects.get(asset=asset)
-        effect = assetData.impact
-        impact = "Positive" if effect > 0 else "Negative"
-        assetImpactData["effect"] = abs(effect)
-        assetImpactData["impact"] = impact
-
-    except:
-        pass
-
-    return HttpResponse(json.dumps(assetImpactData), content_type="application/json")

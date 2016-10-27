@@ -6,7 +6,7 @@ export const urlConstants = {
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
     ASSETS: '/getPrediction',
-    NEWS: '/getNews.json'
+    NEWS: '/getNews'
   },
 
   ASSET: {
@@ -14,6 +14,6 @@ export const urlConstants = {
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
     IMPACTING_ASSETS: '/getImpactingAssets.json',
-    NEWS: '/getNews.json'
+    NEWS: '/getNews'
   }
 };
