@@ -63,7 +63,9 @@ export default class Prediction extends React.Component {
                 <span>Impacting Portfolio Prediction</span>
               </h3>
 
-              <News {...{news: this.props.portfolio.news}} />
+              <div className="news-container">
+                <News {...{news: this.props.portfolio.news}} />
+              </div>
             </div>
           </div>
         </div>

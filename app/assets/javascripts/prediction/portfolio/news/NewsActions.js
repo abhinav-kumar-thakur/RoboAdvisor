@@ -25,7 +25,7 @@ let requestNews = () => {
     return function (dispatch) {
       dispatch(requestNews());
 
-      Utils.httpGet('/static/data' + urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.NEWS)
+      Utils.httpGet(urlConstants.PORTFOLIO.ROOT + urlConstants.PORTFOLIO.NEWS)
         .then(data => dispatch(successNews(data)))
         .catch(error => dispatch(failureNews()))
     };

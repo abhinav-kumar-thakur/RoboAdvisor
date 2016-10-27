@@ -9,8 +9,8 @@ const News = ({news}) => {
     data = news.data;
 
   if (data) {
-    let piType = (value) => {
-      return Number.parseInt(value) > 0 ? 'up' : 'down';
+    let piType = (impact) => {
+      return impact === 'Positive' ? 'up' : 'down';
     };
 
     element = <ul>
@@ -18,11 +18,10 @@ const News = ({news}) => {
         data.map((news, index) => {
           return <li key={index} className="news flex-row">
             <div className="flex-row__item">
-              <h3 className="news__title">{news.title}</h3>
-              <p className="news__description">{news.desc}</p>
+              <a className="list__link" href={news.url}><h3 className="news__title">{news.headline}</h3></a>
             </div>
             <div className="flex-row__item">
-              <span className="asset-value">{news.impact}%</span>
+              <span className="asset-value">{news.sentiment}%</span>
               <Pi {...{piType: piType(news.impact)}} />
             </div>
           </li>

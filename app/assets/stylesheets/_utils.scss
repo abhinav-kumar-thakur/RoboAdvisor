@@ -136,10 +136,10 @@
 .news__title {
   font-weight: 600;
   padding-bottom: 8px;
+  color: $dark-gray;
 }
 
-.news__description {
-  font-size: 12px;
-  line-height: 16px;
-  padding-bottom: 10px;
+.news-container {
+  height: 270px;
+  overflow-y: scroll;
 }
