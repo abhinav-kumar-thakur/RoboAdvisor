@@ -84,9 +84,9 @@ def portfolioPredictionApi(request):
 
         prediction = float("{0:.2f}".format(((assetData.prediction - assetData.price) / assetData.price) * 100))
         trade = "hold"
-        if prediction > 2.5:
+        if prediction > 1.0:
             trade = "buy"
-        if prediction < -2.5:
+        if prediction < -1.0:
             trade = "sell"
         portfolioPredictions.append(
             {"asset": asset.name, "symbol": asset.symbol, "prediction": abs(prediction), "trade": trade})
