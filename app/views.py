@@ -181,6 +181,7 @@ def assetNewsApi(request, assetSymbol):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
+        assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
     except:
         pass
 
