@@ -31,7 +31,7 @@ def portfolioPersonalHoldingApi(request):
     portfolioShare = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         asset = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
-        portfolioShare += asset.price
+        portfolioShare += asset.price * mapping.currentCount
     portfolioPersonalHolding["value"] = portfolioShare
     portfolioPersonalHolding["assets"] = PortfolioAssetMapping.objects.filter(portfolio=1).count()
 
