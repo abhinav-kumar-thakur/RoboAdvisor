@@ -105,9 +105,9 @@ def portfolioNewsApi(request):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             portfolioNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
-
         except:
             pass
+    portfolioNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
 
     return HttpResponse(json.dumps(portfolioNewsData), content_type="application/json")  # Asset
 
@@ -181,8 +181,9 @@ def assetNewsApi(request, assetSymbol):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
-        assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
     except:
         pass
+
+    assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
 
     return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
