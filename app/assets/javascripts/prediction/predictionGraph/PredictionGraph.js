@@ -11,7 +11,13 @@ const PredictionGraph = ({predictionGraph}) => {
     let closingPrices = data.map((item) => {
         return item.closingPrice;
       }),
-      actualPastClosingPrices = closingPrices.slice(0, closingPrices.length - 1);
+      actualPastClosingPrices = closingPrices.slice(0, closingPrices.length - 1),
+      yesterdayClosingPrice = actualPastClosingPrices[actualPastClosingPrices.length - 1],
+      predictedClosingPrice = closingPrices[closingPrices.length - 1],
+      predictedValueColor = (predictedClosingPrice > yesterdayClosingPrice) ? '#72AC4D' : '#FC0D1B',
+      styleColor = {
+        color: predictedValueColor
+      };
 
     let config = {
       title: {
@@ -49,7 +55,7 @@ const PredictionGraph = ({predictionGraph}) => {
         zones: [{
           value: data.length - 2
         }, {
-          color: '#FD965A'
+          color: predictedValueColor
         }, {
           dashStyle: 'dot'
         }]
@@ -61,10 +67,13 @@ const PredictionGraph = ({predictionGraph}) => {
         enabled: false
       }
     };
+
     element = <div>
       <h1 className="predicted-value">
-        <strong
-          className="pull-right">Predicted Value: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}
+        <strong className="pull-right">
+          Predicted Value:
+          <span
+            style={styleColor}>${Utils.formatPrice(predictedClosingPrice)}</span>
         </strong>
       </h1>
       <ReactHighcharts config={config}></ReactHighcharts>

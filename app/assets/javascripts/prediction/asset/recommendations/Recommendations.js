@@ -10,7 +10,7 @@ const Recommendations = ({ recommendations, currentAsset }) => {
   if (data) {
 
     let labelType = (trade) => {
-        return trade === 'sell' ? 'btn-label--sell' : 'btn-label--buy';
+        return (trade === 'sell') ? 'btn-label--sell' : ((trade === 'buy') ? 'btn-label--buy' : 'btn-label--hold');
       },
 
       assetRecommendation = data.filter((asset) => {
