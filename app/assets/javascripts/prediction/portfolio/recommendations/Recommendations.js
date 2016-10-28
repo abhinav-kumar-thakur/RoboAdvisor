@@ -10,7 +10,15 @@ const Recommendations = ({ recommendations }) => {
   if (data) {
 
     let labelType = (trade) => {
-      return trade === 'sell' ? 'btn-label--sell' : 'btn-label--buy';
+
+        if(trade === 'sell'){
+            return 'btn-label--sell'
+        }
+        else if(trade === 'buy'){
+            return 'btn-label--buy'
+        }
+        else
+            return 'btn-label--hold'
     };
 
     element = <ul>
