@@ -62,12 +62,12 @@ const PredictionGraph = ({predictionGraph}) => {
       }
     };
     element = <div>
-      <ReactHighcharts config={config}></ReactHighcharts>
-
       <h1 className="predicted-value">
-        <span
-          className="pull-right">Tomorrow's Predicted Value is: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}</span>
+        <strong
+          className="pull-right">Predicted Value: ${Utils.formatPrice(closingPrices[closingPrices.length - 1])}
+        </strong>
       </h1>
+      <ReactHighcharts config={config}></ReactHighcharts>
     </div>
   }
 

@@ -42,7 +42,8 @@ strong {
 .predicted-value {
   color: $black;
   font-size: 18px;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
 }
 
 .graph-container {

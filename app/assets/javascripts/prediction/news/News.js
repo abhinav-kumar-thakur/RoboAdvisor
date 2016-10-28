@@ -21,7 +21,7 @@ const News = ({news}) => {
               <a className="list__link" href={news.url}><h3 className="news__title">{news.headline}</h3></a>
             </div>
             <div className="flex-row__item">
-              <span className="asset-value">{news.sentiment}%</span>
+              <span className="asset-value">{news.sentiment}</span>
               <Pi {...{piType: piType(news.impact)}} />
             </div>
           </li>

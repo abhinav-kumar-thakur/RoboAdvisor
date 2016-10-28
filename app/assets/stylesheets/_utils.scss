@@ -95,7 +95,7 @@
 
 .asset-value {
   display: inline-block;
-  width: 60px;
+  width: 55px;
 }
 
 .btn-label {
@@ -133,7 +133,12 @@
     &:first-child {
       border-bottom: 1px solid $light-gray;
       flex: 4;
+      margin-right: 15px;
     }
+  }
+
+  .asset-value {
+    width: 40px;
   }
 }
 
@@ -144,6 +149,6 @@
 }
 
 .news-container {
-  height: 270px;
+  height: 250px;
   overflow-y: scroll;
 }

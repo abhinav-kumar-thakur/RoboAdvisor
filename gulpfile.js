@@ -38,10 +38,9 @@ gulp.task('images', function () {
     .pipe(gulp.dest(paths.dest.images));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['bundleJS', 'css'],  function () {
   gulp.watch(paths.src.js, ['bundleJS']);
   gulp.watch(paths.src.scss, ['css']);
-  gulp.watch(paths.src.images, ['images']);
 });
 
 gulp.task('fonts', function () {

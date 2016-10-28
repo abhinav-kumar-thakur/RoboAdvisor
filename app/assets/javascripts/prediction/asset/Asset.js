@@ -55,8 +55,8 @@ export default class Asset extends React.Component {
 
         <div className="container">
           <h3 className="container__heading">
-            <strong>Predicted</strong>
-            <span>Stock Value</span>
+            <strong>Stock</strong>
+            <span>Value</span>
           </h3>
 
           <div className="graph-container">
