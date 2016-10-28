@@ -103,7 +103,9 @@ class Status(models.Model):
 
 
 class RippleEffect(models.Model):
-    asset = models.ForeignKey(Asset)
+    assetIdOne = models.ForeignKey(Asset)
+    assetIdTwo = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
     result = models.FloatField()
 
     class Meta:
