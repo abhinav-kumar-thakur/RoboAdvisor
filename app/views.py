@@ -53,7 +53,7 @@ def portfolioPredictionGraphDataApi(request):
         for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
             try:
                 data = AssetData.objects.get(asset=mapping.asset, timestamp=date)
-                price += data.price
+                price += data.price * mapping.currentCount
             except:
                 pass
         if price != 0.0:
@@ -68,7 +68,7 @@ def portfolioPredictionGraphDataApi(request):
     predictionPrice = 0.0
     for mapping in PortfolioAssetMapping.objects.filter(portfolio=1):
         assetData = AssetData.objects.get(asset=mapping.asset, timestamp=latestDay)
-        predictionPrice += assetData.prediction
+        predictionPrice += assetData.prediction * mapping.currentCount
     portfolioPredictionGraphData.append(
         {"date": str(predictionDate.date()), "closingPrice": predictionPrice})
 
