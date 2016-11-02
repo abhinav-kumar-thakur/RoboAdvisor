@@ -55,7 +55,7 @@ export default class Asset extends React.Component {
 
         <div className="container">
           <h3 className="container__heading">
-            <strong>Stock</strong>
+            <strong>Asset</strong>
             <span>Value</span>
           </h3>
 
@@ -69,7 +69,7 @@ export default class Asset extends React.Component {
             <div className="flex-row__item">
 
               <h3 className="container__heading">
-                <strong>Stocks</strong>
+                <strong>Asset</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
 

@@ -50,7 +50,7 @@ export default class Prediction extends React.Component {
             <div className="flex-row__item">
 
               <h3 className="container__heading">
-                <strong>Stocks</strong>
+                <strong>Assets</strong>
                 <span>Impacting Portfolio Prediction</span>
               </h3>
               <ImpactingAssets {...{impactingAssets: this.props.portfolioAssets}} />
