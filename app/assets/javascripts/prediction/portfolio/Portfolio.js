@@ -73,7 +73,6 @@ export default class Prediction extends React.Component {
         <div className="container">
           <h3 className="container__heading">
             <strong>Recommended Actions</strong>
-            <span>for maximising profits</span>
           </h3>
 
           <Recommendations {...{recommendations: this.props.portfolioAssets}} />
