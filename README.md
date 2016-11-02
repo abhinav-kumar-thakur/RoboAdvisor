@@ -13,7 +13,7 @@
         - Run >> source  ~/.bash_profile
 
     b. On postgres command prompt run :- 
-           - run >> bash app/db.sh
+           - run >> bash app/pg.sh
            To drop and create the database, along with makemigrations and migrate script, it also adds data to the data base
     
 4. run >> bash app/app.sh
