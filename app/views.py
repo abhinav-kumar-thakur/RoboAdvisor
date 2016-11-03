@@ -187,3 +187,28 @@ def assetNewsApi(request, assetSymbol):
     assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
 
     return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
+
+
+def assetWaterFallApi(request, assetSymbol):
+    assetWaterFallData = []
+
+    asset = Asset.objects.get(symbol=assetSymbol)
+
+    try:
+        newseffect = pow(10, (NewsGroup.objects.get(asset=asset)).effect)
+        assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
+        arimaEffect = pow(10, assetData.arimaeffect)
+        mapping = PortfolioAssetMapping.objects.get(asset=asset)
+        unitsHeld = mapping.currentCount
+        currenctPrice = assetData.price * unitsHeld
+        rippleEffect = 0.0
+        for data in RippleEffect.objects.all():
+            if (data.asset_id_two == asset and data.timestamp == assetData.timestamp):
+                rippleEffect = rippleEffect + data.result
+        rippleEffect = pow(10, rippleEffect)
+        assetWaterFallData.append({"currentValue": currenctPrice, "newsEffect": newseffect, "arimaEffect": arimaEffect,
+                                   "rippleEffect": rippleEffect})
+    except:
+        pass
+
+    return HttpResponse(json.dumps(assetWaterFallData), content_type="application/json")
