@@ -29,6 +29,7 @@ class AssetData(models.Model):
     prediction = models.FloatField()
     errorMargin = models.FloatField()
     neteffect = models.FloatField()
+    arimaeffect = models.FloatField()
 
     class Meta:
         db_table = "assetdata"
@@ -103,8 +104,8 @@ class Status(models.Model):
 
 
 class RippleEffect(models.Model):
-    assetIdOne = models.ForeignKey(Asset)
-    assetIdTwo = models.IntegerField()
+    asset_id_one = models.ForeignKey(Asset)
+    asset_id_two = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)
     result = models.FloatField()
 
