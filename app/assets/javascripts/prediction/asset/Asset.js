@@ -69,8 +69,8 @@ export default class Asset extends React.Component {
             <div className="flex-row__item">
 
               <h3 className="container__heading">
-                <strong>Asset</strong>
-                <span>Impacting Portfolio Prediction</span>
+                <strong>Factors</strong>
+                <span>Impacting Predicted Asset Value</span>
               </h3>
 
               <div className="graph-container">
