@@ -32,7 +32,8 @@ AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="sto
 
 endDate = str(datetime.today().date())
 date_format = "%Y-%m-%d"
-AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate="2016-10-31")
+AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate="2016-10-31",
+                          arimaeffect=0.0)
 
 for asset in Asset.objects.all():
     PortfolioAssetMappingApi().mapAsset(portfolio=Portfolio.objects.all()[0], asset=asset, currentCount=0)
@@ -50,13 +51,13 @@ TransactionApi().addTransaction(trade="buy", tradeCount=540, assetSymbol="GOOG")
 
 assetData = AssetData.objects.latest('timestamp')
 Status(lastUpdateDate=assetData.timestamp).save()
-NewsGroup(asset=Asset.objects.get(symbol="VLCAX"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="AGG"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="GLD"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="USO"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="CVX"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="AAPL"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="VLO"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="BRK-A"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="FB"),effect=0).save()
-NewsGroup(asset=Asset.objects.get(symbol="GOOG"),effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="VLCAX"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="AGG"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="GLD"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="USO"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="CVX"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="AAPL"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="VLO"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="BRK-A"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="FB"), effect=0).save()
+NewsGroup(asset=Asset.objects.get(symbol="GOOG"), effect=0).save()

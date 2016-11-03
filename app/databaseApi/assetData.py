@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 
 class AssetDataApi():
-    def addDetails(self, prediction, errorMargin, neteffect, startDate, endDate):
+    def addDetails(self, prediction, errorMargin, neteffect, startDate, endDate, arimaeffect):
         date_format = "%Y-%m-%d"
         for asset in Asset.objects.all():
             symbol = asset.symbol
@@ -23,5 +23,6 @@ class AssetDataApi():
             for dailyData in historicalData:
                 data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
                                  price=dailyData['Close'],
-                                 timestamp=datetime.strptime(dailyData['Date'], date_format), neteffect=neteffect)
+                                 timestamp=datetime.strptime(dailyData['Date'], date_format), neteffect=neteffect,
+                                 arimaeffect=arimaeffect)
                 data.save()
