@@ -30,7 +30,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       yAxis: {
         title: {
-          text: 'Closing Price'
+          text: 'Closing Price in $'
         }
       },
       tooltip: {
