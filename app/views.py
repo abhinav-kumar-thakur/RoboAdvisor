@@ -202,11 +202,10 @@ def assetWaterFallApi(request, assetSymbol):
 
         arimaEffectOnNewsEffectPrice = pow(10, assetData.arimaeffect) * newseffectOnCurrentPrice
         arimaEffect = arimaEffectOnNewsEffectPrice - newseffectOnCurrentPrice
-        print (asset.id)
+
         rippleEffectOnArimaEffectPrice = 0.0
-        for data in RippleEffect.objects.filter(asset_id_two = asset):
-            print(asset.id)
-            print(assetData.timestamp)
+
+        for data in RippleEffect.objects.filter(asset_id_two=asset.id, timestamp=assetData.timestamp):
             rippleEffectOnArimaEffectPrice = rippleEffectOnArimaEffectPrice + data.result
 
         rippleEffectOnArimaEffectPrice = pow(10, 0.01 * rippleEffectOnArimaEffectPrice) * arimaEffectOnNewsEffectPrice
@@ -216,6 +215,7 @@ def assetWaterFallApi(request, assetSymbol):
         assetWaterFallData["newsEffect"] = newsEffect
         assetWaterFallData["arimaEffect"] = arimaEffect
         assetWaterFallData["rippleEffect"] = rippleEffect
+
     except:
         pass
 
