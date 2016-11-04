@@ -5,6 +5,12 @@ import ApiContainer from '../../../common/components/ApiContainer';
 const ReactHighcharts = require('react-highcharts');
 require('highcharts/highcharts-more')(ReactHighcharts.Highcharts);
 
+let roundOff = (price) =>{
+  return parseFloat(price).toFixed(2)
+
+
+}
+
 const ImpactingAssets = ({impactingAssets}) => {
 
   let element,
@@ -54,7 +60,7 @@ const ImpactingAssets = ({impactingAssets}) => {
             y: data['newsEffect']
           },
           {
-            name: 'Predicted Value',
+            name: 'Current Value',
             isSum: true,
             color: "#FD965A"
           }
