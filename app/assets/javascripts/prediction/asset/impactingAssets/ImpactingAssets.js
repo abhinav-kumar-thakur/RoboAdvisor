@@ -5,12 +5,6 @@ import ApiContainer from '../../../common/components/ApiContainer';
 const ReactHighcharts = require('react-highcharts');
 require('highcharts/highcharts-more')(ReactHighcharts.Highcharts);
 
-let roundOff = (price) =>{
-  return parseFloat(price).toFixed(2)
-
-
-}
-
 const ImpactingAssets = ({impactingAssets}) => {
 
   let element,
@@ -66,7 +60,10 @@ const ImpactingAssets = ({impactingAssets}) => {
           }
         ],
         dataLabels: {
-          enabled: true
+          enabled: true,
+          formatter: function () {
+            return '$' + Utils.formatPrice(this.y);
+          }
         }
       }],
 
