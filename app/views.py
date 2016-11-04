@@ -190,12 +190,12 @@ def assetNewsApi(request, assetSymbol):
 
 
 def assetWaterFallApi(request, assetSymbol):
-    assetWaterFallData = []
+    assetWaterFallData = {}
 
     asset = Asset.objects.get(symbol=assetSymbol)
 
     try:
-        newseffect = pow(10, (NewsGroup.objects.get(asset=asset)).effect)
+        newseffect = pow(10, 0.01 * ((NewsGroup.objects.get(asset=asset)).effect))
         assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
         arimaEffect = pow(10, assetData.arimaeffect)
         mapping = PortfolioAssetMapping.objects.get(asset=asset)
@@ -205,9 +205,11 @@ def assetWaterFallApi(request, assetSymbol):
         for data in RippleEffect.objects.all():
             if (data.asset_id_two == asset and data.timestamp == assetData.timestamp):
                 rippleEffect = rippleEffect + data.result
-        rippleEffect = pow(10, rippleEffect)
-        assetWaterFallData.append({"currentValue": currenctPrice, "newsEffect": newseffect, "arimaEffect": arimaEffect,
-                                   "rippleEffect": rippleEffect})
+        rippleEffect = pow(10, 0.01 * rippleEffect)
+        assetWaterFallData["currentValue"] = currenctPrice
+        assetWaterFallData["newsEffect"] = newseffect
+        assetWaterFallData["arimaEffect"] = arimaEffect
+        assetWaterFallData["rippleEffect"] = rippleEffect
     except:
         pass
 
