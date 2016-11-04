@@ -13,7 +13,7 @@ export const urlConstants = {
     ROOT: '/asset',
     PERSONAL_HOLDING: '/getPersonalHolding',
     PREDICTION_GRAPH: '/getPredictionGraphData',
-    IMPACTING_ASSETS: '/getImpactingAssets.json',
+    IMPACTING_ASSETS: '/getWaterFallData',
     NEWS: '/getNews'
   }
 };

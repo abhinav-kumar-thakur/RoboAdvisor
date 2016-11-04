@@ -195,19 +195,23 @@ def assetWaterFallApi(request, assetSymbol):
     asset = Asset.objects.get(symbol=assetSymbol)
 
     try:
-        newseffect = pow(10, 0.01 * ((NewsGroup.objects.get(asset=asset)).effect))
         assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
-        arimaEffect = pow(10, assetData.arimaeffect)
-        mapping = PortfolioAssetMapping.objects.get(asset=asset)
-        unitsHeld = mapping.currentCount
-        currenctPrice = assetData.price * unitsHeld
-        rippleEffect = 0.0
+
+        newseffectOnCurrentPrice = pow(10, 0.01 * ((NewsGroup.objects.get(asset=asset)).effect))*assetData.price
+        newsEffect = newseffectOnCurrentPrice - assetData.price
+
+        arimaEffectOnNewsEffectPrice = pow(10, assetData.arimaeffect)*newseffectOnCurrentPrice
+        arimaEffect = arimaEffectOnNewsEffectPrice-newseffectOnCurrentPrice
+
+        rippleEffectOnArimaEffectPrice = 0.0
         for data in RippleEffect.objects.all():
             if (data.asset_id_two == asset and data.timestamp == assetData.timestamp):
-                rippleEffect = rippleEffect + data.result
-        rippleEffect = pow(10, 0.01 * rippleEffect)
-        assetWaterFallData["currentValue"] = currenctPrice
-        assetWaterFallData["newsEffect"] = newseffect
+                rippleEffectOnArimaEffectPrice = rippleEffectOnArimaEffectPrice + data.result
+
+        rippleEffectOnArimaEffectPrice = pow(10, 0.01 * rippleEffectOnArimaEffectPrice)*arimaEffectOnNewsEffectPrice
+        rippleEffect = rippleEffectOnArimaEffectPrice - arimaEffectOnNewsEffectPrice
+        assetWaterFallData["currentValue"] = assetData.price
+        assetWaterFallData["newsEffect"] = newsEffect
         assetWaterFallData["arimaEffect"] = arimaEffect
         assetWaterFallData["rippleEffect"] = rippleEffect
     except:

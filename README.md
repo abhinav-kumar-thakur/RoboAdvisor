@@ -11,7 +11,6 @@
         - Update path in bash : vim ~/.bash_profile
         - Add this line to end (with the correct version): 
         - Run >> source  ~/.bash_profile
-
     b. On postgres command prompt run :- 
            - run >> bash app/pg.sh
            To drop and create the database, along with makemigrations and migrate script, it also adds data to the data base

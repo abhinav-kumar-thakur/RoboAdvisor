@@ -35,10 +35,30 @@ const ImpactingAssets = ({impactingAssets}) => {
         upColor: '#72AC4D',
         color: '#FC0D1B',
 
-        data: [...Object.keys(data).map((key, index) => {
-          return index == 0 ? {name: key, y: data[key], color: "#96D9F4"} : {name: key, y: data[key]}
-        }), {name: 'Predicted value', isSum: true, color: "#FD965A"}],
-
+        data: [
+          {
+            name: 'Current value',
+            y: data['currentValue'],
+            color: "#96D9F4"
+          },
+          {
+            name: 'Arima effect',
+            y: data['arimaEffect']
+          },
+          {
+            name: 'Ripple effect',
+            y: data['rippleEffect']
+          },
+          {
+            name: 'News',
+            y: data['newsEffect']
+          },
+          {
+            name: 'Predicted Value',
+            isSum: true,
+            color: "#FD965A"
+          }
+        ],
         dataLabels: {
           enabled: true
         }

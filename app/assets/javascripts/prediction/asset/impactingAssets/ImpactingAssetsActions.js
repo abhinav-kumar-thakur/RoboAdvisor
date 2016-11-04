@@ -25,7 +25,7 @@ let requestImpactingAssets = () => {
     return function (dispatch) {
       dispatch(requestImpactingAssets());
 
-      Utils.httpGet('/static/data' + urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.IMPACTING_ASSETS)
+      Utils.httpGet(urlConstants.ASSET.ROOT + '/' + asset + urlConstants.ASSET.IMPACTING_ASSETS)
         .then(data => dispatch(successImpactingAssets(data)))
         .catch(error => dispatch(failureImpactingAssets()))
     };
