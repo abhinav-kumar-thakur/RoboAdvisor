@@ -32,7 +32,7 @@ AssetApi().addAsset(assetName="Alphabet Inc", assetSymbol="GOOG", assetType="sto
 
 endDate = str(datetime.today().date())
 date_format = "%Y-%m-%d"
-AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate="2016-11-02",
+AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2012-01-01", endDate="2016-11-03",
                           arimaeffect=0.0)
 
 for asset in Asset.objects.all():
