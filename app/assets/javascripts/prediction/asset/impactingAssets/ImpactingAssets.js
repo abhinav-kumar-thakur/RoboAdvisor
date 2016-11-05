@@ -42,16 +42,16 @@ const ImpactingAssets = ({impactingAssets}) => {
             color: "#96D9F4"
           },
           {
-            name: 'Arima effect',
+            name: 'Arima',
             y: data['arimaEffect']
-          },
-          {
-            name: 'Ripple effect',
-            y: data['rippleEffect']
           },
           {
             name: 'News',
             y: data['newsEffect']
+          },
+          {
+            name: 'Ripple effect',
+            y: data['rippleEffect']
           },
           {
             name: 'Predicted Value',
