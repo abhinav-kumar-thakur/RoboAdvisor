@@ -54,7 +54,7 @@ const ImpactingAssets = ({impactingAssets}) => {
             y: data['newsEffect']
           },
           {
-            name: 'Current Value',
+            name: 'Predicted Value',
             isSum: true,
             color: "#FD965A"
           }
