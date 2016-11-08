@@ -9,7 +9,6 @@ const ImpactingAssets = ({impactingAssets}) => {
 
   let element,
     data = impactingAssets.data;
-
   if (data) {
 
     let config = {
@@ -62,7 +61,14 @@ const ImpactingAssets = ({impactingAssets}) => {
         dataLabels: {
           enabled: true,
           formatter: function () {
+          var newPrice = Utils.formatPrice(this.y);
+          if(newPrice.charAt(0)==='-'){
+          newPrice = newPrice.toString().split('-')[1];
+          return "-$" + newPrice;
+          }
+            else{
             return '$' + Utils.formatPrice(this.y);
+            }
           },
           y: -10,
           style: {
