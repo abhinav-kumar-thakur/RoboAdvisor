@@ -54,7 +54,7 @@ const ImpactingAssets = ({impactingAssets}) => {
             y: data['newsEffect']
           },
           {
-            name: 'Current Value',
+            name: 'Predicted Value',
             isSum: true,
             color: "#FD965A"
           }
@@ -63,6 +63,11 @@ const ImpactingAssets = ({impactingAssets}) => {
           enabled: true,
           formatter: function () {
             return '$' + Utils.formatPrice(this.y);
+          },
+          y: -10,
+          style: {
+            color: "#000000",
+            fontSize: "14px"
           }
         }
       }],
