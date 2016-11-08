@@ -63,7 +63,13 @@ const ImpactingAssets = ({impactingAssets}) => {
           enabled: true,
           formatter: function () {
             return '$' + Utils.formatPrice(this.y);
-          }
+          },
+          y: -10,
+          color: "#000000",
+          style: {
+                    fontSize: '14px'
+                }
+
         }
       }],
 
