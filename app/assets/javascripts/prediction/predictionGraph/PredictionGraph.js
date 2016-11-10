@@ -18,6 +18,8 @@ const PredictionGraph = ({predictionGraph}) => {
       styleColor = {
         color: predictedValueColor
       };
+      let change = predictedClosingPrice - yesterdayClosingPrice,
+      changeInPercentage = change/yesterdayClosingPrice;
 
     let config = {
       title: {
@@ -73,8 +75,13 @@ const PredictionGraph = ({predictionGraph}) => {
         <strong className="pull-right">
           Predicted Value:
           <span
-            style={styleColor}>${Utils.formatPrice(predictedClosingPrice)}</span>
+            style={styleColor}>${Utils.formatPrice(predictedClosingPrice)} </span>
         </strong>
+      </h1>
+      <h1 className="pull-right">
+      <span
+            style={styleColor}>${Utils.formatPrice(change)} ({Utils.formatPrice(changeInPercentage)} %) </span>
+
       </h1>
       <ReactHighcharts config={config}></ReactHighcharts>
     </div>
