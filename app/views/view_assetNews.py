@@ -11,9 +11,10 @@ def assetNewsApi(request, assetSymbol):
     assetNewsData = []
 
     asset = Asset.objects.get(symbol=assetSymbol)
+    date = (News.objects.filter(asset=asset).latest('timestamp')).timestamp
 
     try:
-        for news in News.objects.filter(asset=asset).order_by('timestamp'):
+        for news in News.objects.filter(asset=asset, timestamp=date):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
