@@ -1,6 +1,5 @@
 from app.models import Transaction, PortfolioAssetMapping, Asset
 from yahoo_finance import Share
-from datetime import datetime
 
 
 class TransactionApi():
