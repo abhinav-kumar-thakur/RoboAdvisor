@@ -17,12 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from app.views.view_assetComparisionGraph import assetComparisionGraphDataApi
 from app.views.view_assetNews import assetNewsApi
 from app.views.view_assetPersonalHolding import assetPersonalHoldingApi
 from app.views.view_assetPredictionGraph import assetPredictionGraphDataApi
 from app.views.view_assetWaterFall import assetWaterFallApi
 from app.views.view_home import home
 from app.views.view_navigation import navigationApi
+from app.views.view_portfolioComparisionGraph import portfolioComparisionGraphDataApi
 from app.views.view_portfolioNews import portfolioNewsApi
 from app.views.view_portfolioPersonalHolding import portfolioPersonalHoldingApi
 from app.views.view_portfolioPrediction import portfolioPredictionApi
@@ -48,5 +50,11 @@ urlpatterns = [
     url(r'^asset/([A-Z]+-?[A-Z]*)/getWaterFallData/', assetWaterFallApi, name="getWaterFallData"),
 
     url(r'^(%s)?$' % '|'.join(['predictions', 'performance', 'predictions/portfolio', 'predictions/asset/([A-Z]+)']),
-        TemplateView.as_view(template_name='index.html'))
+        TemplateView.as_view(template_name='index.html')),
+
+    # RoboAdvisor Growth
+    url(r'^portfolio/getComparisionGraphData/', portfolioComparisionGraphDataApi, name="getComparisionGraphData"),
+    url(r'^asset/([A-Z]+-?[A-Z]*)/getComparisionGraphData/', assetComparisionGraphDataApi,
+        name="getAssetComparisionGraphData")
+
 ]
