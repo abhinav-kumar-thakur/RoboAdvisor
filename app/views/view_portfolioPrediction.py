@@ -21,8 +21,12 @@ def portfolioPredictionApi(request):
             trade = "buy"
         if prediction < -1.0:
             trade = "sell"
+
+        impact = "Positive" if prediction > 0 else "Negative"
+
         portfolioPredictions.append(
-            {"asset": asset.name, "symbol": asset.symbol, "prediction": str(abs(prediction)), "trade": trade})
+            {"asset": asset.name, "symbol": asset.symbol, "prediction": str(abs(prediction)), "impact": impact,
+             "trade": trade})
 
     portfolioPredictions.sort(key=operator.itemgetter('prediction'), reverse=True)
 
