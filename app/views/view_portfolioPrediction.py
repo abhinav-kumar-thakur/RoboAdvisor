@@ -22,7 +22,7 @@ def portfolioPredictionApi(request):
         if prediction < -1.0:
             trade = "sell"
         portfolioPredictions.append(
-            {"asset": asset.name, "symbol": asset.symbol, "prediction": abs(prediction), "trade": trade})
+            {"asset": asset.name, "symbol": asset.symbol, "prediction": str(abs(prediction)), "trade": trade})
 
     portfolioPredictions.sort(key=operator.itemgetter('prediction'), reverse=True)
 
