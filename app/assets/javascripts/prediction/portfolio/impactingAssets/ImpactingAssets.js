@@ -10,8 +10,8 @@ const ImpactingAssets = ({impactingAssets}) => {
 
   if (data) {
 
-    let piType = (tradeType) => {
-      return tradeType === 'sell' ? 'down' : 'up';
+    let piType = (impact) => {
+      return impact === 'Positive' ? 'up' : 'down';
     };
 
     element = <ul className="list-table">
