@@ -15,15 +15,15 @@ def assetNewsApi(request, assetSymbol):
     assetNewsData = []
 
     asset = Asset.objects.get(symbol=assetSymbol)
-    date = (AssetData.objects.filter(asset=asset).latest('timestamp')).timestamp + timedelta(1)
 
     try:
-        for news in News.objects.filter(asset=asset, timestamp=date):
+        for news in News.objects.filter(asset=asset).order_by('timestamp'):
             impact = "Positive" if news.sentiment > 0 else "Negative"
             assetNewsData.append(
                 {"headline": news.headline, "url": news.url, "sentiment": str(abs(news.sentiment)), "impact": impact})
     except:
         pass
+
     assetNewsData.sort(key=operator.itemgetter('sentiment'), reverse=True)
 
     return HttpResponse(json.dumps(assetNewsData[:3]), content_type="application/json")
