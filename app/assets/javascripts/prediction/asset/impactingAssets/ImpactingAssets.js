@@ -41,7 +41,7 @@ const ImpactingAssets = ({impactingAssets}) => {
             color: "#96D9F4"
           },
           {
-            name: 'Arima',
+            name: 'Trends',
             y: data['arimaEffect']
           },
           {
