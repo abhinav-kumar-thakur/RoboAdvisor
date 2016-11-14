@@ -29,7 +29,8 @@ def portfolioPredictionGraphDataApi(request):
             portfolioPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
         date = date + timedelta(1)
 
-    if latestDay.day == 5:
+    if latestDay.strftime("%w") == "5":
+        print("here")
         predictionDate = latestDay + timedelta(3)
     else:
         predictionDate = latestDay + timedelta(1)

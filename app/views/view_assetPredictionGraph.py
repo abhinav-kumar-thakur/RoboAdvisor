@@ -29,7 +29,7 @@ def assetPredictionGraphDataApi(request, assetSymbol):
             assetPredictionGraphData.append({"date": str(date.date()), "closingPrice": price})
         date = date + timedelta(1)
 
-    if latestDay.day == 5:
+    if latestDay.strftime("%w") == "5":
         predictionDate = latestDay + timedelta(3)
 
     else:
