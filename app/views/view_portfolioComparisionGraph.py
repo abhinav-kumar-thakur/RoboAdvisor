@@ -11,12 +11,13 @@ def portfolioComparisionGraphDataApi(request):
     comparisionGraphData = []
 
     mapping = PortfolioAssetMapping.objects.filter(portfolio=1).first()
-    assetData = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
+    assetData = AssetData.objects.filter(asset=mapping.asset).lcatest('timestamp')
 
     latestDay = assetData.timestamp
     endDate = latestDay
     startDate = (AssetData.objects.filter(prediction=0).latest('timestamp')).timestamp + timedelta(2)
-    if latestDay.day == 1:
+
+    if latestDay.strftime("%w") == '1':
         predictionDate = latestDay - timedelta(3)
     else:
         predictionDate = latestDay - timedelta(1)
