@@ -17,13 +17,14 @@ def assetComparisionGraphDataApi(request, assetSymbol):
     endDate = latestDay
     startDate = (AssetData.objects.filter(prediction=0).latest('timestamp')).timestamp + timedelta(2)
 
-    if latestDay.strftime("%w") == '1':
-        predictionDate = latestDay - timedelta(3)
-    else:
-        predictionDate = latestDay - timedelta(1)
-
     date = startDate
     while (date <= endDate):
+
+        if date.strftime("%w") == '1':
+            predictionDate = date - timedelta(3)
+        else:
+            predictionDate = date - timedelta(1)
+
         priceFromYahoo = 0.0
         priceFromRobo = 0.0
 
