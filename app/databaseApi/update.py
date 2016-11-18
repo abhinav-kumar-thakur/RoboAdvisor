@@ -21,5 +21,5 @@ if yesterday != lastUpdateDate:
     AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate="2016-11-16",
                               endDate="2016-11-16",
                               arimaeffect=0.0)
-    status.lastUpdateDate = "2016-11-17"
+    status.lastUpdateDate = "2016-11-16"
     status.save()
