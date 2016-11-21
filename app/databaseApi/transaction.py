@@ -6,7 +6,7 @@ class TransactionApi():
     def addTransaction(self, trade, tradeCount, assetSymbol):
         asset = Asset.objects.get(symbol=assetSymbol)
         portfolioAssetMapping = PortfolioAssetMapping.objects.get(asset=asset)
-        timestamp = "2016-01-03"
+        timestamp = "2016-01-06"
 
         initialCount = portfolioAssetMapping.currentCount
         finalCount = initialCount
