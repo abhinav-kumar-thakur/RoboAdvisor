@@ -37,7 +37,7 @@ def assetComparisionGraphDataApi(request, assetSymbol):
 
         except:
             pass
-        if priceFromYahoo != 0.0 or priceFromRobo != 0.0:
+        if priceFromRobo != 0.0:
             comparisionGraphData.append(
                 {"date": str(date.date()), "priceFromYahoo": priceFromYahoo, "priceFromRobo": priceFromRobo})
         date = date + timedelta(1)
