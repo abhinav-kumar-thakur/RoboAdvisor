@@ -38,9 +38,9 @@ def portfolioComparisionGraphDataApi(request):
 
             except:
                 pass
-            if priceFromRobo != 0.0:
-                comparisionGraphData.append(
-                    {"date": str(date.date()), "priceFromYahoo": priceFromYahoo, "priceFromRobo": priceFromRobo})
+        if priceFromRobo != 0.0:
+            comparisionGraphData.append(
+                {"date": str(date.date()), "priceFromYahoo": priceFromYahoo, "priceFromRobo": priceFromRobo})
         date = date + timedelta(1)
 
     return HttpResponse(json.dumps(comparisionGraphData), content_type="application/json")
