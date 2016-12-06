@@ -20,6 +20,7 @@ const PredictionGraph = ({predictionGraph}) => {
       };
       let change = predictedClosingPrice - yesterdayClosingPrice,
       changeInPercentage = change/yesterdayClosingPrice;
+      changeInPercentage= changeInPercentage *100
       change = Utils.formatPrice(change);
 
       if(change.charAt(0) === '-'){

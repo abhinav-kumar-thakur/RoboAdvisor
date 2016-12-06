@@ -17,8 +17,7 @@ class AssetDataApi():
                     historicalData = assetInfo.get_historical(startDate, endDate)
                     break
                 except:
-                    print(symbol)
-                    pass
+                    raise Exception("Yahoo API failed")
             historicalData.reverse()
             for dailyData in historicalData:
                 data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,

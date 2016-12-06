@@ -21,7 +21,7 @@ const ImpactingAssets = ({impactingAssets}) => {
               <div className="flex-row__item">
                 <strong>
                   <span className="asset-value">{asset.prediction}%</span>
-                  <Pi {...{piType: piType(asset.trade)}} />
+                  <Pi {...{piType: piType(asset.impact)}} />
                 </strong>
               </div>
               <div className="flex-row__item">
