@@ -25,9 +25,8 @@ let Utils = {
 
   formatDate: (dt) => {
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      date = new Date(dt);
-
-    return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+    date = new Date(dt);
+    return date.getUTCDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
   }
 };
 

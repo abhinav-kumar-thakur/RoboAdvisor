@@ -36,7 +36,7 @@ const PredictionGraph = ({predictionGraph}) => {
       },
       xAxis: {
         categories: data.map((item) => {
-          return Utils.formatDate(item.date);
+            return Utils.formatDate(item.date);
         })
       },
       yAxis: {

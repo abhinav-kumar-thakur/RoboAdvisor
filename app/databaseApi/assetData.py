@@ -10,17 +10,17 @@ class AssetDataApi():
         date_format = "%Y-%m-%d"
         for asset in Asset.objects.all():
             symbol = asset.symbol
-            historicalData = OrderedDict()
-            assetInfo = []
-            # Share(symbol)
-            historicalData = assetInfo.get_historical(startDate, endDate)
-            if len(historicalData) == 0:
-                raise Exception("Yahoo API failed")
-            else:
-                historicalData.reverse()
-                for dailyData in historicalData:
-                    data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
-                                     price=dailyData['Close'],
-                                     timestamp=datetime.strptime(dailyData['Date'], date_format), neteffect=neteffect,
-                                     arimaeffect=arimaeffect)
-                data.save()
+            assetInfo = Share(symbol)
+        while True:
+            try:
+                historicalData = assetInfo.get_historical(startDate, endDate)
+                break
+            except:
+                pass
+            historicalData.reverse()
+            for dailyData in historicalData:
+                data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
+                                 price=dailyData['Close'],
+                                 timestamp=datetime.strptime(dailyData['Date'], date_format), neteffect=neteffect,
+                                 arimaeffect=arimaeffect)
+            data.save()
