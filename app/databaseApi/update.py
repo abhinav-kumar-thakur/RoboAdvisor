@@ -22,7 +22,7 @@ if yesterday != lastUpdateDate:
         AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate=str(startUpdateDate),
                                   endDate=str(yesterday),
                                   arimaeffect=0.0)
-    except:
+    except Exception:
         exit(1)
     status.lastUpdateDate = yesterday
     status.save()
