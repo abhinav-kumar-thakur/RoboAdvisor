@@ -11,12 +11,14 @@ class AssetDataApi():
         for asset in Asset.objects.all():
             symbol = asset.symbol
             historicalData = OrderedDict()
-            assetInfo = Share(symbol)
+            assetInfo = []
+            # Share(symbol)
+
             while True:
                 try:
                     historicalData = assetInfo.get_historical(startDate, endDate)
                     break
-                except:
+                except :
                     raise Exception("Yahoo API failed")
             historicalData.reverse()
             for dailyData in historicalData:
