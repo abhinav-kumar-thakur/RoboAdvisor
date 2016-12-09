@@ -11,12 +11,12 @@ class AssetDataApi():
         for asset in Asset.objects.all():
             symbol = asset.symbol
             assetInfo = Share(symbol)
-        while True:
-            try:
-                historicalData = assetInfo.get_historical(startDate, endDate)
-                break
-            except:
-                pass
+            while True:
+                try:
+                    historicalData = assetInfo.get_historical(startDate, endDate)
+                    break
+                except:
+                    pass
             historicalData.reverse()
             for dailyData in historicalData:
                 data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
