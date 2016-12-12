@@ -1,26 +1,46 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+
 from app.models import AssetData
 from app.models import Asset
 from yahoo_finance import Share
-from collections import OrderedDict
+
+from app.models import Status
 
 
 class AssetDataApi():
     def addDetails(self, prediction, errorMargin, neteffect, startDate, endDate, arimaeffect):
+        status = Status.objects.all()[0]
         date_format = "%Y-%m-%d"
+        historicalData = fetch_asset_data(startDate, endDate)
+        for dailyData in historicalData:
+            for asset in dailyData:
+                status_date = datetime.strptime(asset[0]['Date'], date_format)
+                symbol = Asset.objects.get(symbol=asset[0]['Symbol'])
+                print(asset)
+                db = AssetData(asset=symbol, errorMargin=errorMargin, prediction=prediction,
+                               price=asset[0]['Close'],
+                               timestamp=datetime.strptime(asset[0]['Date'], date_format), neteffect=neteffect,
+                               arimaeffect=arimaeffect)
+                db.save()
+        status.lastUpdateDate = status_date
+        status.save()
+
+
+def fetch_asset_data(start_date, endDate):
+    current_date = start_date
+    historicalData = []
+    while (current_date <= endDate):
+        print(current_date)
+        data = []
         for asset in Asset.objects.all():
             symbol = asset.symbol
             assetInfo = Share(symbol)
-            while True:
-                try:
-                    historicalData = assetInfo.get_historical(startDate, endDate)
-                    break
-                except:
-                    pass
-            historicalData.reverse()
-            for dailyData in historicalData:
-                data = AssetData(asset=asset, errorMargin=errorMargin, prediction=prediction,
-                                 price=dailyData['Close'],
-                                 timestamp=datetime.strptime(dailyData['Date'], date_format), neteffect=neteffect,
-                                 arimaeffect=arimaeffect)
-            data.save()
+            data.append(assetInfo.get_historical(str(current_date), str(current_date)))
+        print(len(data))
+        if len(data) != 10:
+            return historicalData
+        else:
+            if any(data):
+                historicalData.append(data)
+            current_date = current_date + timedelta(1)
+    return historicalData

@@ -18,8 +18,6 @@ yesterday = (datetime.today() - timedelta(1)).date()
 lastUpdateDate = status.lastUpdateDate.date()
 startUpdateDate = lastUpdateDate + timedelta(1)
 if yesterday != lastUpdateDate:
-    AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate=str(startUpdateDate),
-                              endDate=str(yesterday),
-                              arimaeffect=0.0)
-    status.lastUpdateDate = yesterday
-    status.save()
+    AssetDataApi().addDetails(prediction=0.0, errorMargin=0.1, neteffect=0.0, startDate=startUpdateDate,
+                                endDate=yesterday,
+                                arimaeffect=0.0)

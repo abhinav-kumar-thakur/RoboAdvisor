@@ -1,6 +1,7 @@
 from django.db import models
 from app.models.model_asset import Asset
 
+
 class NewsGroup(models.Model):
     id = models.AutoField(primary_key=True)
     asset = models.ForeignKey(Asset)
