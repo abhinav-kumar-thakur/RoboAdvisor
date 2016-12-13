@@ -16,7 +16,6 @@ class AssetDataApi():
             for asset in dailyData:
                 status_date = datetime.strptime(asset[0]['Date'], date_format)
                 symbol = Asset.objects.get(symbol=asset[0]['Symbol'])
-                print(asset)
                 db = AssetData(asset=symbol, errorMargin=errorMargin, prediction=prediction,
                                price=asset[0]['Close'],
                                timestamp=datetime.strptime(asset[0]['Date'], date_format), neteffect=neteffect,
