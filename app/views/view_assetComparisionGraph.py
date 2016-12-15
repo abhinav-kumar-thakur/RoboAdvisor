@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from django.db.models import Q
 from django.http import HttpResponse
 
 from app.models import Asset
@@ -12,7 +13,7 @@ def assetComparisionGraphDataApi(request, assetSymbol):
 
     asset = Asset.objects.get(symbol=assetSymbol)
 
-    startDate = (AssetData.objects.all().first()).timestamp
+    startDate = (AssetData.objects.filter(~Q(prediction=0)).first()).timestamp
     endDate = (AssetData.objects.all().last()).timestamp
 
     date = startDate

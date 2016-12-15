@@ -1,6 +1,7 @@
 import json
 from datetime import timedelta
 
+from django.db.models import Q
 from django.http import HttpResponse
 
 from app.models import AssetData
@@ -10,11 +11,9 @@ from app.models import PortfolioAssetMapping
 def portfolioComparisionGraphDataApi(request):
     comparisionGraphData = []
 
-    startDate = (AssetData.objects.filter(prediction=0).first()).timestamp
+    startDate = (AssetData.objects.filter(~Q(prediction=0)).first()).timestamp
     endDate = (AssetData.objects.all().last()).timestamp
 
-    print(startDate.date())
-    print(endDate.date())
     date = startDate
     while (date <= endDate):
 
