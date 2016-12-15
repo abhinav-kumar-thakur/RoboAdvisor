@@ -12,10 +12,8 @@ def assetComparisionGraphDataApi(request, assetSymbol):
 
     asset = Asset.objects.get(symbol=assetSymbol)
 
-    assetData = AssetData.objects.filter(asset=asset).latest('timestamp')
-    latestDay = assetData.timestamp
-    endDate = latestDay
-    startDate = (AssetData.objects.filter(prediction=0).latest('timestamp')).timestamp + timedelta(2)
+    startDate = (AssetData.objects.all().first()).timestamp
+    endDate = (AssetData.objects.all().last()).timestamp
 
     date = startDate
     while (date <= endDate):

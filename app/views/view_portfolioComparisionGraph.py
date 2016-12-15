@@ -10,13 +10,11 @@ from app.models import PortfolioAssetMapping
 def portfolioComparisionGraphDataApi(request):
     comparisionGraphData = []
 
-    mapping = PortfolioAssetMapping.objects.filter(portfolio=1).first()
-    assetData = AssetData.objects.filter(asset=mapping.asset).latest('timestamp')
+    startDate = (AssetData.objects.filter(prediction=0).first()).timestamp
+    endDate = (AssetData.objects.all().last()).timestamp
 
-    latestDay = assetData.timestamp
-    endDate = latestDay
-    startDate = (AssetData.objects.filter(prediction=0).latest('timestamp')).timestamp + timedelta(2)
-
+    print(startDate.date())
+    print(endDate.date())
     date = startDate
     while (date <= endDate):
 
