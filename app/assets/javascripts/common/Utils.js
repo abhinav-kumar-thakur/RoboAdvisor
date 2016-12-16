@@ -20,6 +20,8 @@ let Utils = {
 
   formatPrice: (price) => {
     price = parseFloat(price).toFixed(2).split('.');
+    price[0] = parseFloat(price[0]).toLocaleString();
+
     return price.join('.');
   },
 
