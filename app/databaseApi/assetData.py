@@ -9,7 +9,7 @@ from app.models import Status
 
 class AssetDataApi():
     def addDetails(self, prediction, errorMargin, neteffect, startDate, endDate, arimaeffect):
-        status = Status.objects.all()[0]
+        status = Status.objects.all()
         date_format = "%Y-%m-%d"
         historicalData = fetch_asset_data(startDate, endDate)
         for dailyData in historicalData:
@@ -26,6 +26,7 @@ class AssetDataApi():
 
 
 def fetch_asset_data(start_date, endDate):
+    date_format = "%Y-%m-%d"
     current_date = start_date
     historicalData = []
     while (current_date <= endDate):
@@ -41,5 +42,9 @@ def fetch_asset_data(start_date, endDate):
         else:
             if any(data):
                 historicalData.append(data)
-            current_date = current_date + timedelta(1)
+            if type(current_date) == str:
+                tempDate = (datetime.strptime(current_date, date_format)).date()
+                current_date = str(tempDate + timedelta(1))
+            if type(current_date) == datetime:
+                current_date = current_date + timedelta(1)
     return historicalData
