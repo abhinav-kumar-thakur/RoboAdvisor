@@ -26,7 +26,6 @@ class AssetDataApi():
 
 
 def fetch_asset_data(start_date, endDate):
-    date_format = "%Y-%m-%d"
     current_date = start_date
     historicalData = []
     while (current_date <= endDate):
