@@ -12,6 +12,7 @@ class AssetDataApi():
         status = Status.objects.all()[0]
         date_format = "%Y-%m-%d"
         historicalData = fetch_asset_data(startDate, endDate)
+        status_date = endDate
         for dailyData in historicalData:
             for asset in dailyData:
                 status_date = datetime.strptime(asset[0]['Date'], date_format)
